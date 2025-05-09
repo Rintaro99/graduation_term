@@ -1,0 +1,8 @@
+{
+    "name": "graduation_teram",
+    "private": true,
+    "dependencies": {
+      "esbuild": "^0.17.0"
+    }
+  }
+  
