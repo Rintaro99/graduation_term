@@ -17,4 +17,5 @@ test:
 
 production:
   # Heroku 本番では DATABASE_URL を使う
+  adapter: postgresql 
   url: <%= ENV["DATABASE_URL"] %>
