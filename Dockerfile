@@ -1,27 +1,40 @@
-FROM ruby:3.1.4-slim
-
-# ① Gem の bin ディレクトリを PATH に追加
-ENV PATH=/usr/local/bundle/bin:$PATH
+FROM ruby:3.4.3
 
 ENV LANG=C.UTF-8 TZ=Asia/Tokyo
 
-# 必要なパッケージを追加で入れる
-RUN apt-get update -qq \
- && apt-get install -y --no-install-recommends \
+# 1) ネイティブ拡張ビルドに必要なライブラリ群をまとめてインストール
+RUN apt-get update -qq && \
+    apt-get install -y --no-install-recommends \
       build-essential \
       libpq-dev \
-      nodejs \
-      npm \
-      yarn \
-      git \
       default-libmysqlclient-dev \
- && rm -rf /var/lib/apt/lists/*
+      libyaml-dev \
+      libssl-dev \
+      ca-certificates \
+      curl gnupg \
+      nodejs npm python3 cron && \
+    rm -rf /var/lib/apt/lists/*
 
-# 先に Rails や依存 gem をインストール
-RUN gem install rails \
-    pg \
-    puma \
-    sprockets-rails \
-    importmap-rails
+# 公式 Yarn を npm 経由でインストール
+RUN npm install -g yarn
 
-WORKDIR /usr/src/app
+# 2) 作業ディレクトリ
+WORKDIR /v3_advanced_rails
+
+# 3) Bundler バージョンを Gemfile.lock に合わせる
+RUN gem install bundler -v 2.3.26
+
+# 4) 依存ファイルを先行コピー → bundle/yarn インストール
+COPY Gemfile Gemfile.lock ./
+RUN bundle install --jobs 4 --retry 3
+
+# Node/Yarn 側の依存をインストールするために package.json もコピー
+COPY package.json yarn.lock ./
+RUN yarn install
+
+# 5) アプリケーションコードをコピー
+COPY . .
+
+# 6) デフォルトのコマンドとして Puma を起動
+EXPOSE 3000
+CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
