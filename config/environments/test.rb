@@ -64,7 +64,4 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions.
   config.action_controller.raise_on_missing_callback_actions = true
-
-  # テスト環境でも web-console を許可して警告を出さない
-  config.web_console.development_only = false
 end
