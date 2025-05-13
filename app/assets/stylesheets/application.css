@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+ body{
+    background-color: #043B40;
+ }
+
+ @media screen and (max-width: 767px) {
+  body {
+    background-color: #043B40;
+  }
+}

@@ -30,3 +30,5 @@ group :production do
   # Heroku 本番では Postgres を使う
   gem "pg"
 end
+
+gem 'sorcery', '0.16.3'
