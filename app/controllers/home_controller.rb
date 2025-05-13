@@ -1,4 +1,9 @@
 class HomeController < ApplicationController
-  def index
-  end
+  skip_before_action :require_login, only: %i[new create top]
+
+  def create; end
+
+  def new; end
+
+  def top; end
 end
