@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+/* ------------------------------------------
+  Utility Class
+------------------------------------------ */
+
+/* clearfix */
+
+.clearfix:after {
+    display: block;
+    visibility: hidden;
+    clear: both;
+    height: 0;
+    content: '.';
+}
+
+/* ------------------------------------------
+  Common
+------------------------------------------ */
+
+* {
+    box-sizing: border-box;
+    word-break: break-all;
+}
+
+html {
+    font-size: 10px;
+    height: 100%;
+}
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    position: relative;
+    min-width: 1080px;
+    color: #080808;
+    -webkit-text-size-adjust: none;
+}
+
+body.layer {
+    overflow: hidden;
+    height: 100%;
+}
+
+a, a img {
+    transition: color .3s ease, background .3s ease, opacity .3s ease;
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    text-decoration: none;
+    opacity: .75;
+}
+
+a:hover * {
+    opacity: .75;
+}
+
+a:focus {
+    outline: none;
+}
+
+@media(min-width: 768px) {
+    a[href^='tel:'] {
+        pointer-events: none;
+    }
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    line-height: inherit;
+    margin: 0;
+}
+
+ul, ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+p {
+    margin: 0;
+}
+
+.clear {
+    clear: both;
+}
+
+.only_pc {
+    display: block !important;
+}
+
+.only_sp {
+    display: none !important;
+}
+
+input, button, select, textarea {
+    font-family: 'Noto Sans JP', sans-serif;
+    border: none;
+    border-radius: 0;
+    background: none;
+    -webkit-appearance: none;
+}
+
+input[type=checkbox], input[type=radio] {
+    position: absolute;
+    z-index: -1;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+    opacity: 0;
+}
+
+.container {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 767px) {
+    body {
+        min-width: inherit;
+    }
+    .container {
+        width: auto;
+        margin: 0 20px;
+    }
+    .only_pc {
+        display: none !important;
+    }
+    .only_sp {
+        display: block !important;
+    }
+}

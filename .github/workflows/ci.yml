@@ -18,6 +18,8 @@ jobs:
         with:
           ruby-version: 3.4.3
           bundler-cache: true
+      - name: Install Ruby gems (excluding development)
+        run: bundle install --jobs 4 --retry 3 --without development
 
       - name: Scan for common Rails security vulnerabilities using static analysis
         run: bin/brakeman --no-pager
@@ -34,6 +36,8 @@ jobs:
         with:
           ruby-version: 3.4.3
           bundler-cache: true
+      - name: Install Ruby gems (excluding development)
+        run: bundle install --jobs 4 --retry 3 --without development
 
       - name: Scan for security vulnerabilities in JavaScript dependencies
         run: bin/importmap audit
@@ -49,6 +53,8 @@ jobs:
         with:
           ruby-version: 3.4.3
           bundler-cache: true
+      - name: Install Ruby gems (excluding development)
+        run: bundle install --jobs 4 --retry 3 --without development
 
       - name: Lint code for consistent style
         run: bin/rubocop -f github
@@ -84,6 +90,8 @@ jobs:
         with:
           ruby-version: 3.4.3
           bundler-cache: true
+      - name: Install Ruby gems (excluding development)
+        run: bundle install --jobs 4 --retry 3 --without development
 
       - name: Run tests
         env:
