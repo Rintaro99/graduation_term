@@ -1,6 +1,8 @@
 <section class="top_page">
-    <div class="top_page_content">
-        <%= image_tag "top_page_logo.jpg", alt: "トップページロゴ", class: "top-top_page_content_img" %>
+    <div class="container">
+        <div class="top_page_content_img">
+            <%= image_tag "top_page_logo.jpg", alt: "トップページロゴ"%>
+        </div>
         <div class="top_page_content_buttun">
             <%= link_to "新規登録", signup_path, class: "btn top_page_content_buttun_signup" %>
             <%= link_to "ログイン",  login_path,  class: "btn top_page_content_buttun_login"  %>
