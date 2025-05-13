@@ -32,3 +32,5 @@ group :production do
 end
 
 gem 'sorcery', '0.16.3'
+
+gem "importmap-rails"
