@@ -12,12 +12,15 @@ gem "jbuilder"
 gem "bootsnap", require: false
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
+group :development do
+  gem "web-console"
+end
+
 group :development, :test do
   # MySQL ドライバ（ローカル開発・テスト用）
   gem "mysql2", ">= 0.5.3", "< 0.6.0"
   # もしテストで sqlite3 を使いたければ残しても OK
   gem "sqlite3"
-  gem "web-console"
   gem "debug", platforms: %i[mri windows], require: "debug/prelude"
   gem "error_highlight", ">= 0.4.0", platforms: [:ruby]
   gem "brakeman", require: false
