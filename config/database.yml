@@ -17,5 +17,6 @@ test:
 
 production:
   # Heroku 本番では DATABASE_URL を使う
-  adapter: postgresql 
-  url: <%= ENV["DATABASE_URL"] %>
+  url: <%= ENV.fetch("DATABASE_URL") %>
+  # プールサイズだけ指定しておくとレスポンス性能が安定します
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS", 5) %>
