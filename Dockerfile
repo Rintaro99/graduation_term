@@ -19,7 +19,7 @@ RUN apt-get update -qq && \
 RUN npm install -g yarn
 
 # 2) 作業ディレクトリ
-WORKDIR /v3_advanced_rails
+WORKDIR /usr/src/app
 
 # 3) Bundler バージョンを Gemfile.lock に合わせる
 RUN gem install bundler -v 2.3.26
