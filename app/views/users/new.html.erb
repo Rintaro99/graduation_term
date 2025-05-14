@@ -1,0 +1,24 @@
+<div class="top_user_create">
+    <div class="container">
+        <h1 class="top_user_create_title">新規登録</h1>
+        <%= form_with model: @user do |f| %>
+            <div class="top_user_create_form_list">
+                <%= f.label :name, "名前(ニックネーム)", class: "form_label" %>
+                <%= f.text_field :name, class: "form_control" %>
+            </div>
+            <div class="top_user_create_form_list">
+                <%= f.label :email, "メールアドレス", class: "form_label" %>
+                <%= f.email_field :email, class: "form_control" %>
+            </div>
+            <div class="top_user_create_form_list">
+                <%= f.label :password, "パスワード", class: "form_label" %>
+                <%= f.password_field :password, class: "form_control" %>
+            </div>
+            <div class="top_user_create_form_list">
+                <%= f.label :password_confirmation, "パスワード(確認用)", class: "form_label" %>
+                <%= f.password_field :password_confirmation, class: "form_control" %>
+            </div>
+            <%= f.submit "登録", class: "btn top_user_create_buttun" %>
+        <% end %>
+    </div>
+</div>
