@@ -12,8 +12,13 @@ development:
   database: app_development
 
 test:
-  <<: *default
+  adapter: postgresql
+  encoding: UTF8         # ✅ PostgreSQLでは utf8mb4 ではなく UTF8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS", 5) %>
   database: app_test
+  username: <%= ENV["PG_USERNAME"] || "postgres" %>
+  password: <%= ENV["PG_PASSWORD"] || "" %>
+  host: <%= ENV["PG_HOST"] || "localhost" %>
 
 production:
   # Heroku 本番では DATABASE_URL を使う
