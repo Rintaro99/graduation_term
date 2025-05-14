@@ -16,4 +16,7 @@ test:
 
 production:
   <<: *default
-  url: <%= ENV["DATABASE_URL"] %>
+  # Heroku 本番では DATABASE_URL を使う
+  url: <%= ENV.fetch("DATABASE_URL") %>
+  # プールサイズだけ指定しておくとレスポンス性能が安定します
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS", 5) %>
