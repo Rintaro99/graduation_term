@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  skip_before_action :require_login, only: %i[new create top]
+  skip_before_action :require_login, only: %i[index new create top]
 
   def index; end
 
