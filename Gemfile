@@ -34,7 +34,7 @@ group :production do
   gem "pg"
 end
 
-gem 'sorcery', '0.16.3'
+gem 'sorcery', '0.17.0'
 
 gem "importmap-rails"
 
