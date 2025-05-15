@@ -105,17 +105,17 @@ input, button, select, textarea {
     border: none;
     border-radius: 0;
     background: none;
-    -webkit-appearance: none;
+    /* -webkit-appearance: none; */
 }
 
-input[type=checkbox], input[type=radio] {
+/* input[type=checkbox], input[type=radio] {
     position: absolute;
     z-index: -1;
     width: 1px;
     height: 1px;
     margin: 0;
     opacity: 0;
-}
+} */
 
 .container {
     width: 1000px;

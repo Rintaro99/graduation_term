@@ -15,6 +15,14 @@ Rails.application.routes.draw do
 
   get 'userpage', to: 'users#userpage'
 
+  get 'start_quiz', to: 'user_sessions#start_quiz', as: 'start_quiz'
+
+  get 'quiz', to: 'questions#show' # クイズ出題ページ
+  resources :questions, only: [:show] # （任意）show単体でルート残してもOK
+  # 回答チェック用のルート追加
+  post 'check_answer', to: 'answers#check', as: 'check_answer'
+
+
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check

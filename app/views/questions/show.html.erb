@@ -1,0 +1,14 @@
+<div class="container">
+    <h2><%= @question.content %></h2>
+    <%= form_with url: check_answer_path, method: :post, local: true do %>
+        <% @question.choices.each do |choice| %>
+            <div style="margin-bottom: 10px;">
+                <label style="cursor: pointer;">
+                    <%= radio_button_tag :choice_id, choice.id, false, id: "choice_#{choice.id}" %>
+                    <%= choice.content %>
+                </label>
+            </div>
+        <% end %>
+        <%= submit_tag "回答する" %>
+    <% end %>
+</div>
