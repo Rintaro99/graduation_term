@@ -62,15 +62,24 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    # services:
+    #   postgres:
+    #     image: postgres
+    #     env:
+    #       POSTGRES_USER: postgres
+    #       POSTGRES_PASSWORD: postgres
+    #     ports:
+    #       - 5432:5432
+    #     options: --health-cmd="pg_isready" --health-interval=10s --health-timeout=5s --health-retries=3
+
     services:
-      postgres:
-        image: postgres
+      mysql:
+        image: mysql:5.7
         env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-        ports:
-          - 5432:5432
-        options: --health-cmd="pg_isready" --health-interval=10s --health-timeout=5s --health-retries=3
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: app_test
+          MYSQL_USER: root
+          MYSQL_PASSWORD: root
 
       # redis:
       #   image: redis
@@ -96,7 +105,7 @@ jobs:
       - name: Run tests
         env:
           RAILS_ENV: test
-          DATABASE_URL: ""
+          # DATABASE_URL: ""
           # REDIS_URL: redis://localhost:6379/0
         run: bin/rails db:test:prepare test test:system
 

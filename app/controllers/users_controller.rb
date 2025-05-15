@@ -14,6 +14,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def userpage
+    @user = current_user
+  end
+
   private
 
   def user_params

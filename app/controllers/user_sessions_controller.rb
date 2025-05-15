@@ -7,8 +7,9 @@ class UserSessionsController < ApplicationController
     @user = login(params[:email], params[:password])
 
     if @user
-      redirect_to root_path
+      redirect_to userpage_path, notice: 'ログインしました'
     else
+      flash.now[:alert] = 'ログインに失敗しました'
       render :new
     end
   end
