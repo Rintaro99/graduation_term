@@ -19,5 +19,5 @@ test:
 
 production:
   <<: *default
-  url: <%= ENV["DATABASE_URL"] if ENV["DATABASE_URL"]&.include?("mysql2") %>
-  database: <%= ENV["MYSQL_DATABASE"] || "app_production" %>
+  url: <%= ENV["DATABASE_URL"] %>
+  encoding: UTF8
