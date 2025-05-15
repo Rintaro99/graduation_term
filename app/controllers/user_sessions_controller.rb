@@ -14,6 +14,11 @@ class UserSessionsController < ApplicationController
     end
   end
 
+  def start_quiz
+    session[:answered_questions] = []
+    redirect_to quiz_path
+  end
+
   def destroy
     logout
     redirect_to root_path, status: :see_other

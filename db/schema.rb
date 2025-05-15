@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_05_14_071336) do
+ActiveRecord::Schema[7.2].define(version: 2025_05_15_053636) do
+  create_table "choices", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "question_id", null: false
+    t.string "content"
+    t.boolean "is_correct"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_choices_on_question_id"
+  end
+
+  create_table "questions", charset: "utf8mb4", force: :cascade do |t|
+    t.string "content"
+    t.text "explanation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
@@ -24,4 +40,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_05_14_071336) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
   end
+
+  add_foreign_key "choices", "questions"
 end
