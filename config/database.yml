@@ -14,7 +14,7 @@ development:
 
 test:
   <<: *default
-  host: 127.0.0.1
+  host: mysql
   database: app_test
 
 production:
