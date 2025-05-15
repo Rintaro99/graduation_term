@@ -1,7 +1,7 @@
 <div class="top_user_session">
     <div class="container">
         <h1 class="top_user_session_title">ログイン</h1>
-        <%= form_with url: login_path do |f| %>
+        <%= form_with(url: login_path, method: :post, local: true) do |f| %>
             <div class="top_user_session_form_list">
                 <%= f.label :email, "メールアドレス", class: "form_label" %>
                 <%= f.email_field :email, class: "form_control" %>
