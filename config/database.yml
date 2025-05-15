@@ -19,6 +19,5 @@ test:
 
 production:
   <<: *default
-  # 本番だけ Heroku や Render の DATABASE_URL を使用（※mysql対応DBサービスの場合）
   url: <%= ENV["DATABASE_URL"] if ENV["DATABASE_URL"]&.include?("mysql2") %>
   database: <%= ENV["MYSQL_DATABASE"] || "app_production" %>
