@@ -100,13 +100,21 @@ p {
     display: none !important;
 }
 
-input, button, select, textarea {
+button, select{
     font-family: 'Noto Sans JP', sans-serif;
     border: none;
     border-radius: 0;
     background: none;
     /* -webkit-appearance: none; */
 }
+
+/* input, textarea{
+    font-family: 'Noto Sans JP', sans-serif;
+    border: none;
+    border-radius: 0;
+    background: none;
+    -webkit-appearance: none;
+} */
 
 /* input[type=checkbox], input[type=radio] {
     position: absolute;
