@@ -1,0 +1,29 @@
+<div class="container">
+    <h2>マイページ</h2>
+
+    <div>
+        <strong>ニックネーム</strong><br>
+        <%= current_user.name %>
+        <%= link_to "ニックネーム変更 >", edit_mypage_path(field: :name), data: { turbo_frame: "name_form" } %>
+        <turbo-frame id="name_form"></turbo-frame>
+    </div>
+
+    <div>
+        <strong>メールアドレス</strong><br>
+        <%= current_user.email %>
+        <%= link_to "メールアドレス変更 >", edit_mypage_path(field: :email), data: { turbo_frame: "email_form" } %>
+        <turbo-frame id="email_form"></turbo-frame>
+    </div>
+
+    <div>
+        <strong>パスワード</strong><br>
+        ●●●●●
+        <%= link_to "パスワード変更 >", new_password_reset_path %>
+        <turbo-frame id="password_form"></turbo-frame>
+    </div>
+
+    <div>
+        <%= link_to "トップへ戻る", userpage_path %>
+        <%= button_to "ログアウト", logout_path, method: :delete %>
+    </div>
+</div>
