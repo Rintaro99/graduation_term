@@ -1,5 +1,10 @@
 <div class="container">
     <h3>パスワードリセット申請</h3>
+
+    <% if flash[:danger] %>
+        <div class="alert alert-danger"><%= flash[:danger] %></div>
+    <% end %>
+
     <%= form_with url: password_resets_path do |f| %>
         <%= f.label :email %>
         <%= f.email_field :email %>
