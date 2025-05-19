@@ -9,7 +9,10 @@ class QuestionsController < ApplicationController
       remaining_questions = Question.where.not(id: session[:answered_questions])
 
       if remaining_questions.exists?
-        @question = remaining_questions.order("RAND()").first
+        # mysql用
+        # @question = remaining_questions.order("RAND()").first
+        # postgre用
+        @question = remaining_questions.order("RANDOM()").first
       else
         # 全問出題済み → 結果ページや終了画面へ
         redirect_to results_path, notice: "全ての問題が終了しました！"

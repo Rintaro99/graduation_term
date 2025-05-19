@@ -247,7 +247,7 @@ Rails.application.config.sorcery.configure do |config|
     # Specify username attributes, for example: [:username, :email].
     # Default: `[:email]`
     #
-    # user.username_attribute_names =
+    user.username_attribute_names = [:email]
 
     # Change *virtual* password attribute, the one which is used until an encrypted one is generated.
     # Default: `:password`
@@ -365,7 +365,7 @@ Rails.application.config.sorcery.configure do |config|
     # options: `:deliver_later`, `:deliver_now`, `:deliver`
     # Default: :deliver (Rails version < 4.2) or :deliver_now (Rails version 4.2+)
     #
-    # user.email_delivery_method =
+    user.email_delivery_method = :deliver_now
 
     # Activation needed email method on your mailer class.
     # Default: `:activation_needed_email`

@@ -4,10 +4,22 @@ class PasswordResetsController < ApplicationController
   def new; end
 
   def create
-    @user = User.find_by(email: params[:email])
-    @user&.deliver_reset_password_instructions!
-    redirect_to login_path
+    email = params[:email]
+
+    if email.blank?
+      flash.now[:danger] = 'メールアドレスを入力してください'
+      render :new, status: :unprocessable_entity
+      return
+    end
+
+    @user = User.find_by(email: email)
+
+    if @user
+      @user.deliver_reset_password_instructions!
+    end
+
     flash[:success]= 'パスワードリセットのメールを送信しました'
+    redirect_to login_path
   end
 
   def edit

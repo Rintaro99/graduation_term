@@ -14,6 +14,7 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 
 group :development do
   gem "web-console"
+  gem 'letter_opener_web', '2.0.0'
 end
 
 group :development, :test do
@@ -38,6 +39,6 @@ gem 'sorcery', '0.16.3'
 
 gem "importmap-rails"
 
-gem 'letter_opener_web', '2.0.0'
-
 gem 'config'
+
+gem "rails-i18n", "~> 7.0"
