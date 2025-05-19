@@ -7,9 +7,12 @@ ja:
         name: 名前
         email: メールアドレス
         password: パスワード
+        password_confirmation: パスワード（確認用）
   errors:
     messages:
       blank: "を入力してください"
       taken: "はすでに存在します"
       too_short: "は%{count}文字以上で入力してください"
     format: "%{attribute}%{message}"
+  defaults:
+    password_reset: "パスワード再設定のご案内"
