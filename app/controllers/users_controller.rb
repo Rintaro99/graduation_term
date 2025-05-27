@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   def edit
     # 編集対象のフィールドをparamsで受け取る
     @field = params[:field]
-    render partial: "edit_field", formats: [:html]
+    render partial: "edit_field", formats: [ :html ]
   end
 
   def update
