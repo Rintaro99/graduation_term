@@ -1,7 +1,7 @@
 class UserSessionsController < ApplicationController
   skip_before_action :require_login, only: %i[new create]
 
-  def new 
+  def new
     @user = User.new
   end
 
@@ -17,27 +17,27 @@ class UserSessionsController < ApplicationController
     # Rails.logger.debug "🌐 Sorcery login result: #{@user.inspect}"
 
     if @user
-      redirect_to userpage_path, notice: 'ログインしました'
+      redirect_to userpage_path, notice: "ログインしました"
     else
       @user = User.new(email: email)
       user_record = User.find_by(email: email)
 
       # メールアドレスのエラーチェック
       if email.blank?
-        @user.errors.add(:email, 'を入力してください')
+        @user.errors.add(:email, "を入力してください")
       end
 
       if email.present? && user_record.nil?
-        @user.errors.add(:email, 'が登録されていません')
+        @user.errors.add(:email, "が登録されていません")
       end
 
       # パスワードのエラーチェック
       if password.blank?
-        @user.errors.add(:password, 'を入力してください')
+        @user.errors.add(:password, "を入力してください")
       end
 
       if user_record && password.present? && !User.authenticate(email, password)
-        @user.errors.add(:password, 'が間違っています')
+        @user.errors.add(:password, "が間違っています")
       end
 
       render :new, status: :unprocessable_entity
@@ -62,7 +62,7 @@ class UserSessionsController < ApplicationController
   #     return redirect_to userpage_path, notice: 'ログインしました'
   #   end
 
-    # ↑ どこかでエラーが発生したら
+  # ↑ どこかでエラーが発生したら
   #   render :new
   # end
 

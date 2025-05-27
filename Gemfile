@@ -14,7 +14,7 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 
 group :development do
   gem "web-console"
-  gem 'letter_opener_web', '2.0.0'
+  gem "letter_opener_web", "2.0.0"
 end
 
 group :development, :test do
@@ -23,8 +23,10 @@ group :development, :test do
   # もしテストで sqlite3 を使いたければ残しても OK
   gem "sqlite3"
   gem "debug", platforms: %i[mri windows], require: "debug/prelude"
-  gem "error_highlight", ">= 0.4.0", platforms: [:ruby]
+  gem "error_highlight", ">= 0.4.0", platforms: [ :ruby ]
   gem "brakeman", require: false
+  gem "rubocop", require: false
+  gem "rubocop-rails", require: false
   gem "rubocop-rails-omakase", require: false
   gem "capybara"
   gem "selenium-webdriver"
@@ -35,10 +37,10 @@ group :production do
   gem "pg"
 end
 
-gem 'sorcery', '0.16.3'
+gem "sorcery", "0.16.3"
 
 gem "importmap-rails"
 
-gem 'config'
+gem "config"
 
 gem "rails-i18n", "~> 7.0"

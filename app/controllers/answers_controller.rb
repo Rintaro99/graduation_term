@@ -6,7 +6,7 @@ class AnswersController < ApplicationController
 
         current_question = Question.find_by(id: params[:question_id])
 
-        #未選択チェック
+        # 未選択チェック
         if params[:choice_id].blank?
             redirect_to question_path(current_question), alert: "選択肢を選んでから回答してください！"
             return

@@ -6,26 +6,26 @@ Rails.application.routes.draw do
   get  "signup", to: "users#new",    as: :signup
   post "signup", to: "users#create"
   resources :users, only: %i[new create]
-  get 'login', to: 'user_sessions#new', as: :login
-  post 'login', to: 'user_sessions#create'
-  delete 'logout', to: 'user_sessions#destroy', as: :logout
+  get "login", to: "user_sessions#new", as: :login
+  post "login", to: "user_sessions#create"
+  delete "logout", to: "user_sessions#destroy", as: :logout
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  resources :password_resets, only: [:new, :create, :edit, :update]
+  resources :password_resets, only: [ :new, :create, :edit, :update ]
 
-  get 'userpage', to: 'users#userpage'
+  get "userpage", to: "users#userpage"
 
-  get 'start_quiz', to: 'user_sessions#start_quiz', as: 'start_quiz'
-  get 'quiz', to: 'questions#show' # クイズ出題ページ
-  resources :questions, only: [:show] # （任意）show単体でルート残してもOK
+  get "start_quiz", to: "user_sessions#start_quiz", as: "start_quiz"
+  get "quiz", to: "questions#show" # クイズ出題ページ
+  resources :questions, only: [ :show ] # （任意）show単体でルート残してもOK
   # 回答チェック用のルート追加
-  post 'check_answer', to: 'answers#check', as: 'check_answer'
+  post "check_answer", to: "answers#check", as: "check_answer"
   # ★成績表示
-  get 'results', to: 'results#show', as: 'results'
+  get "results", to: "results#show", as: "results"
   # ★クイズリセット（もう一度挑戦ボタン用）
-  get 'reset_quiz', to: 'results#reset', as: 'reset_quiz'
+  get "reset_quiz", to: "results#reset", as: "reset_quiz"
 
-  resource :mypage, only: [:show, :edit, :update], controller: "users"
+  resource :mypage, only: [ :show, :edit, :update ], controller: "users"
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
