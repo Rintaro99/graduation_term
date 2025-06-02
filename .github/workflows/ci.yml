@@ -80,6 +80,8 @@ jobs:
           MYSQL_DATABASE: app_test
           MYSQL_USER: root
           MYSQL_PASSWORD: root
+        ports:
+          - 3306:3306
 
       # redis:
       #   image: redis
