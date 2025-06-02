@@ -57,8 +57,8 @@ RSpec.describe "Answers", type: :request do
 
     context "全問回答済みになった場合" do
         it "results_pathにリダイレクトされる" do
-            # 2問目は before ですでに回答済み
-            # ここで question1 と question3 を答えて、3問全て回答済にする
+          # 2問目は before ですでに回答済み
+          # ここで question1 と question3 を答えて、3問全て回答済にする
           post check_answer_path, params: {
             question_id: question1.id,
             choice_id: correct_choice.id
