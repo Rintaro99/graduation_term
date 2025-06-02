@@ -15,9 +15,11 @@ development:
 
 test:
   <<: *default
-  # host: mysql
+  host: mysql
   # host: localhost
   database: app_test
+  username: root
+  password: root
 
 production:
   <<: *default
