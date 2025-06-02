@@ -17,7 +17,6 @@ test:
   <<: *default
   # host: mysql
   # host: localhost
-  host: db
   database: app_test
 
 production:
