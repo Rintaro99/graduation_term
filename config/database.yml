@@ -15,11 +15,10 @@ development:
 
 test:
   <<: *default
-  host: mysql
-  # host: localhost
+  host: <%= ENV['MYSQL_HOST'] || '127.0.0.1' %>
   database: app_test
-  username: root
-  password: root
+  username: <%= ENV['MYSQL_USER'] || 'root' %>
+  password: <%= ENV['MYSQL_PASSWORD'] || 'root' %>
 
 production:
   <<: *default
