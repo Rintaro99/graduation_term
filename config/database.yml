@@ -1,31 +1,3 @@
-# default: &default
-#   adapter: mysql2
-#   encoding: utf8mb4
-#   collation: utf8mb4_general_ci
-#   pool: <%= ENV.fetch("RAILS_MAX_THREADS", 5) %>
-#   username: <%= ENV["MYSQL_USER"] || "root" %>
-#   password: <%= ENV["MYSQL_PASSWORD"] || "password" %>
-#   host: <%= ENV["MYSQL_HOST"] || "127.0.0.1" %>
-#   # host: localhost
-#   port: <%= ENV["MYSQL_PORT"] || 3306 %>
-
-# development:
-#   <<: *default
-#   database: app_development
-
-# test:
-#   <<: *default
-#   host: <%= ENV['MYSQL_HOST'] || '127.0.0.1' %>
-#   database: app_test
-#   username: <%= ENV['MYSQL_USER'] || 'root' %>
-#   password: <%= ENV['MYSQL_PASSWORD'] || 'root' %>
-
-# production:
-#   <<: *default
-#   url: <%= ENV["DATABASE_URL"] %>
-#   encoding: UTF8
-#   # encoding: utf8mb4
-
 default: &default
   adapter: mysql2
   encoding: utf8mb4
@@ -34,6 +6,7 @@ default: &default
   username: <%= ENV["MYSQL_USER"] || "root" %>
   password: <%= ENV["MYSQL_PASSWORD"] || "password" %>
   host: <%= ENV["MYSQL_HOST"] || "127.0.0.1" %>
+  # host: localhost
   port: <%= ENV["MYSQL_PORT"] || 3306 %>
 
 development:
@@ -42,9 +15,13 @@ development:
 
 test:
   <<: *default
+  host: <%= ENV['MYSQL_HOST'] || '127.0.0.1' %>
   database: app_test
+  username: <%= ENV['MYSQL_USER'] || 'root' %>
+  password: <%= ENV['MYSQL_PASSWORD'] || 'root' %>
 
 production:
   <<: *default
   url: <%= ENV["DATABASE_URL"] %>
   encoding: UTF8
+  # encoding: utf8mb4
