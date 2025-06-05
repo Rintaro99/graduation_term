@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_05_15_053636) do
+ActiveRecord::Schema[7.2].define(version: 2025_06_05_060458) do
+  create_table "challenges", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_challenges_on_user_id"
+  end
+
   create_table "choices", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "question_id", null: false
     t.string "content"
@@ -41,5 +49,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_05_15_053636) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
   end
 
+  add_foreign_key "challenges", "users"
   add_foreign_key "choices", "questions"
 end
