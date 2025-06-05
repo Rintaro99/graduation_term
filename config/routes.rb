@@ -25,6 +25,10 @@ Rails.application.routes.draw do
   # ★クイズリセット（もう一度挑戦ボタン用）
   get "reset_quiz", to: "results#reset", as: "reset_quiz"
 
+  # ランキング用
+  resources :challenges, only: [:new, :create]
+  get 'ranking', to: 'rankings#index'
+
   resource :mypage, only: [ :show, :edit, :update ], controller: "users"
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
