@@ -5,6 +5,7 @@ class ResultsController < ApplicationController
     session[:answered_questions] ||= []
     session[:correct_questions] ||= []
     session[:answers] ||= {}
+    session[:scored] = false
 
     @answered_count = session[:answered_questions].count
     @total_questions = Question.count
@@ -12,11 +13,18 @@ class ResultsController < ApplicationController
 
     unless session[:scored]
       correct_count = calculate_score(session[:answers])
-      current_user.challenges.create(score: correct_count)
-      session[:scored] = true  # 二重保存防止のフラグ
+      # current_user.challenges.create(score: correct_count)
+      # session[:scored] = true  # 二重保存防止のフラグ
+      # ユーザーの現在の最高スコアを取得
+      best_score = current_user.challenges.maximum(:score) || 0
+      # 新しいスコアが自己ベストなら保存
+      if correct_count > best_score
+        current_user.challenges.create(score: correct_count)
+      end
+
+      session[:scored] = true
 
       logger.debug "DEBUG: session[:answers] = #{session[:answers].inspect}"
-
     end
 
     @score = calculate_score(session[:answers]) # 表示用
