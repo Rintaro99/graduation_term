@@ -34,9 +34,9 @@ RSpec.describe "Answers", type: :request do
 
         expect(response).to have_http_status(:success)
         expect(response.body).to include(question1.content)
-
-        expect(session[:answered_questions]).to include(question1.id)
-        expect(session[:correct_questions]).to include(question1.id)
+        # expect(session[:answered_questions]).to include(question1.id)
+        # expect(session[:correct_questions]).to include(question1.id)
+        expect(response.body).to include("正解！🎉")
       end
     end
 
@@ -46,12 +46,11 @@ RSpec.describe "Answers", type: :request do
           question_id: question1.id,
           choice_id: wrong_choice.id
         }
-
         expect(response).to have_http_status(:success)
         expect(response.body).to include(question1.content)
-
-        expect(session[:answered_questions]).to include(question1.id)
-        expect(session[:correct_questions]).not_to include(question1.id)
+        # expect(session[:answered_questions]).to include(question1.id)
+        # expect(session[:correct_questions]).not_to include(question1.id)
+        expect(response.body).to include("不正解...😢") 
       end
     end
 

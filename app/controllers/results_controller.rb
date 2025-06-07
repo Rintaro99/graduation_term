@@ -27,7 +27,7 @@ class ResultsController < ApplicationController
       logger.debug "DEBUG: session[:answers] = #{session[:answers].inspect}"
     end
 
-    @score = calculate_score(session[:answers]) # 表示用
+    @correct_count = calculate_score(session[:answers]) # 表示用
   end
 
   def reset
