@@ -4,6 +4,8 @@
     <% end %>
 
     <h2><%= @question.content %></h2>
+
+
     <%= form_with url: check_answer_path, method: :post, local: true, scope: nil do %>
         <%= hidden_field_tag :question_id, @question.id %>
         <% @question.choices.each do |choice| %>
@@ -13,7 +15,7 @@
                     <%= choice.content %>
                 </label>
             </div>
-        <% end %>
+            <% end %>
         <%= submit_tag "回答する" %>
     <% end %>
 </div>

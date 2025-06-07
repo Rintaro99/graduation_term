@@ -31,4 +31,9 @@ RSpec.describe "Results", type: :request do
     expect(response.body).to include("正解数：1")
     expect(response.body).to include("お疲れ様でした！すべての問題を解きました🎉")
   end
+
+  it "自己ベストが正しく保存される" do
+    get results_path
+    expect(user.challenges.maximum(:score)).to eq(1)
+  end
 end

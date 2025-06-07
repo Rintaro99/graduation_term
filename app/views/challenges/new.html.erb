@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="ranking">
+    <h1>スコア登録フォーム</h1>
+
+    <%= form_with url: challenges_path, method: :post do %>
+    <div>
+      <label>スコア：</label>
+      <%= number_field_tag :score, 0 %>
+    </div>
+
+    <%= submit_tag "スコアを送信" %>
+<% end %>
+  </div>
+</div>
