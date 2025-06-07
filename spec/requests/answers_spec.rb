@@ -50,7 +50,7 @@ RSpec.describe "Answers", type: :request do
         expect(response.body).to include(question1.content)
         # expect(session[:answered_questions]).to include(question1.id)
         # expect(session[:correct_questions]).not_to include(question1.id)
-        expect(response.body).to include("不正解...😢") 
+        expect(response.body).to include("不正解...😢")
       end
     end
 

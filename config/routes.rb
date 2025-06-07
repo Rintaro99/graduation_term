@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   get "start_quiz", to: "user_sessions#start_quiz", as: "start_quiz"
   get "quiz", to: "questions#show" # クイズ出題ページ
-  resources :questions, only: [:show]
+  resources :questions, only: [ :show ]
 
   # 回答チェック用のルート追加
   post "check_answer", to: "answers#check", as: "check_answer"
@@ -27,11 +27,11 @@ Rails.application.routes.draw do
   get "reset_quiz", to: "results#reset", as: "reset_quiz"
 
   # ランキング用
-  resources :challenges, only: [:new, :create]
-  get 'ranking', to: 'rankings#index'
+  resources :challenges, only: [ :new, :create ]
+  get "ranking", to: "rankings#index"
 
   # 回答の自動保存
-  post 'check_answer', to: 'answers#check'
+  post "check_answer", to: "answers#check"
 
   resource :mypage, only: [ :show, :edit, :update ], controller: "users"
 

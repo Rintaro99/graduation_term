@@ -4,7 +4,7 @@ class ChallengesController < ApplicationController
   def new; end
 
   def create
-    answers = params[:answers] 
+    answers = params[:answers]
     score = calculate_score(answers)
     current_user.challenges.create(score: score)
     redirect_to ranking_path, notice: "スコアを保存しました！"
@@ -14,7 +14,6 @@ class ChallengesController < ApplicationController
 
   def calculate_score(answers)
     correct_count = 0
-
     answers.each do |question_id, choice_id|
       choice = Choice.find(choice_id)
       correct_count += 1 if choice.is_correct
