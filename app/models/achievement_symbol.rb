@@ -1,0 +1,2 @@
+class AchievementSymbol < ApplicationRecord
+end

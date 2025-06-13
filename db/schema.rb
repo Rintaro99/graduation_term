@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_06_05_060458) do
+ActiveRecord::Schema[7.2].define(version: 2025_06_13_111614) do
+  create_table "achievement_symbols", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.string "img"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "min_score"
+  end
+
   create_table "challenges", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.integer "score"
