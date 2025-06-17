@@ -2,6 +2,8 @@ class User < ApplicationRecord
   authenticates_with_sorcery!
 
   has_many :challenges
+  has_many :user_symbols
+  has_many :achievement_symbols, through: :user_symbols
 
   # validates :password, length: { minimum: 3 }, if: -> { new_record? || changes[:crypted_password] }
   # validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
@@ -12,6 +14,30 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
 
   validates :reset_password_token, uniqueness: true, allow_nil: true
+
+  def best_score
+    challenges.maximum(:score)
+  end
+
+  def update_symbols!
+    return unless best_score
+
+    # スコアを満たしているが、まだ持っていない称号だけ取得
+    unlocked = AchievementSymbol.where("min_score <= ?", best_score)
+    new_symbols = unlocked.where.not(id: achievement_symbol_ids)
+
+    logger.debug "DEBUG: user best score = #{best_score}"
+    logger.debug "DEBUG: unlocked symbols = #{unlocked.map(&:name)}"
+    logger.debug "DEBUG: newly assigned symbols = #{new_symbols.map(&:name)}"
+
+    new_symbols.each do |symbol|
+      user_symbols.create!(achievement_symbol: symbol)
+    end
+  end
+
+  def latest_symbol
+    achievement_symbols.order(min_score: :desc).first
+  end
 
   private
 

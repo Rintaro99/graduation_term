@@ -3,10 +3,14 @@
         <%= link_to 'マイページ', mypage_path %>
         <h2><%= @user.name %></h2>
         <div class="top_userpage_symbol">
-            <h1 class="top_userpage_symbol_title">称号</h1>
-            <div class="top_userpage_symbol_img">
-                
-            </div>
+            <% if @user.latest_symbol %>
+                <h1 class="top_userpage_symbol_title">称号</h1>
+                <div class="top_userpage_symbol_img">
+                    <p><%= @user.latest_symbol.name %></p>
+                    <%= image_tag(@user.latest_symbol.img) if @user.latest_symbol.img.present? %>
+                </div>
+            <% end %>
+            <p>DEBUG: <%= @user.latest_symbol.inspect %></p>
         </div>
         <%= link_to '問題！', start_quiz_path %>
         <%= link_to 'ランキング', ranking_path %>
