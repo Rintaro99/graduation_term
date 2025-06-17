@@ -16,9 +16,9 @@ class ResultsController < ApplicationController
       # current_user.challenges.create(score: correct_count)
       # session[:scored] = true  # 二重保存防止のフラグ
       if current_user.present?
-      # ユーザーの現在の最高スコアを取得
+        # ユーザーの現在の最高スコアを取得
         best_score = current_user.challenges.maximum(:score) || 0
-      # 新しいスコアが自己ベストなら保存
+        # 新しいスコアが自己ベストなら保存
         if correct_count > best_score
           current_user.challenges.create(score: correct_count)
           current_user.update_symbols!
