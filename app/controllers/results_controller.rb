@@ -30,6 +30,8 @@ class ResultsController < ApplicationController
     end
 
     @correct_count = calculate_score(session[:answers]) # 表示用
+
+    current_user.update_symbols! if current_user
   end
 
   def reset
