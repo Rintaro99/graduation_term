@@ -128,9 +128,9 @@ puts "✅ 問題作成完了"
   { question: q9, content: "鳳麟登場（ほうりんとうじょう）", is_correct: false },
   { question: q9, content: "鳳麟和合（ほうりんわごう）", is_correct: false },
 
-  { question: q10, content: "突起", is_correct: true },
+  { question: q10, content: "突起", is_correct: false },
   { question: q10, content: "毛", is_correct: false },
-  { question: q10, content: "うろこ", is_correct: false },
+  { question: q10, content: "うろこ", is_correct: true },
   { question: q10, content: "獣", is_correct: false }
 ].each do |choice_attrs|
   Choice.find_or_create_by!(
