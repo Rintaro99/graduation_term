@@ -134,8 +134,9 @@ puts "✅ 問題作成完了"
   { question: q10, content: "獣", is_correct: false }
 ].each do |choice_attrs|
   Choice.find_or_create_by!(
-    question: choice_attrs[:question],
+    choice = Choice.find_or_initialize_by(question: attrs[:question], content: attrs[:content]),
     content: choice_attrs[:content]
+    choice.save!
   ) do |c|
     c.is_correct = choice_attrs[:is_correct]
   end
