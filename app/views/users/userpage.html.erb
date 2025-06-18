@@ -10,7 +10,7 @@
                     <%= image_tag(current_user.latest_symbol.img) if current_user.latest_symbol.img.present? %>
                 </div>
             <% end %>
-            <p>DEBUG: <%= current_user.latest_symbol.inspect %></p>
+            <!-- <p>DEBUG: <%= current_user.latest_symbol.inspect %></p> -->
         </div>
         <%= link_to '問題！', start_quiz_path %>
         <%= link_to 'ランキング', ranking_path %>
