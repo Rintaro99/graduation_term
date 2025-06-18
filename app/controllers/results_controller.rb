@@ -15,19 +15,23 @@ class ResultsController < ApplicationController
       correct_count = calculate_score(session[:answers])
       # current_user.challenges.create(score: correct_count)
       # session[:scored] = true  # 二重保存防止のフラグ
-      # ユーザーの現在の最高スコアを取得
-      best_score = current_user.challenges.maximum(:score) || 0
-      # 新しいスコアが自己ベストなら保存
-      if correct_count > best_score
-        current_user.challenges.create(score: correct_count)
+      if current_user.present?
+        # ユーザーの現在の最高スコアを取得
+        best_score = current_user.challenges.maximum(:score) || 0
+        # 新しいスコアが自己ベストなら保存
+        if correct_count > best_score
+          current_user.challenges.create(score: correct_count)
+          current_user.update_symbols!
+        end
       end
 
       session[:scored] = true
-
       logger.debug "DEBUG: session[:answers] = #{session[:answers].inspect}"
     end
 
     @correct_count = calculate_score(session[:answers]) # 表示用
+
+    current_user.update_symbols! if current_user
   end
 
   def reset

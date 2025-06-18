@@ -2,6 +2,11 @@ class UsersController < ApplicationController
   skip_before_action :require_login, only: %i[new create]
   before_action :set_user
 
+  def show
+    current_user.update_symbols! if current_user
+  end
+
+
   def new
     @user = User.new
   end
