@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_06_20_054103) do
+ActiveRecord::Schema[7.2].define(version: 2025_06_20_055857) do
   create_table "achievement_symbols", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.string "img"
@@ -34,6 +34,15 @@ ActiveRecord::Schema[7.2].define(version: 2025_06_20_054103) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["question_id"], name: "index_choices_on_question_id"
+  end
+
+  create_table "posts", charset: "utf8mb4", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "questions", charset: "utf8mb4", force: :cascade do |t|
@@ -69,6 +78,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_06_20_054103) do
 
   add_foreign_key "challenges", "users"
   add_foreign_key "choices", "questions"
+  add_foreign_key "posts", "users"
   add_foreign_key "user_symbols", "achievement_symbols"
   add_foreign_key "user_symbols", "users"
 end
