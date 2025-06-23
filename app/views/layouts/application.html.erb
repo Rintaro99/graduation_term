@@ -16,6 +16,10 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <!-- <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %> -->
+    <script src="https://cdn.jsdelivr.net/npm/@rails/ujs@7.0.4/lib/assets/compiled/rails-ujs.js"></script>
+    <script>
+      Rails.start()
+    </script>
   </head>
 
   <body>
