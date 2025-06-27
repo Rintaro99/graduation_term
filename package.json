@@ -2,7 +2,15 @@
     "name": "graduation_teram",
     "private": true,
     "dependencies": {
-      "esbuild": "^0.17.0"
+        "@hotwired/turbo": "^8.0.13",
+        "@rails/ujs": "^7.1.3-4",
+        "react": "^19.1.0",
+        "react-dom": "^19.1.0"
+    },
+    "scripts": {
+        "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets --loader:.js=jsx --loader:.jsx=jsx"
+    },
+    "devDependencies": {
+        "esbuild": "^0.25.5"
     }
-  }
-  
+}
