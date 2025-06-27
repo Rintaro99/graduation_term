@@ -1,13 +1,5 @@
 <div class="top_user_create">
     <div class="container">
-
-<% unless @user.nil? %>
-  <div style="color: blue;">
-    <p><strong>DEBUG: @user.class = <%= @user.class %></strong></p>
-    <p><strong>DEBUG: errors = <%= @user.errors.full_messages %></strong></p>
-  </div>
-<% end %>
-
         <h1 class="top_user_create_title">新規登録</h1>
         <%= form_with model: @user, local: true, data: { turbo: false } do |f| %>
             <%= render 'shared/error_messages', object: f.object %>
