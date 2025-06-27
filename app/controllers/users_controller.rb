@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: %i[new create]
-  before_action :set_user
+  before_action :set_user, only: [:show, :edit, :update, :userpage]
 
   def show
     current_user.update_symbols! if current_user
@@ -45,6 +45,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :terms_of_service)
   end
 end

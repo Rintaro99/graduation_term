@@ -20,7 +20,6 @@ class UserSessionsController < ApplicationController
       redirect_to userpage_path, notice: "ログインしました"
     else
       @user = User.new(email: email)
-      user_record = User.find_by(email: email)
 
       # メールアドレスのエラーチェック
       if email.blank?
@@ -39,7 +38,6 @@ class UserSessionsController < ApplicationController
       if user_record && password.present? && !User.authenticate(email, password)
         @user.errors.add(:password, "が間違っています")
       end
-
       render :new, status: :unprocessable_entity
     end
   end

@@ -1,7 +1,15 @@
 <div class="top_user_create">
     <div class="container">
+
+<% unless @user.nil? %>
+  <div style="color: blue;">
+    <p><strong>DEBUG: @user.class = <%= @user.class %></strong></p>
+    <p><strong>DEBUG: errors = <%= @user.errors.full_messages %></strong></p>
+  </div>
+<% end %>
+
         <h1 class="top_user_create_title">新規登録</h1>
-        <%= form_with model: @user, local: true do |f| %>
+        <%= form_with model: @user, local: true, data: { turbo: false } do |f| %>
             <%= render 'shared/error_messages', object: f.object %>
             <div class="top_user_create_form_list">
                 <%= f.label :name, "名前(ニックネーム)", class: "form_label" %>
@@ -31,6 +39,19 @@
                     <div class="text-danger"><%= msg %></div>
                 <% end %>
             </div>
+
+            <!-- 利用規約とプライバシーポリシー -->
+            <div>
+                <%= f.check_box :terms_of_service, {}, '1', '0' %>
+                <%= f.label :terms_of_service do %>
+                    <a href="<%= pages_terms_path %>" target="_blank">利用規約</a>と
+                    <a href="<%= pages_privacy_path %>" target="_blank">プライバシーポリシー</a>に同意する
+                <% end %>
+                <% if @user.errors[:terms_of_service].any? %>
+                    <div style="color: red;"><%= @user.errors[:terms_of_service].first %></div>
+                <% end %>
+            </div>
+
             <%= f.submit "登録", class: "btn top_user_create_buttun" %>
         <% end %>
     </div>
