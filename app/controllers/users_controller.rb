@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: %i[new create]
-  before_action :set_user, only: [:show, :edit, :update, :userpage]
+  before_action :set_user, only: [ :show, :edit, :update, :userpage ]
 
   def show
     current_user.update_symbols! if current_user
