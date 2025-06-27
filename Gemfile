@@ -47,3 +47,6 @@ gem "importmap-rails"
 gem "config"
 
 gem "rails-i18n", "~> 7.0"
+
+
+gem "jsbundling-rails", "~> 1.3"
