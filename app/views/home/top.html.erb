@@ -8,6 +8,8 @@
             <%= link_to "ログイン",  login_path,  class: "btn top_page_content_buttun_login"  %>
         </div>
 
+        <%= link_to "Googleでログイン", "/auth/google_oauth2" %>
+
         <% content_for :og_title, "りんってかける？" %>
         <% content_for :og_description, "あなたはこの字をどれだけ知っている？SNSログインですぐに始められます。" %>
         <% content_for :og_image, image_url("top_page_logo.jpg") %>

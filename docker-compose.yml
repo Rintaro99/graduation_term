@@ -12,6 +12,8 @@ services:
       - "15432:3306"        # ホスト15432 → コンテナ3306
 
   web:
+    env_file:
+      - .env
     build: .
     working_dir: /usr/src/app          # Dockerfile と合わせる
     command: bash -c "rm -f tmp/pids/server.pid \

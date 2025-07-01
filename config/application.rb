@@ -31,5 +31,7 @@ module App
     end
 
     config.i18n.default_locale = :ja
+
+    config.api_only = false
   end
 end
