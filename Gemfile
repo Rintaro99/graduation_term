@@ -46,8 +46,8 @@ gem "importmap-rails"
 gem "config"
 gem "rails-i18n", "~> 7.0"
 gem "jsbundling-rails", "~> 1.3"
-# snsログイン用
-gem 'omniauth'
-gem 'omniauth-google-oauth2'
-gem 'omniauth-rails_csrf_protection'
+# deviseでsnsログイン用
+# gem 'omniauth'
+# gem 'omniauth-google-oauth2'
+# gem 'omniauth-rails_csrf_protection'
 

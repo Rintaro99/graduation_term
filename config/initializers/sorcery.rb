@@ -87,6 +87,22 @@ Rails.application.config.sorcery.configure do |config|
   config.google.callback_url = "http://localhost:3000/oauth/callback?provider=google"
   config.google.user_info_mapping = { email: "email", name: "name" }
 
+  # config.twitter.key = ENV["TWITTER_API_KEY"]
+  # config.twitter.secret = ENV["TWITTER_API_SECRET"]
+  # config.twitter.callback_url = "http://localhost:3000/oauth/callback?provider=twitter"
+  # config.twitter.user_info_mapping = { email: "screen_name" }
+
+  # config.facebook.key = ENV["FACEBOOK_API_KEY"]
+  # config.facebook.secret = ENV["FACEBOOK_API_SECRET"]
+  # config.facebook.callback_url = "http://localhost:3000/oauth/callback?provider=facebook"
+  # config.facebook.user_info_mapping = { email: "email", name: "name" }
+
+  # config.external_path = "/auth" # デフォルトのままでもOKだが明示的に
+
+  # config.google.callback_url = "http://localhost:3000/auth/google/callback"
+  # config.twitter.callback_url = "http://localhost:3000/auth/twitter/callback"
+  # config.facebook.callback_url = "http://localhost:3000/auth/facebook/callback"
+
   # You can change it by your local ca_file. i.e. '/etc/pki/tls/certs/ca-bundle.crt'
   # Path to ca_file. By default use a internal ca-bundle.crt.
   # Default: `'path/to/ca_file'`
@@ -548,7 +564,7 @@ Rails.application.config.sorcery.configure do |config|
     # Class which holds the various external provider data for this user.
     # Default: `nil`
     #
-    # user.authentications_class =
+    user.authentications_class = "Authentication"
 
     # User's identifier in the `authentications` class.
     # Default: `:user_id`
@@ -569,4 +585,15 @@ Rails.application.config.sorcery.configure do |config|
   # This line must come after the 'user config' block.
   # Define which model authenticates with sorcery.
   config.user_class = "User"
+
+  # Rails.application.config.middleware.use OmniAuth::Builder do
+  # provider :google,
+  #           ENV["GOOGLE_CLIENT_ID"],
+  #           ENV["GOOGLE_CLIENT_SECRET"],
+  #           {
+  #             scope: "email,profile",
+  #             prompt: "select_account",
+  #             access_type: "online"
+  #           }
+  # end
 end
