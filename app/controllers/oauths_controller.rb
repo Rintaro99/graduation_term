@@ -3,6 +3,15 @@ class OauthsController < ApplicationController
 
   def oauth
     login_at(params[:provider])
+    # provider = params[:provider]
+    # Rails.logger.debug "[DEBUG] provider=#{provider.inspect}"
+
+    # begin
+    #   login_at(provider) # ← これが内部でredirectするので、**自分で redirect_to しない！**
+    # rescue => e
+    #   Rails.logger.error "[ERROR] login_at failed: #{e.class} - #{e.message}"
+    #   raise
+    # end
   end
 
   def callback
