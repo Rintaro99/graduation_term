@@ -2,7 +2,7 @@ class OauthsController < ApplicationController
     skip_before_action :require_login
 
   def oauth
-    redirect_to login_url(params[:provider]), allow_other_host: true
+    login_at(params[:provider])
   end
 
   def callback

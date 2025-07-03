@@ -52,7 +52,9 @@ Rails.application.routes.draw do
 
   # snsログイン
   get "/oauth/:provider", to: "oauths#oauth", as: :auth_at_provider
-  get "/oauth/callback", to: "oauths#callback"
+  get "/oauth/callback",  to: "oauths#callback"
+  # get "/oauth/:provider", to: "oauths#oauth", as: :auth_at_provider
+  # get "/oauth/callback", to: "oauths#callback"
     # 汎用的なルーティング（Google/Twitter/Facebookをすべて対応）
   # get '/auth/:provider/callback', to: 'omniauth_callbacks#generic' 
   # get '/auth/:provider/callback', to: 'omniauth_callbacks#google', constraints: ->(req) { req.params[:provider] == 'google' }

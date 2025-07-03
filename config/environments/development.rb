@@ -81,4 +81,6 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :letter_opener_web # 送信方法を指定
   config.action_mailer.perform_deliveries = true # メールを実際に送信するかどうかを指定
+
+  config.hosts << /accounts\.google\.com/
 end
