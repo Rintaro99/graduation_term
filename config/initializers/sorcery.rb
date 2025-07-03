@@ -85,7 +85,7 @@ Rails.application.config.sorcery.configure do |config|
   config.google.key = ENV['GOOGLE_CLIENT_ID']
   config.google.secret = ENV['GOOGLE_CLIENT_SECRET']
   # config.google.callback_url = "http://localhost:3000/oauth/callback?provider=google"
-  config.google.callback_url = "http://localhost:3000/oauth/callback"
+  config.google.callback_url = "http://localhost:3000/oauth/google/callback"
   # config.google.callback_url = ENV["GOOGLE_CALLBACK_URL"]
   config.google.user_info_mapping = { email: "email", name: "name" }
 
@@ -566,7 +566,7 @@ Rails.application.config.sorcery.configure do |config|
     # Class which holds the various external provider data for this user.
     # Default: `nil`
     #
-    user.authentications_class = "Authentication"
+    user.authentications_class = Authentication
 
     # User's identifier in the `authentications` class.
     # Default: `:user_id`
@@ -599,3 +599,7 @@ Rails.application.config.sorcery.configure do |config|
   #           }
   # end
 end
+
+# Rails.application.config.to_prepare do
+#   Rails.application.config.sorcery.user_class = User
+# end

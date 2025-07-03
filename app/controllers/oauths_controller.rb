@@ -18,13 +18,13 @@ class OauthsController < ApplicationController
     provider = params[:provider]
 
     if @user = login_from(provider)
-      redirect_to root_path, notice: "#{provider.titleize}でログインしました"
+      redirect_to userpage_path, notice: "#{provider.titleize}でログインしました"
     else
       begin
         @user = create_from(provider)
-
         reset_session
         auto_login(@user)
+        Rails.logger.debug "[DEBUG] after auto_login: current_user=#{current_user.inspect}"
         redirect_to root_path, notice: "#{provider.titleize}で新規登録しました"
       rescue StandardError => e
         logger.error "[OauthsController#callback] #{e.message}"

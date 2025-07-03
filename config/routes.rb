@@ -51,8 +51,9 @@ Rails.application.routes.draw do
   resources :posts
 
   # snsログイン
+  # get "/oauth/callback",  to: "oauths#callback"
+  get "/oauth/:provider/callback", to: "oauths#callback", as: :auth_callback
   get "/oauth/:provider", to: "oauths#oauth", as: :auth_at_provider
-  get "/oauth/callback",  to: "oauths#callback"
   # get "/oauth/:provider", to: "oauths#oauth", as: :auth_at_provider
   # get "/oauth/callback", to: "oauths#callback"
     # 汎用的なルーティング（Google/Twitter/Facebookをすべて対応）
