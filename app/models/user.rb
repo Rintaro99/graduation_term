@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :user_symbols
   has_many :achievement_symbols, through: :user_symbols
   has_many :posts, dependent: :destroy
+  has_many :authentications, dependent: :destroy
 
   # 仮想属性（フォームでの同意チェック用）
   attr_accessor :terms_of_service

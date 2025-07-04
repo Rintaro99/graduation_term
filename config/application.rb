@@ -1,6 +1,9 @@
 require_relative "boot"
 
 require "rails/all"
+# require 'omniauth-google-oauth2'
+# require 'omniauth-twitter'
+# require 'omniauth-facebook'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -31,5 +34,7 @@ module App
     end
 
     config.i18n.default_locale = :ja
+
+    config.api_only = false
   end
 end

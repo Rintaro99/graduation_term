@@ -20,6 +20,7 @@ class UserSessionsController < ApplicationController
       redirect_to userpage_path, notice: "ログインしました"
     else
       @user = User.new(email: email)
+      user_record = User.find_by(email: email)
 
       # メールアドレスのエラーチェック
       if email.blank?

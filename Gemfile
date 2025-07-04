@@ -33,6 +33,7 @@ group :development, :test do
   gem "rspec-rails"
   gem "factory_bot_rails"
   gem "faker"
+  gem "dotenv-rails"
 end
 
 group :production do
@@ -41,12 +42,11 @@ group :production do
 end
 
 gem "sorcery", "0.16.3"
-
 gem "importmap-rails"
-
 gem "config"
-
 gem "rails-i18n", "~> 7.0"
-
-
 gem "jsbundling-rails", "~> 1.3"
+# deviseでsnsログイン用
+# gem 'omniauth'
+# gem 'omniauth-google-oauth2'
+# gem 'omniauth-rails_csrf_protection'

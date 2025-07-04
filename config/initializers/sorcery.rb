@@ -4,7 +4,7 @@
 # Available submodules are: :user_activation, :http_basic_auth, :remember_me,
 # :reset_password, :session_timeout, :brute_force_protection, :activity_logging,
 # :magic_login, :external
-Rails.application.config.sorcery.submodules = [ :reset_password ]
+Rails.application.config.sorcery.submodules = [ :reset_password, :external ]
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
@@ -80,7 +80,35 @@ Rails.application.config.sorcery.configure do |config|
   # i.e. [:twitter, :facebook, :github, :linkedin, :xing, :google, :liveid, :salesforce, :slack, :line].
   # Default: `[]`
   #
-  # config.external_providers =
+  config.external_providers = [ :google, :twitter, :facebook ]
+
+  config.google.key = ENV["GOOGLE_CLIENT_ID"]
+  config.google.secret = ENV["GOOGLE_CLIENT_SECRET"]
+  config.google.callback_url = ENV["GOOGLE_CALLBACK_URL"]
+  # if Rails.env.production?
+  #   config.google.callback_url = "https://cryptic-coast-70717-f9eb22b0cbd6.herokuapp.com/oauth/google/callback"
+  # else
+  #   config.google.callback_url = "http://localhost:3000/oauth/google/callback"
+  #   # config.google.callback_url = "http://localhost:3000/oauth/callback?provider=google"
+  #   # config.google.callback_url = ENV["GOOGLE_CALLBACK_URL"]
+  # end
+  config.google.user_info_mapping = { email: "email", name: "name" }
+
+  # config.twitter.key = ENV["TWITTER_API_KEY"]
+  # config.twitter.secret = ENV["TWITTER_API_SECRET"]
+  # config.twitter.callback_url = "http://localhost:3000/oauth/callback?provider=twitter"
+  # config.twitter.user_info_mapping = { email: "screen_name" }
+
+  # config.facebook.key = ENV["FACEBOOK_API_KEY"]
+  # config.facebook.secret = ENV["FACEBOOK_API_SECRET"]
+  # config.facebook.callback_url = "http://localhost:3000/oauth/callback?provider=facebook"
+  # config.facebook.user_info_mapping = { email: "email", name: "name" }
+
+  # config.external_path = "/auth" # デフォルトのままでもOKだが明示的に
+
+  # config.google.callback_url = "http://localhost:3000/auth/google/callback"
+  # config.twitter.callback_url = "http://localhost:3000/auth/twitter/callback"
+  # config.facebook.callback_url = "http://localhost:3000/auth/facebook/callback"
 
   # You can change it by your local ca_file. i.e. '/etc/pki/tls/certs/ca-bundle.crt'
   # Path to ca_file. By default use a internal ca-bundle.crt.
@@ -543,7 +571,7 @@ Rails.application.config.sorcery.configure do |config|
     # Class which holds the various external provider data for this user.
     # Default: `nil`
     #
-    # user.authentications_class =
+    user.authentications_class = Authentication
 
     # User's identifier in the `authentications` class.
     # Default: `:user_id`
@@ -564,4 +592,19 @@ Rails.application.config.sorcery.configure do |config|
   # This line must come after the 'user config' block.
   # Define which model authenticates with sorcery.
   config.user_class = "User"
+
+  # Rails.application.config.middleware.use OmniAuth::Builder do
+  # provider :google,
+  #           ENV["GOOGLE_CLIENT_ID"],
+  #           ENV["GOOGLE_CLIENT_SECRET"],
+  #           {
+  #             scope: "email,profile",
+  #             prompt: "select_account",
+  #             access_type: "online"
+  #           }
+  # end
 end
+
+# Rails.application.config.to_prepare do
+#   Rails.application.config.sorcery.user_class = User
+# end

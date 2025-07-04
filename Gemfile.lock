@@ -108,6 +108,10 @@ GEM
       reline (>= 0.3.8)
     deep_merge (1.2.2)
     diff-lcs (1.6.2)
+    dotenv (3.1.8)
+    dotenv-rails (3.1.8)
+      dotenv (= 3.1.8)
+      railties (>= 6.1)
     drb (2.2.1)
     error_highlight (0.7.0)
     erubi (1.13.1)
@@ -382,6 +386,7 @@ DEPENDENCIES
   capybara
   config
   debug
+  dotenv-rails
   error_highlight (>= 0.4.0)
   factory_bot_rails
   faker
