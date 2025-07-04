@@ -4,7 +4,7 @@
 # Available submodules are: :user_activation, :http_basic_auth, :remember_me,
 # :reset_password, :session_timeout, :brute_force_protection, :activity_logging,
 # :magic_login, :external
-Rails.application.config.sorcery.submodules = [:reset_password, :external]
+Rails.application.config.sorcery.submodules = [ :reset_password, :external ]
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
@@ -80,10 +80,10 @@ Rails.application.config.sorcery.configure do |config|
   # i.e. [:twitter, :facebook, :github, :linkedin, :xing, :google, :liveid, :salesforce, :slack, :line].
   # Default: `[]`
   #
-  config.external_providers = [:google, :twitter, :facebook]
+  config.external_providers = [ :google, :twitter, :facebook ]
 
-  config.google.key = ENV['GOOGLE_CLIENT_ID']
-  config.google.secret = ENV['GOOGLE_CLIENT_SECRET']
+  config.google.key = ENV["GOOGLE_CLIENT_ID"]
+  config.google.secret = ENV["GOOGLE_CLIENT_SECRET"]
   config.google.callback_url = ENV["GOOGLE_CALLBACK_URL"]
   # if Rails.env.production?
   #   config.google.callback_url = "https://cryptic-coast-70717-f9eb22b0cbd6.herokuapp.com/oauth/google/callback"

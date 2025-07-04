@@ -56,8 +56,8 @@ Rails.application.routes.draw do
   get "/oauth/:provider", to: "oauths#oauth", as: :auth_at_provider
   # get "/oauth/:provider", to: "oauths#oauth", as: :auth_at_provider
   # get "/oauth/callback", to: "oauths#callback"
-    # 汎用的なルーティング（Google/Twitter/Facebookをすべて対応）
-  # get '/auth/:provider/callback', to: 'omniauth_callbacks#generic' 
+  # 汎用的なルーティング（Google/Twitter/Facebookをすべて対応）
+  # get '/auth/:provider/callback', to: 'omniauth_callbacks#generic'
   # get '/auth/:provider/callback', to: 'omniauth_callbacks#google', constraints: ->(req) { req.params[:provider] == 'google' }
   # get '/auth/:provider/callback', to: 'omniauth_callbacks#twitter', constraints: ->(req) { req.params[:provider] == 'twitter' }
   # get '/auth/:provider/callback', to: 'omniauth_callbacks#facebook', constraints: ->(req) { req.params[:provider] == 'facebook' }

@@ -33,7 +33,7 @@ group :development, :test do
   gem "rspec-rails"
   gem "factory_bot_rails"
   gem "faker"
-  gem 'dotenv-rails'
+  gem "dotenv-rails"
 end
 
 group :production do
@@ -50,4 +50,3 @@ gem "jsbundling-rails", "~> 1.3"
 # gem 'omniauth'
 # gem 'omniauth-google-oauth2'
 # gem 'omniauth-rails_csrf_protection'
-
