@@ -84,9 +84,14 @@ Rails.application.config.sorcery.configure do |config|
 
   config.google.key = ENV['GOOGLE_CLIENT_ID']
   config.google.secret = ENV['GOOGLE_CLIENT_SECRET']
-  # config.google.callback_url = "http://localhost:3000/oauth/callback?provider=google"
-  config.google.callback_url = "http://localhost:3000/oauth/google/callback"
-  # config.google.callback_url = ENV["GOOGLE_CALLBACK_URL"]
+  config.google.callback_url = ENV["GOOGLE_CALLBACK_URL"]
+  # if Rails.env.production?
+  #   config.google.callback_url = "https://cryptic-coast-70717-f9eb22b0cbd6.herokuapp.com/oauth/google/callback"
+  # else
+  #   config.google.callback_url = "http://localhost:3000/oauth/google/callback"
+  #   # config.google.callback_url = "http://localhost:3000/oauth/callback?provider=google"
+  #   # config.google.callback_url = ENV["GOOGLE_CALLBACK_URL"]
+  # end
   config.google.user_info_mapping = { email: "email", name: "name" }
 
   # config.twitter.key = ENV["TWITTER_API_KEY"]
