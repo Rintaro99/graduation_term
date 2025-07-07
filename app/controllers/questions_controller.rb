@@ -9,8 +9,10 @@ class QuestionsController < ApplicationController
       remaining_questions = Question.where.not(id: session[:answered_questions])
 
       if remaining_questions.exists?
+        random_function = ActiveRecord::Base.connection.adapter_name.downcase.include?("mysql") ? "RAND()" : "RANDOM()"
+        @question = remaining_questions.order(random_function).first
         # mysql用
-        @question = remaining_questions.order("RAND()").first
+        # @question = remaining_questions.order("RAND()").first
         # postgre用
         # @question = remaining_questions.order("RANDOM()").first
       else
