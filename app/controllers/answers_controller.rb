@@ -40,5 +40,7 @@ class AnswersController < ApplicationController
         if session[:answered_questions].size >= Question.count
             redirect_to results_path and return
         end
+
+        render :check
     end
 end

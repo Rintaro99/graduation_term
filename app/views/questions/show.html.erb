@@ -6,7 +6,7 @@
     <h2><%= @question.content %></h2>
 
 
-    <%= form_with url: check_answer_path, method: :post, local: true, scope: nil do %>
+    <%= form_with url: check_answer_path, method: :post, local: true, scope: nil, data: { turbo: false } do %>
         <%= hidden_field_tag :question_id, @question.id %>
         <% @question.choices.each do |choice| %>
             <div style="margin-bottom: 10px;">
