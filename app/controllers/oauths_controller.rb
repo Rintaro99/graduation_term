@@ -18,6 +18,7 @@ class OauthsController < ApplicationController
 
   def callback
     provider = params[:provider]
+    Rails.logger.debug "[DEBUG] === callback called for #{provider} ==="
 
     # begin
     #   access_token = get_access_token(provider)
