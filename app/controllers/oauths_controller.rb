@@ -1,7 +1,7 @@
 class OauthsController < ApplicationController
   skip_before_action :require_login
 
-  # include Sorcery::Controller::Submodules::External
+  include Sorcery::Controller::Submodules::External
 
   def oauth
     login_at(params[:provider])
@@ -18,6 +18,16 @@ class OauthsController < ApplicationController
 
   def callback
     provider = params[:provider]
+
+    begin
+      access_token = get_access_token(provider)
+      Rails.logger.debug "[DEBUG] access_token.uid = #{access_token.uid}"
+      Rails.logger.debug "[DEBUG] access_token.info.email = #{access_token.info.email}"
+    rescue => e
+      Rails.logger.error "[ERROR] get_access_token failed: #{e.class} - #{e.message}"
+      redirect_to root_path, alert: "#{provider.titleize}の認証に失敗しました"
+      return
+    end
     # access_token = get_access_token(provider)
 
     # Rails.logger.debug "[DEBUG] access_token = #{access_token.inspect}"
