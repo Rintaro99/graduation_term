@@ -16,7 +16,6 @@ class OauthsController < ApplicationController
 
   def callback
     provider = params[:provider]
-    access_token = get_access_token(provider)
 
     Rails.logger.debug "[DEBUG] access_token.uid = #{access_token.uid}"
     Rails.logger.debug "[DEBUG] access_token.info.email = #{access_token.info.email}"
