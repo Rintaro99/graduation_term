@@ -1,8 +1,6 @@
 class OauthsController < ApplicationController
   skip_before_action :require_login
 
-  include Sorcery::Controller::Submodules::External::Controller
-
   def oauth
     login_at(params[:provider])
     # provider = params[:provider]
