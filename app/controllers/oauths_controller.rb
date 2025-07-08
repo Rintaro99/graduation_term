@@ -42,6 +42,8 @@ class OauthsController < ApplicationController
       auto_login(@user)
       redirect_to userpage_path, notice: "#{provider.titleize}でログインしました"
     else
+      # 🔽 ここを追加：既存のAuthenticationを探して手動ログイン
+      authentication = Authentication.find_by(provider: provider, uid: access_token&.uid)
       # email = access_token.info.email
       # uid   = access_token.uid
       begin
