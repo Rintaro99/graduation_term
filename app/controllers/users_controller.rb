@@ -35,6 +35,7 @@ class UsersController < ApplicationController
   end
 
   def userpage
+    logger.debug "[DEBUG] userpage accessed by user: #{current_user.inspect}"
     @user = current_user
   end
 
