@@ -16,17 +16,25 @@ class OauthsController < ApplicationController
 
   def callback
     provider = params[:provider]
+    access_token = get_access_token(provider)
+
+    Rails.logger.debug "[DEBUG] access_token.uid = #{access_token.uid}"
+    Rails.logger.debug "[DEBUG] access_token.info.email = #{access_token.info.email}"
 
     if @user = login_from(provider)
+      Rails.logger.debug "[DEBUG] login_from success: #{@user.inspect}"
       redirect_to userpage_path, notice: "#{provider.titleize}でログインしました"
     else
       begin
         @user = create_from(provider)
+        Rails.logger.debug "[DEBUG] access_token.uid = #{access_token.uid}"
+        Rails.logger.debug "[DEBUG] access_token.info.email = #{access_token.info.email}"
+        Rails.logger.debug "[DEBUG] access_token.raw_info = #{access_token.raw_info.inspect}"
         reset_session
         auto_login(@user)
-        Rails.logger.debug "[DEBUG] after auto_login: current_user=#{current_user.inspect}"
-        redirect_to root_path, notice: "#{provider.titleize}で新規登録しました"
+        redirect_to userpage_path, notice: "#{provider.titleize}で新規登録しました"
       rescue StandardError => e
+        logger.error "[OauthsController#callback] #{e.message}"
         logger.error "[OauthsController#callback] #{e.message}"
         redirect_to root_path, alert: "#{provider.titleize}でのログインに失敗しました"
       end
