@@ -38,6 +38,8 @@ class OauthsController < ApplicationController
     if @user = login_from(provider)
       redirect_to userpage_path, notice: "#{provider.titleize}でログインしました"
     else
+      email = access_token.info.email
+      uid   = access_token.uid
       begin
         @user = create_from(provider)
         reset_session
