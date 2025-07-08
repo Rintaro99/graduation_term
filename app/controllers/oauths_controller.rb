@@ -38,6 +38,7 @@ class OauthsController < ApplicationController
 
     if @user = login_from(provider)
       Rails.logger.debug "[DEBUG] login_from succeeded: #{@user.inspect}"
+      Rails.logger.debug "[DEBUG] session[:user_id] = #{session[:user_id]}"
       auto_login(@user)
       redirect_to userpage_path, notice: "#{provider.titleize}でログインしました"
     else
