@@ -1,6 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :require_login, only: [:privacy, :terms]
-
+  skip_before_action :require_login
   def terms
   end
 
