@@ -99,10 +99,10 @@ Rails.application.config.sorcery.configure do |config|
   config.twitter.callback_url = "https://cryptic-coast-70717-f9eb22b0cbd6.herokuapp.com/oauth/twitter/callback"
   config.twitter.user_info_mapping = { nickname: "screen_name" }
 
-  # config.facebook.key = ENV["FACEBOOK_API_KEY"]
-  # config.facebook.secret = ENV["FACEBOOK_API_SECRET"]
-  # config.facebook.callback_url = "http://localhost:3000/oauth/callback?provider=facebook"
-  # config.facebook.user_info_mapping = { email: "email", name: "name" }
+  config.facebook.key = ENV["FACEBOOK_APP_ID"]
+  config.facebook.secret = ENV["FACEBOOK_APP_SECRET"]
+  config.facebook.callback_url = "http://localhost:3000/oauth/callback?provider=facebook"
+  config.facebook.user_info_mapping = { email: "email", name: "name" }
 
   # config.external_path = "/auth" # デフォルトのままでもOKだが明示的に
 
