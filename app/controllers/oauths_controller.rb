@@ -18,6 +18,7 @@ class OauthsController < ApplicationController
 
   def callback
     provider = params[:provider]
+    Rails.logger.debug "[DEBUG] === CALLBACK for #{provider} ==="
 
     begin
       if @user = login_from(provider)
