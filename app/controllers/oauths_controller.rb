@@ -23,7 +23,9 @@ class OauthsController < ApplicationController
     begin
       if @user = login_from(provider)
         auto_login(@user)
+        Rails.logger.debug "[DEBUG] session[:user_id] = #{session[:user_id]}"  # ←ここ！
         redirect_to userpage_path, notice: "#{provider.titleize}でログインしました"
+        Rails.logger.debug "[DEBUG] login_from success: #{@user.inspect}"
       else
         access_token = get_access_token(provider)
         email = access_token.info.email
@@ -38,6 +40,7 @@ class OauthsController < ApplicationController
         end
 
         auto_login(@user)
+        Rails.logger.debug "[DEBUG] session[:user_id] = #{session[:user_id]}"  # ←ここ！
         redirect_to userpage_path, notice: "#{provider.titleize}でログインしました"
       end
     rescue => e
