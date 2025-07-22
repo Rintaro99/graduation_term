@@ -37,23 +37,27 @@ class OauthsController < ApplicationController
     # Rails.logger.debug "[DEBUG] access_token.raw_info = #{access_token&.raw_info&.inspect}"
 
     if @user = login_from(provider)
-      Rails.logger.debug "[DEBUG] login_from succeeded: #{@user.inspect}"
-      Rails.logger.debug "[DEBUG] session[:user_id] = #{session[:user_id]}"
       auto_login(@user)
       redirect_to userpage_path, notice: "#{provider.titleize}でログインしました"
     else
-      # email = access_token.info.email
-      # uid   = access_token.uid
-      begin
+      access_token = get_access_token(provider)
+      email = access_token.info.email
+      uid   = access_token.uid
+      
+      @user = User.find_by(email: email)
+
+      if @user
+        @user.authentications.find_or_creat_by(provider: provider, uid: uid)
+      else
         @user = create_from(provider)
-        reset_session
-        auto_login(@user)
-        Rails.logger.debug "[DEBUG] User created and logged in: #{@user.inspect}"
-        redirect_to userpage_path, notice: "#{provider.titleize}で新規登録しました"
-      rescue StandardError => e
-        Rails.logger.error "[ERROR] create_from failed: #{e.class} - #{e.message}"
-        redirect_to root_path, alert: "#{provider.titleize}でのログインに失敗しました"
       end
+        # reset_session
+        auto_login(@user)
+        redirect_to userpage_path, notice: "#{provider.titleize}でログインしました"
+    end
+    rescue StandardError => e
+      Rails.logger.error "[ERROR] create_from failed: #{e.class} - #{e.message}"
+      redirect_to root_path, alert: "#{provider.titleize}でのログインに失敗しました"
     end
   end
 end
