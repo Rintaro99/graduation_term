@@ -24,10 +24,14 @@ class OauthsController < ApplicationController
       auto_login(@user)
       Rails.logger.debug "[DEBUG] login_from success: #{@user.inspect}"
     else
-      @user = User.find_by(email: access_token.info.email)
+      access_token = get_access_token(provider)
+      email = access_token[:info][:email]
+      uid   = access_token[:uid]
+
+      @user = User.find_by(email: email)
 
       if @user
-        @user.authentauthentications.create(provider: provider, uid: access_token.uid)
+        @user.authentications.create(provider: provider, uid: access_token.uid)
       else
         @user = create_from(provider)
       end
