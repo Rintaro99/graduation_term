@@ -1,6 +1,6 @@
 class OauthsController < ApplicationController
   skip_before_action :require_login
-  # include Sorcery::Controller::Submodules::External
+  include Sorcery::Controller::Submodules::External
 
   def oauth
     login_at(params[:provider])
@@ -19,47 +19,37 @@ class OauthsController < ApplicationController
     provider = params[:provider]
     Rails.logger.debug "[DEBUG] === CALLBACK for #{provider} ==="
 
-    if (@user = login_from(provider))
-      redirect_to userpage_path, notice: "#{provider.titleize}でログインしました"
+    if @user = login_from(provider)
+      auto_login(@user)
+      Rails.logger.debug "[DEBUG] login_from success: #{@user.inspect}"
     else
-      begin
-        @user = create_from(provider)
+      access_token = get_access_token(provider)
+      email = access_token[:info][:email]
+      uid   = access_token[:uid]
 
-        reset_session
-        auto_login(@user)
-        redirect_to userpage_path, notice: "#{provider.titleize}でログインしました"
+      @user = User.find_by(email: email)
+
+      if @user
+        @user.authentications.create(provider: provider, uid: access_token.uid)
+      else
+        @user = create_from(provider)
+      end
+
+      reset_session
+      auto_login(@user)
+      redirect_to userpage_path, notice: "#{provider.titleize}でログインしました"
       rescue ActiveRecord::RecordNotUnique
         flash[:alert] = "すでに同じメールアドレスが登録されています。別のログイン方法を試してください。"
         redirect_to root_path
       end
     end
 
-    # if @user = login_from(provider)
-    #   auto_login(@user)
-    #   Rails.logger.debug "[DEBUG] login_from success: #{@user.inspect}"
-    # else
-    #   access_token = get_access_token(provider)
-    #   email = access_token[:info][:email]
-    #   uid   = access_token[:uid]
-
-    #   @user = User.find_by(email: email)
-
-    #   if @user
-    #     @user.authentications.create(provider: provider, uid: access_token.uid)
-    #   else
-    #     @user = create_from(provider)
-    #   end
-
-    #   auto_login(@user)
-    #   Rails.logger.debug "[DEBUG] create_from + auto_login: #{@user.inspect}"
-    # end
-
     Rails.logger.debug "[DEBUG] session[:user_id] = #{session[:user_id]}"
     # redirect_to userpage_path, notice: "#{provider.titleize}でログインしました"
-  rescue => e
-    Rails.logger.error "[ERROR] OAuth login failed: #{e.class} - #{e.message}"
-    redirect_to root_path, alert: "#{provider.titleize}でのログインに失敗しました"
-  end
+  # rescue => e
+  #   Rails.logger.error "[ERROR] OAuth login failed: #{e.class} - #{e.message}"
+  #   redirect_to root_path, alert: "#{provider.titleize}でのログインに失敗しました"
+  # end
 
   # def callback
   #   provider = auth_params[:provider]
