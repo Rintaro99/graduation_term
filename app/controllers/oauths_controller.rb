@@ -23,21 +23,23 @@ class OauthsController < ApplicationController
       auto_login(@user)
       Rails.logger.debug "[DEBUG] login_from success: #{@user.inspect}"
     else
-      access_token = get_access_token(provider)
-      email = access_token[:info][:email]
-      uid   = access_token[:uid]
+      begin
+        access_token = get_access_token(provider)
+        email = access_token[:info][:email]
+        uid   = access_token[:uid]
 
-      @user = User.find_by(email: email)
+        @user = User.find_by(email: email)
 
-      if @user
-        @user.authentications.create(provider: provider, uid: access_token.uid)
-      else
-        @user = create_from(provider)
-      end
+        if @user
+          @user.authentications.create(provider: provider, uid: uid)
+        else
+          @user = create_from(provider)
+        end
 
-      reset_session
-      auto_login(@user)
-      redirect_to userpage_path, notice: "#{provider.titleize}でログインしました"
+        reset_session
+        auto_login(@user)
+        redirect_to userpage_path, notice: "#{provider.titleize}でログインしました"
+
       rescue ActiveRecord::RecordNotUnique
         flash[:alert] = "すでに同じメールアドレスが登録されています。別のログイン方法を試してください。"
         redirect_to root_path
