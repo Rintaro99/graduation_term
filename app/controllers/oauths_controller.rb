@@ -55,7 +55,7 @@ class OauthsController < ApplicationController
     # end
 
     Rails.logger.debug "[DEBUG] session[:user_id] = #{session[:user_id]}"
-    redirect_to userpage_path, notice: "#{provider.titleize}でログインしました"
+    # redirect_to userpage_path, notice: "#{provider.titleize}でログインしました"
   rescue => e
     Rails.logger.error "[ERROR] OAuth login failed: #{e.class} - #{e.message}"
     redirect_to root_path, alert: "#{provider.titleize}でのログインに失敗しました"
