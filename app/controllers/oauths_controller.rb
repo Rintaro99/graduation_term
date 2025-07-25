@@ -1,6 +1,6 @@
 class OauthsController < ApplicationController
   skip_before_action :require_login
-  include Sorcery::Controller::Submodules::External
+  # include Sorcery::Controller::Submodules::External
 
   def oauth
     login_at(params[:provider])
@@ -23,9 +23,9 @@ class OauthsController < ApplicationController
       auto_login(@user)
       Rails.logger.debug "[DEBUG] login_from success: #{@user.inspect}"
     else
-      access_token = get_access_token(provider)
-      email = access_token[:info][:email]
-      uid   = access_token[:uid]
+      # access_token = get_access_token(provider)
+      # email = access_token[:info][:email]
+      # uid   = access_token[:uid]
 
       @user = User.find_by(email: email)
 
@@ -46,4 +46,31 @@ class OauthsController < ApplicationController
     redirect_to root_path, alert: "#{provider.titleize}でのログインに失敗しました"
   end
 
+  # def callback
+  #   provider = auth_params[:provider]
+  #   # 既存のユーザーをプロバイダ情報を元に検索し、存在すればログイン
+  #   if (@user = login_from(provider))
+  #     redirect_to root_path, notice:"#{provider.titleize}アカウントでログインしました"
+  #   else
+  #     begin
+  #       # ユーザーが存在しない場合はプロバイダ情報を元に新規ユーザーを作成し、ログイン
+  #       signup_and_login(provider)
+  #       redirect_to root_path, notice:"#{provider.titleize}アカウントでログインしました"
+  #     rescue
+  #       redirect_to root_path, alert:"#{provider.titleize}アカウントでのログインに失敗しました"
+  #     end
+  #   end
+  # end
+
+  # private
+
+  # def auth_params
+  #   params.permit(:code, :provider)
+  # end
+
+  # def signup_and_login(provider)
+  #   @user = create_from(provider)
+  #   reset_session
+  #   auto_login(@user)
+  # end
 end
