@@ -25,23 +25,15 @@ class OauthsController < ApplicationController
       return
     end
 
-    # アクセストークンとユーザーデータを取得
-    access_token = get_access_token(provider)
-    email = access_token.info.email
-    uid   = access_token.uid
-
-    # メールでユーザー確認
-    if (user = User.find_by(email: email))
-      user.authentications.find_or_create_by(provider: provider, uid: uid)
-      reset_session
-      auto_login(user)
-      redirect_to userpage_path, notice: "#{provider.titleize}でログインしました"
-    else
-      # 4. 新規作成
+    begin
+      # create_fromでユーザー作成（内部でtokenも取得）
       @user = create_from(provider)
       reset_session
       auto_login(@user)
       redirect_to userpage_path, notice: "#{provider.titleize}で新規登録しました"
+    rescue ActiveRecord::RecordNotUnique
+      flash[:alert] = "すでにこのメールアドレスが登録されています。別の方法でログインしてください。"
+      redirect_to root_path
     end
   end
 
