@@ -22,6 +22,10 @@ class OauthsController < ApplicationController
       auto_login(@user)
       redirect_to userpage_path, notice: "#{provider.titleize}でログインしました"
     else
+      # アクセストークンとユーザーデータを取得
+      user_hash = get_user_hash(provider)
+      email = user_hash[:user_info]["email"] # Google ならここにメールが入る
+      uid   = user_hash[:uid]
       # すでにメールアドレスでユーザーが存在するか確認
       user = User.find_by(email: access_token.info.email)
       if user
