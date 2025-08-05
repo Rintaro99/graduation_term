@@ -118,4 +118,6 @@ Rails.application.configure do
     authentication: :plain,
     enable_starttls_auto: true
   }
+
+  config.session_store :cookie_store, key: "_graduation_teram_session", secure: Rails.env.production?
 end

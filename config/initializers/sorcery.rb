@@ -97,7 +97,8 @@ Rails.application.config.sorcery.configure do |config|
   config.twitter.key = ENV["TWITTER_API_KEY"]
   config.twitter.secret = ENV["TWITTER_API_SECRET"]
   config.twitter.callback_url = "https://cryptic-coast-70717-f9eb22b0cbd6.herokuapp.com/oauth/twitter/callback"
-  config.twitter.user_info_mapping = { nickname: "screen_name" }
+  config.twitter.user_info_path = "/1.1/account/verify_credentials.json?include_email=true"
+  config.twitter.user_info_mapping = { email: "email", name: "name" }
 
   config.facebook.key = ENV["FACEBOOK_APP_ID"]
   config.facebook.secret = ENV["FACEBOOK_APP_SECRET"]
