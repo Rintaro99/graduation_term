@@ -67,6 +67,6 @@ Rails.application.routes.draw do
 
   # reactからRailsAPIにリクエストを送ってcorsエラーが出ないかの確認用
   namespace :api do
-    get 'test', to: 'test#index'
+    resources :users, only: [:index]
   end
 end
