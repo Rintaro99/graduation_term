@@ -64,4 +64,9 @@ Rails.application.routes.draw do
   # get '/auth/:provider/callback', to: 'omniauth_callbacks#facebook', constraints: ->(req) { req.params[:provider] == 'facebook' }
   # Defines the root path route ("/")
   # root "posts#index"
+
+  # reactからRailsAPIにリクエストを送ってcorsエラーが出ないかの確認用
+  namespace :api do
+    get 'test', to: 'test#index'
+  end
 end
