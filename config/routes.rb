@@ -65,8 +65,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  # reactからRailsAPIにリクエストを送ってcorsエラーが出ないかの確認用
+  # railsApiのルーティング
   namespace :api do
     resources :users, only: [:index]
+    resources :user_sessions, only: [:create, :destroy]
   end
 end

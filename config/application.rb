@@ -37,6 +37,9 @@ module App
 
     config.i18n.default_locale = :ja
 
-    config.api_only = false
+    config.api_only = true
+
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore, key: 'how_to_write_rin'
   end
 end
