@@ -67,7 +67,7 @@ Rails.application.routes.draw do
 
   # railsApiのルーティング
   namespace :api do
-    resources :users, only: [:index]
+    resources :users, only: [:index, :show, :create, :update, :destroy]
     resources :user_sessions, only: [:create, :destroy]
   end
 end
