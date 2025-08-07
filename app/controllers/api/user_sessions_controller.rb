@@ -1,77 +1,40 @@
-class Api::UserSessionsController < BaseController
-  skip_before_action :require_login, only: %i[new create]
+module Api
+  class UserSessionsController < BaseController
+    skip_before_action :require_login_api, only: %i[create]
 
-  def new
-    @user = User.new
-  end
+    # POST /api/user_sessions
+    def create
+      email = params[:email] || params.dig(:user, :email)
+      password = params[:password] || params.dig(:user, :password)
+      user = login(email, password)
 
-  def create
-    # Rails.logger.debug "🌐 ログイン試行 email: #{params[:email]}"
-    # @user = login(params[:email], params[:password])
-    # Rails.logger.debug "🌐 Sorcery login result: #{@user.inspect}"
+      if user
+        render json: { message: "ログインしました", user: user.as_json([:id, :name, :email]) }, status: :ok
+      else
+        errors = []
+        user_record = User.find_by(email: email)
 
-    email = params[:user][:email]
-    password = params[:user][:password]
-    # Rails.logger.debug "🌐 ログイン試行 email: #{email}"
-    @user = login(email, password)
-    # Rails.logger.debug "🌐 Sorcery login result: #{@user.inspect}"
+        # メールアドレスのエラーチェック
+        if email.blank?
+          errors << "メールアドレスを入力してください"
+        else user_record.nil?
+          errors << "メールアドレスが登録されていません"
+        end
 
-    if @user
-      redirect_to userpage_path, notice: "ログインしました"
-    else
-      @user = User.new(email: email)
-      user_record = User.find_by(email: email)
+        # パスワードのエラーチェック
+        if password.blank?
+          errors << "パスワードが入力されていません"
+        else user_record && !User.authenticate(email, password)
+          errors << "パスワードが間違っています"
+        end
 
-      # メールアドレスのエラーチェック
-      if email.blank?
-        @user.errors.add(:email, "を入力してください")
+        render json:{ errors: errors }, status: :unprocessable_entity
       end
-
-      if email.present? && user_record.nil?
-        @user.errors.add(:email, "が登録されていません")
-      end
-
-      # パスワードのエラーチェック
-      if password.blank?
-        @user.errors.add(:password, "を入力してください")
-      end
-
-      if user_record && password.present? && !User.authenticate(email, password)
-        @user.errors.add(:password, "が間違っています")
-      end
-      render :new, status: :unprocessable_entity
     end
-  end
 
-  # def create
-  #   @user = User.new(email: params[:email]) # 入力保持用
-  #   user_record = User.find_by(email: params[:email])
-
-  #   # ↓↓↓ ここからエラーチェック
-  #   if params[:email].blank?
-  #     @user.errors.add(:email, 'を入力してください')
-  #   elsif user_record.nil?
-  #     @user.errors.add(:email, 'が登録されていません')
-  #   elsif params[:password].blank?
-  #     @user.errors.add(:password, 'を入力してください')
-  #   elsif !User.authenticate(params[:email], params[:password])
-  #     @user.errors.add(:password, 'が間違っています')
-  #   else
-  #     login(params[:email], params[:password])
-  #     return redirect_to userpage_path, notice: 'ログインしました'
-  #   end
-
-  # ↑ どこかでエラーが発生したら
-  #   render :new
-  # end
-
-  def start_quiz
-    session[:answered_questions] = []
-    redirect_to quiz_path
-  end
-
-  def destroy
-    logout
-    redirect_to root_path, status: :see_other
+    def destroy
+      logout
+      redirect json: { message: "ログアウトしました" }, status: :ok
+    end
   end
 end

@@ -1,6 +1,6 @@
-class Api::BaseController < ApplicationController
-    protect_from_forgery with: :null_session
-    before_action :require_logom_api
+class Api::BaseController < ActionController::API
+    # protect_from_forgery with: :null_session
+    before_action :require_login_api
 
     private
 
