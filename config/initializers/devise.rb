@@ -1,3 +1,5 @@
+require 'devise/jwt'
+
 # frozen_string_literal: true
 
 # Assuming you have not yet modified this file, each configuration option below
@@ -312,13 +314,18 @@ Devise.setup do |config|
   # config.sign_in_after_change_password = true
   config.jwt do |jwt|
     jwt.secret = Rails.application.credentials.devise_jwt_secret_key!
-      jwt.dispatch_requests = [
-        ['POST', %r{^/api/api_users/sign_in$}],
-        ['POST', %r{^/api/api_users$}]
-      ]
-      jwt.revocation_requests = [
-        ['DELETE', %r{^/api/api_users/sign_out$}]
-      ]
-      # jwt.revocation_strategy = JwtDenylist
-    end
+    jwt.dispatch_requests = [
+      ['POST', %r{^/api/api_users/sign_in$}],
+      ['POST', %r{^/api/api_users$}]
+    ]
+    jwt.revocation_requests = [
+      ['DELETE', %r{^/api/api_users/sign_out$}]
+    ]
+    # jwt.revocation_strategy = JwtDenylist
+  end
 end
+
+# Rails.application.config.to_prepare do
+#   require Rails.root.join('app/models/jwt_denylist.rb')
+# end
+

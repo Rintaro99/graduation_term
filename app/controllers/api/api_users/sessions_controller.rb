@@ -12,6 +12,7 @@ module Api
     def respond_with(resource, _opts = {})
       render json: {
         status: { code: 200, message: 'Logged in successfully.' },
+        token: token,
         data: ApiUserSerializer.new(resource).serializable_hash[:data][:attributes]
       }, status: :ok
     end
