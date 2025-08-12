@@ -307,6 +307,7 @@ Devise.setup do |config|
   config.responder.error_status = :unprocessable_entity
   config.responder.redirect_status = :see_other
 
+  config.navigational_formats = []
   # ==> Configuration for :registerable
 
   # When set to false, does not sign a user in automatically after their password is
@@ -322,6 +323,7 @@ Devise.setup do |config|
       ['DELETE', %r{^/api/api_users/sign_out$}]
     ]
     # jwt.revocation_strategy = JwtDenylist
+    jwt.request_formats = { api_user: [:json] }
   end
 end
 

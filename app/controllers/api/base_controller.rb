@@ -1,9 +1,11 @@
 class Api::BaseController < ActionController::API
-    before_action :authenticate_api_user! 
+  before_action :authenticate_api_user!
 
-    private
+  # 任意: 401時のJSON整形を自前でやりたいときだけ rescue を使う
+  rescue_from Warden::NotAuthenticated, with: :user_not_authenticated
 
-    def unauthorized_response
-        render json: { error: '認証に失敗しました' }, status: :unauthorized
-    end
+  private
+  def user_not_authenticated
+    render json: { error: '認証されていません' }, status: :unauthorized
+  end
 end
