@@ -1,16 +1,9 @@
 class Api::BaseController < ActionController::API
-    # protect_from_forgery with: :null_session
-    before_action :require_login_api
+    before_action :authenticate_api_user! 
 
     private
 
-    def not_authenticated
-        render json: { error: 'ログインしてください' }, status: :unauthorized
-    end
-
-    def require_login_api
-        unless logged_in?
-            not_authenticated
-        end
+    def unauthorized_response
+        render json: { error: '認証に失敗しました' }, status: :unauthorized
     end
 end

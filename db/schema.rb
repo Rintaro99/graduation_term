@@ -10,13 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_07_01_121706) do
+ActiveRecord::Schema[7.2].define(version: 2025_08_07_065519) do
   create_table "achievement_symbols", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.string "img"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "min_score"
+  end
+
+  create_table "api_users", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_api_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_api_users_on_reset_password_token", unique: true
   end
 
   create_table "authentications", charset: "utf8mb4", force: :cascade do |t|
@@ -43,6 +56,13 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_01_121706) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["question_id"], name: "index_choices_on_question_id"
+  end
+
+  create_table "jwt_denylists", charset: "utf8mb4", force: :cascade do |t|
+    t.string "jti"
+    t.datetime "exp"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "posts", charset: "utf8mb4", force: :cascade do |t|

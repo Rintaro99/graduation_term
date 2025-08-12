@@ -55,3 +55,5 @@ gem "rails-i18n", "~> 7.0"
 # CORS設定
 gem 'rack-cors'
 
+gem "devise"
+gem "devise-jwt"

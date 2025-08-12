@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :api_users
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
   get "home/index"
@@ -66,8 +67,10 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   # railsApiのルーティング
-  namespace :api do
-    resources :users, only: [:index, :show, :create, :update, :destroy]
-    resources :user_sessions, only: [:create, :destroy]
+  namespace :api, defaults: { format: :json } do
+    devise_for :api_users, controllers: {
+      sessions: 'api/api_users/sessions',
+      registrations: 'api/api_users/registrations'
+    }
   end
 end
