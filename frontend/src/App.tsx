@@ -1,14 +1,20 @@
 import './App.css'
-import UserList from './components/UserList'
+import { Link, Outlet } from 'react-router-dom'
 
-function App() {
-
+export default function App() {
   return (
-    <div>
-      <h1>Vite + React + Rails API</h1>
-      <UserList />
-    </div>
-  );
-}
+    <div style={{ padding: 16, maxWidth: 800, margin: '0 auto' }}>
+      <header style={{ display: 'flex', gap: 12, alignItems: 'center', marginBottom: 16 }}>
+        <h1 style={{ fontSize: 20, marginRight: 'auto' }}>Vite + React + Rails API</h1>
+        <nav style={{ display: 'flex', gap: 12 }}>
+          <Link to="/quiz">Quiz</Link>
+          <Link to="/users">Users</Link>
+          <Link to="/login">Login</Link>
+        </nav>
+      </header>
 
-export default App
+      {/* ここに子ルートが差し込まれる */}
+      <Outlet />
+    </div>
+  )
+}
