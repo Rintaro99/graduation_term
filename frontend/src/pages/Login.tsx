@@ -24,7 +24,7 @@ export default function Login() {
 
       const token = String(authHeader).replace(/^Bearer\s+/i, "");
       auth.setToken(token);
-      navigate("/quiz");
+      navigate("/users", { replace: true });
     } catch (err: any) {
       const m = err?.response?.data?.error || err?.message || "ログイン失敗";
       setMsg(`ERROR: ${m}`);

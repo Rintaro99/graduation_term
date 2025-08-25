@@ -8,15 +8,19 @@ import { queryClient } from "./lib/react-query";
 import UserList from './components/UserList';
 import QuizPlay from "./pages/QuizPlay";
 import Login from "./pages/Login";
+import UsersList from "./pages/UsersList";
+import UserShow from "./pages/UserShow";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
-      { index: true, element: <Navigate to="/quiz" replace /> },
+      { index: true, element: <Navigate to="/users" replace /> },
       { path: "/quiz", element: <QuizPlay /> },
       { path: "/login", element: <Login /> },
+      { path: "/users", element: <UsersList /> },
+      { path: "/users/:id", element: <UserShow /> },
     ],
   },
 ]);
