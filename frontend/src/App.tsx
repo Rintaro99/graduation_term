@@ -9,6 +9,7 @@ export default function App() {
         <nav style={{ display: 'flex', gap: 12 }}>
           <Link to="/quiz">Quiz</Link>
           <Link to="/users">Users</Link>
+          <Link to="/users/new">New</Link>
           <Link to="/login">Login</Link>
         </nav>
       </header>

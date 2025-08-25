@@ -9,6 +9,7 @@ import UserList from './components/UserList';
 import QuizPlay from "./pages/QuizPlay";
 import Login from "./pages/Login";
 import UsersList from "./pages/UsersList";
+import UserNew from "./pages/UserNew";
 import UserShow from "./pages/UserShow";
 
 const router = createBrowserRouter([
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
       { path: "/quiz", element: <QuizPlay /> },
       { path: "/login", element: <Login /> },
       { path: "/users", element: <UsersList /> },
+      { path: "/users/new", element: <UserNew /> },
       { path: "/users/:id", element: <UserShow /> },
     ],
   },

@@ -8,6 +8,7 @@ export const UserSchema = z.object({
 export const UsersSchema = z.array(UserSchema);
 export type User = z.infer<typeof UserSchema>;
 
+// フォーム入力用
 export const UserCreateSchema = z.object({
   email: z.string().email("メール形式で入力してください"),
   password: z.string().min(6, "6文字以上で入力してください"),
