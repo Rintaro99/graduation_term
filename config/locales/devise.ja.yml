@@ -1,0 +1,7 @@
+ja:
+  devise:
+    failure:
+      not_found_in_database: "メールアドレスまたはパスワードが正しくありません"
+      invalid: "メールアドレスまたはパスワードが正しくありません"
+      unauthenticated: "ログインしてください"
+      unconfirmed: "アカウントの確認が必要です"

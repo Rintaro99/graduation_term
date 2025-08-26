@@ -76,5 +76,6 @@ Rails.application.routes.draw do
               }
   namespace :api, defaults: { format: :json } do
     get '/ping', to: 'pings#index'
+    resources :users, only: [:index, :create, :show, :update, :destroy]
   end
 end

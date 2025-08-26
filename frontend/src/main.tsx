@@ -11,6 +11,7 @@ import Login from "./pages/Login";
 import UsersList from "./pages/UsersList";
 import UserNew from "./pages/UserNew";
 import UserShow from "./pages/UserShow";
+import UserEdit from "./pages/UserEdit"; 
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
       { path: "/users", element: <UsersList /> },
       { path: "/users/new", element: <UserNew /> },
       { path: "/users/:id", element: <UserShow /> },
+      { path: "/users/:id/edit", element: <UserEdit /> },
     ],
   },
 ]);
