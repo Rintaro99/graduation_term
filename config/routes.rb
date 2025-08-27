@@ -67,16 +67,16 @@ Rails.application.routes.draw do
 
   # railsApiのルーティング
   devise_for :api_users,
-              class_name: 'ApiUser',
-              path: 'api/api_users',
+              class_name: "ApiUser",
+              path: "api/api_users",
               defaults: { format: :json },
               controllers: {
-                sessions: 'api/api_users/sessions',
-                registrations: 'api/api_users/registrations',
+                sessions: "api/api_users/sessions",
+                registrations: "api/api_users/registrations",
                 passwords: "api/api_users/passwords"
               }
   namespace :api, defaults: { format: :json } do
-    get '/ping', to: 'pings#index'
-    resources :users, only: [:index, :create, :show, :update, :destroy]
+    get "/ping", to: "pings#index"
+    resources :users, only: [ :index, :create, :show, :update, :destroy ]
   end
 end

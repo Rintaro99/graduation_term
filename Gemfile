@@ -53,7 +53,7 @@ gem "rails-i18n", "~> 7.0"
 # gem 'omniauth-rails_csrf_protection'
 
 # CORS設定
-gem 'rack-cors'
+gem "rack-cors"
 
 gem "devise"
 gem "devise-jwt"

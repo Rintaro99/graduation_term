@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::ApiUsers::PasswordsController < Api::BaseController
-  skip_before_action :authenticate_api_user!, only: [:create, :update]
+  skip_before_action :authenticate_api_user!, only: [ :create, :update ]
   skip_before_action :verify_authenticity_token, raise: false
   respond_to :json
 

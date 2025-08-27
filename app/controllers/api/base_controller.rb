@@ -12,18 +12,18 @@ class Api::BaseController < ActionController::API
 
   private
   def user_not_authenticated
-    render json: { error: '認証されていません' }, status: :unauthorized
+    render json: { error: "認証されていません" }, status: :unauthorized
   end
 
   def render_not_found(e)
-    render json: { error: 'not_found', message: e.message }, status: :not_found
+    render json: { error: "not_found", message: e.message }, status: :not_found
   end
 
   def render_bad_request(e)
-    render json: { error: 'bad_request', message: e.message }, status: :bad_request
+    render json: { error: "bad_request", message: e.message }, status: :bad_request
   end
 
   def render_unauthorized(_e)
-    render json: { error: 'unauthorized' }, status: :unauthorized
+    render json: { error: "unauthorized" }, status: :unauthorized
   end
 end

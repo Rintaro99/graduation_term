@@ -40,6 +40,6 @@ module App
     config.api_only = true
 
     config.middleware.use ActionDispatch::Cookies
-    config.middleware.use ActionDispatch::Session::CookieStore, key: 'how_to_write_rin'
+    config.middleware.use ActionDispatch::Session::CookieStore, key: "how_to_write_rin"
   end
 end
