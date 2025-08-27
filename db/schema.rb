@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_08_07_065519) do
+ActiveRecord::Schema[7.2].define(version: 2025_08_07_055148) do
   create_table "achievement_symbols", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.string "img"
@@ -56,13 +56,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_07_065519) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["question_id"], name: "index_choices_on_question_id"
-  end
-
-  create_table "jwt_denylists", charset: "utf8mb4", force: :cascade do |t|
-    t.string "jti"
-    t.datetime "exp"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "posts", charset: "utf8mb4", force: :cascade do |t|

@@ -4,7 +4,7 @@ import { auth } from "../lib/auth";
 const baseURL = (import.meta.env.VITE_API_BASE_URL ?? '').trim();
 
 export const api = axios.create({
-  baseURL,       // 例: https://your-backend.herokuapp.com
+  baseURL: "http://localhost:3000",
   timeout: 15000,
 });
 

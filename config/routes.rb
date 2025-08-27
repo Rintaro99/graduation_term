@@ -72,7 +72,8 @@ Rails.application.routes.draw do
               defaults: { format: :json },
               controllers: {
                 sessions: 'api/api_users/sessions',
-                registrations: 'api/api_users/registrations'
+                registrations: 'api/api_users/registrations',
+                passwords: "api/api_users/passwords"
               }
   namespace :api, defaults: { format: :json } do
     get '/ping', to: 'pings#index'

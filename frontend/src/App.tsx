@@ -1,5 +1,5 @@
 import './App.css'
-import { Link, Outlet } from 'react-router-dom'
+import { BrowserRouter, Link, Outlet, Route, Routes } from 'react-router-dom'
 
 export default function App() {
   return (

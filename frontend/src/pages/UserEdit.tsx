@@ -3,6 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getUser, updateUser } from "../api/users";
 import { UserUpdateSchema, type UserUpdateInput } from "../schemas/user";
 import { useNavigate, useParams, Link } from "react-router-dom";
+import axios from "axios";
 
 export default function UserEdit() {
   const { id } = useParams<{ id: string }>();
@@ -71,6 +72,17 @@ export default function UserEdit() {
     mutation.mutate(parsed.data);
   };
 
+  const handleSendResetMail = async () => {
+    try {
+      await axios.post("http://localhost:3000/api/api_users/password", {
+        api_user: { email: form.email }, // ← 現在フォームに入っているメールアドレスを利用
+      });
+      alert("パスワード変更用のメールを送信しました。");
+    } catch (err: any) {
+      alert("メール送信に失敗しました。");
+    }
+  };
+
   if (isLoading) return <div style={{ padding: 16 }}>Loading...</div>;
   if (error) {
     const msg = (error as any)?.response?.data?.message || (error as Error).message || "エラーが発生しました";
@@ -107,27 +119,6 @@ export default function UserEdit() {
           />
         </label>
 
-        <label style={{ display: "grid", gap: 4 }}>
-          <span>Password (change if needed)</span>
-          <input
-            type="password"
-            value={form.password ?? ""}
-            onChange={e => setForm({ ...form, password: e.target.value })}
-            placeholder="leave blank to keep"
-          />
-        </label>
-
-        <label style={{ display: "grid", gap: 4 }}>
-            <span>Confirm new password</span>
-            <input
-                type="password"
-                value={form.passwordConfirmation ?? ""}
-                onChange={e => setForm({ ...form, passwordConfirmation: e.target.value })}
-                placeholder="repeat the new password"
-                autoComplete="new-password"
-            />
-        </label>
-
         <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
           <button type="submit" disabled={mutation.isPending}>
             {mutation.isPending ? "Saving..." : "Save"}
@@ -135,6 +126,14 @@ export default function UserEdit() {
           <Link to={`/users/${id}`}>Cancel</Link>
         </div>
       </form>
+
+      <div style={{ marginTop: 24 }}>
+        <h3>パスワード</h3>
+        <p>パスワードを変更したい場合は以下から。</p>
+        <button type="button" onClick={handleSendResetMail}>
+          パスワードを変更する
+        </button>
+      </div>
     </div>
   );
 }

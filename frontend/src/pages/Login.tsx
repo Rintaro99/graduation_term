@@ -2,6 +2,7 @@ import { useState } from "react";
 import { api } from "../api/client";
 import { auth } from "../lib/auth";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import { signIn } from "../api/auth"; // ← api/auth から
 // import { auth } from "../lib/auth";   // ← lib/auth から
 
@@ -44,6 +45,10 @@ export default function Login() {
           <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" style={{ width: "100%", padding: 8 }} />
         </div>
         <button type="submit" style={{ padding: "8px 12px" }}>送信</button>
+        <div style={{ marginTop: 12 }}>
+          <Link to="/forgot-password">パスワードを忘れた？</Link>
+        </div>
+        
       </form>
 
       {msg && <pre style={{ marginTop: 12, whiteSpace: "pre-wrap" }}>{msg}</pre>}
