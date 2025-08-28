@@ -21,6 +21,7 @@ export default function QuizPlay() {
   const [mode, setMode] = useState<"question" | "explanation" | "finished">("question");
   const [lastChoice, setLastChoice] = useState<Choice | null>(null);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+  const [result, setResult] = useState<any>(null);
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -61,14 +62,31 @@ export default function QuizPlay() {
     setMode("explanation");
   };
 
+  const handleFinish = async () => {
+    const token = getToken();
+    const res = await fetch("http://localhost:3000/api/challenges", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ score }),
+    });
+    const data = await res.json();
+    setResult(data); // ← useStateで保持
+    setMode("finished");
+  };
+
   const handleNext = () => {
     if (currentIndex + 1 >= questions.length) {
+      handleFinish();
       setMode("finished");
     } else {
       setCurrentIndex((prev) => prev + 1);
       setMode("question");
     }
   };
+
 
   if (mode === "question") {
     return (
