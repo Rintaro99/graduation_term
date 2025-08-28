@@ -84,6 +84,16 @@ export default function QuizPlay() {
             </li>
           ))}
         </ul>
+        <p>問題 {currentIndex + 1} / {questions.length}</p>
+        <div style={{ background: "#eee", borderRadius: "8px", overflow: "hidden", height: "10px" }}>
+          <div
+            style={{
+              width: `${((currentIndex + 1) / questions.length) * 100}%`,
+              background: "#4caf50",
+              height: "100%"
+            }}
+          />
+        </div>
       </div>
     );
   }
@@ -92,7 +102,7 @@ export default function QuizPlay() {
     return (
       <div>
         <h2>解説</h2>
-        <p>
+        <p style={{ color: isCorrect ? "green" : "red", fontWeight: "bold" }}>
           {isCorrect ? "✅ 正解！" : "❌ 不正解…"}
         </p>
         <p>あなたの回答: {lastChoice?.content}</p>
