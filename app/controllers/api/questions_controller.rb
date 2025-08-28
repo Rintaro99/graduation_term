@@ -1,5 +1,4 @@
 class Api::QuestionsController < Api::BaseController
-
   def index
     questions = Question.includes(:choices)
     render json: questions.as_json(include: :choices)
