@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getToken } from "../api/auth";
+import { useNavigate } from "react-router-dom";
 
 type Choice = {
   id: number;
@@ -18,10 +19,10 @@ export default function QuizPlay() {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
-  const [mode, setMode] = useState<"question" | "explanation" | "finished">("question");
+  const [mode, setMode] = useState<"question" | "explanation" >("question");
   const [lastChoice, setLastChoice] = useState<Choice | null>(null);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
-  const [result, setResult] = useState<any>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -36,16 +37,6 @@ export default function QuizPlay() {
     };
     fetchQuestions();
   }, []);
-
-  if (mode === "finished") {
-    return (
-      <div>
-        <h2>クイズ終了！</h2>
-        <p>スコア: {score} 点</p>
-        {/* 後でここで /api/challenges に POST */}
-      </div>
-    );
-  }
 
   if (questions.length === 0) return <p>読み込み中...</p>;
 
@@ -73,14 +64,13 @@ export default function QuizPlay() {
       body: JSON.stringify({ score }),
     });
     const data = await res.json();
-    setResult(data); // ← useStateで保持
-    setMode("finished");
+    // 結果ページに遷移し、スコアと結果を渡す
+    navigate("/result", { state: { score, result: data } });
   };
 
   const handleNext = () => {
     if (currentIndex + 1 >= questions.length) {
       handleFinish();
-      setMode("finished");
     } else {
       setCurrentIndex((prev) => prev + 1);
       setMode("question");

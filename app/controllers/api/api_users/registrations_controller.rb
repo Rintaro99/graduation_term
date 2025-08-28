@@ -2,8 +2,8 @@
 
 module Api
   class Api::ApiUsers::RegistrationsController < Devise::RegistrationsController
-    skip_before_action :require_login
     skip_before_action :verify_authenticity_token
+    # skip_before_action :authenticate_api_user!, only: [:create]
     # before_action :configure_permitted_parameters, only: [:create, :update]
 
     respond_to :json

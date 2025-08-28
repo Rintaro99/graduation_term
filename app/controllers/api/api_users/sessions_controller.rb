@@ -3,7 +3,6 @@
 module Api
   module ApiUsers
     class SessionsController < Devise::SessionsController
-      skip_before_action :require_login, only: [ :create, :destroy ]
       skip_before_action :verify_authenticity_token
       before_action :configure_sign_in_params, only: [ :create ]
 

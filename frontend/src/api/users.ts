@@ -6,21 +6,21 @@ import {
 } from "../schemas/user";
 
 export async function listUsers(): Promise<User[]> {
-  const res = await api.get("/api/users");
+  const res = await api.get("/api/api_users");
   return UsersSchema.parse(res.data);
 }
 
 export async function getUser(id: number | string): Promise<User> {
-  const res = await api.get(`/api/users/${id}`);
+  const res = await api.get(`/api/api_users/${id}`);
   return UserSchema.parse(res.data);
 }
 
 // ▼ 追加：作成
 export async function createUser(input: UserCreateInput): Promise<User> {
   // Rails 側は params.require(:user)... なので { user: input } で送る
-  const parsed = UserCreateSchema.parse(input);       // 送信前にzodチェック
-  const res = await api.post("/api/users", { user: parsed });
-  return UserSchema.parse(res.data);
+  const parsed = UserCreateSchema.parse(input);
+  const res = await api.post("/api/api_users", { api_user: parsed });
+  return UserSchema.parse(res.data.user);
 }
 
 // ▼ 追加：更新
@@ -33,7 +33,7 @@ export async function updateUser(id: number | string, input: UserUpdateInput): P
 //     cleaned.password = parsed.password;
 //     cleaned.password_confirmation = parsed.passwordConfirmation; // ←ここ重要
 //   }
-//   const res = await api.patch(`/api/users/${id}`, { user: cleaned });
+//   const res = await api.patch(`/api/api_users/${id}`, { user: cleaned });
 //   return UserSchema.parse(res.data);
 
 const cleaned: Record<string, unknown> = { email: input.email ?? "" };
@@ -42,11 +42,11 @@ const cleaned: Record<string, unknown> = { email: input.email ?? "" };
     cleaned.password = input.password;
     cleaned.password_confirmation = input.passwordConfirmation;
   }
-  const res = await api.patch(`/api/users/${id}`, { user: cleaned });
+  const res = await api.patch(`/api/api_users/${id}`, { user: cleaned });
   return UserSchema.parse(res.data);
 }
 
 // ▼ 追加：削除
 export async function deleteUser(id: number | string): Promise<void> {
-  await api.delete(`/api/users/${id}`);
+  await api.delete(`/api/api_users/${id}`);
 }
