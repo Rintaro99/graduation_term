@@ -1,68 +1,124 @@
-import React, { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { fetchRandomQuestion } from "../api/questions";
+import { useEffect, useState } from "react";
+import { getToken } from "../api/auth";
+import { useNavigate } from "react-router-dom";
+
+type Choice = {
+  id: number;
+  content: string;
+  is_correct: boolean;
+};
+
+type Question = {
+  id: number;
+  content: string;
+  explanation: string;
+  choices: Choice[];
+};
 
 export default function QuizPlay() {
-  const { data, isLoading, error, refetch } = useQuery({
-    queryKey: ["quiz", "current"],
-    queryFn: fetchRandomQuestion,
-  });
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [score, setScore] = useState(0);
+  const [mode, setMode] = useState<"question" | "explanation" >("question");
+  const [lastChoice, setLastChoice] = useState<Choice | null>(null);
+  const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+  const navigate = useNavigate();
 
-  const [selectedId, setSelectedId] = useState<number | null>(null);
+  useEffect(() => {
+    const fetchQuestions = async () => {
+      const token = getToken();
+      const res = await fetch("http://localhost:3000/api/questions", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const data = await res.json();
+      // 10問シャッフルして保持
+      const shuffled = data.sort(() => Math.random() - 0.5).slice(0, 10);
+      setQuestions(shuffled);
+    };
+    fetchQuestions();
+  }, []);
 
-  if (isLoading) return <div style={{ padding: 16 }}>Loading...</div>;
-  if (error) {
-    const message =
-      (error as any)?.response?.data?.message ??
-      (error as Error)?.message ??
-      "エラーが発生しました";
+  if (questions.length === 0) return <p>読み込み中...</p>;
+
+  const currentQuestion = questions[currentIndex];
+
+  const handleAnswer = (choice: Choice) => {
+    setLastChoice(choice);
+    if (choice.is_correct) {
+      setScore((prev) => prev + 1);
+      setIsCorrect(true);
+    } else {
+      setIsCorrect(false);
+    }
+    setMode("explanation");
+  };
+
+  const handleFinish = async () => {
+    const token = getToken();
+    const res = await fetch("http://localhost:3000/api/challenges", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ score }),
+    });
+    const data = await res.json();
+    // 結果ページに遷移し、スコアと結果を渡す
+    navigate("/result", { state: { score, result: data } });
+  };
+
+  const handleNext = () => {
+    if (currentIndex + 1 >= questions.length) {
+      handleFinish();
+    } else {
+      setCurrentIndex((prev) => prev + 1);
+      setMode("question");
+    }
+  };
+
+
+  if (mode === "question") {
     return (
-      <div style={{ color: "crimson", padding: 16, whiteSpace: "pre-wrap" }}>
-        {message}
+      <div>
+        <h2>問題 {currentIndex + 1}</h2>
+        <p>{currentQuestion.content}</p>
+        <ul>
+          {currentQuestion.choices.map((choice) => (
+            <li key={choice.id}>
+              <button onClick={() => handleAnswer(choice)}>
+                {choice.content}
+              </button>
+            </li>
+          ))}
+        </ul>
+        <p>問題 {currentIndex + 1} / {questions.length}</p>
+        <div style={{ background: "#eee", borderRadius: "8px", overflow: "hidden", height: "10px" }}>
+          <div
+            style={{
+              width: `${((currentIndex + 1) / questions.length) * 100}%`,
+              background: "#4caf50",
+              height: "100%"
+            }}
+          />
+        </div>
       </div>
     );
   }
-  if (!data) return <div style={{ padding: 16 }}>問題が見つかりません</div>;
 
-  return (
-    <div style={{ padding: 16, maxWidth: 720, margin: "0 auto" }}>
-      <h2 style={{ fontSize: 20, marginBottom: 12 }}>クイズ</h2>
-
-      <div style={{ marginBottom: 16 }}>
-        <div style={{ fontWeight: 600, marginBottom: 8 }}>{data.content}</div>
-        <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-          {data.choices.map((c) => {
-            const active = selectedId === c.id;
-            return (
-              <li key={c.id} style={{ marginBottom: 8 }}>
-                <button
-                  onClick={() => setSelectedId(c.id)}
-                  style={{
-                    width: "100%",
-                    textAlign: "left",
-                    padding: "10px 12px",
-                    border: "1px solid #ddd",
-                    borderRadius: 6,
-                    background: active ? "#eef6ff" : "white",
-                    cursor: "pointer",
-                  }}
-                >
-                  {c.content}
-                </button>
-              </li>
-            );
-          })}
-        </ul>
+  if (mode === "explanation") {
+    return (
+      <div>
+        <h2>解説</h2>
+        <p style={{ color: isCorrect ? "green" : "red", fontWeight: "bold" }}>
+          {isCorrect ? "✅ 正解！" : "❌ 不正解…"}
+        </p>
+        <p>あなたの回答: {lastChoice?.content}</p>
+        <p>正解: {currentQuestion.choices.find(c => c.is_correct)?.content}</p>
+        <p>{currentQuestion.explanation}</p>
+        <button onClick={handleNext}>次へ</button>
       </div>
-
-      <div style={{ display: "flex", gap: 8 }}>
-        <button onClick={() => setSelectedId(null)} style={{ padding: "8px 12px" }}>
-          クリア
-        </button>
-        <button onClick={() => { setSelectedId(null); refetch(); }} style={{ padding: "8px 12px" }}>
-          次の問題（仮）
-        </button>
-      </div>
-    </div>
-  );
+    );
+  }
 }
+

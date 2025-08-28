@@ -15,6 +15,9 @@ export async function signIn(cred: Credentials): Promise<string> {
     throw new Error("Authorization ヘッダが返ってきません（CORSの expose-headers も確認）");
   }
   const token = authHeader.replace(/^Bearer\s+/i, "");
+  // ★ localStorage に保存
+  localStorage.setItem("auth_token", token);
+
   return token;
 }
 
@@ -26,4 +29,10 @@ export async function signUp(cred: Credentials): Promise<void> {
 
 export async function signOut(): Promise<void> {
   await api.delete(SIGN_OUT_PATH); // Authorization は axios の interceptor が付けます
+  // ★ localStorage のトークン削除
+  localStorage.removeItem("auth_token");
+}
+
+export function getToken(): string | null {
+  return localStorage.getItem("auth_token");
 }

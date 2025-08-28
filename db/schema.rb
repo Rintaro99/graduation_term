@@ -10,13 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_08_07_055148) do
+ActiveRecord::Schema[7.2].define(version: 2025_08_28_113518) do
   create_table "achievement_symbols", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.string "img"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "min_score"
+  end
+
+  create_table "api_challenges", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "api_user_id", null: false
+    t.integer "score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["api_user_id"], name: "index_api_challenges_on_api_user_id"
   end
 
   create_table "api_users", charset: "utf8mb4", force: :cascade do |t|
@@ -42,7 +50,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_07_055148) do
   end
 
   create_table "challenges", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.integer "score"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -56,6 +64,13 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_07_055148) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["question_id"], name: "index_choices_on_question_id"
+  end
+
+  create_table "jwt_denylists", charset: "utf8mb4", force: :cascade do |t|
+    t.string "jti"
+    t.datetime "exp"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "posts", charset: "utf8mb4", force: :cascade do |t|
@@ -75,12 +90,12 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_07_055148) do
   end
 
   create_table "user_symbols", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "user_id", null: false
     t.bigint "achievement_symbol_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "api_user_id", null: false
     t.index ["achievement_symbol_id"], name: "index_user_symbols_on_achievement_symbol_id"
-    t.index ["user_id"], name: "index_user_symbols_on_user_id"
+    t.index ["api_user_id"], name: "index_user_symbols_on_api_user_id"
   end
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
@@ -98,10 +113,10 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_07_055148) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
   end
 
+  add_foreign_key "api_challenges", "api_users"
   add_foreign_key "authentications", "users"
-  add_foreign_key "challenges", "users"
   add_foreign_key "choices", "questions"
   add_foreign_key "posts", "users"
   add_foreign_key "user_symbols", "achievement_symbols"
-  add_foreign_key "user_symbols", "users"
+  add_foreign_key "user_symbols", "api_users"
 end

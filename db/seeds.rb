@@ -17,27 +17,27 @@ puts "🌱 Seeding started..."
 # ===== 称号（AchievementSymbol） =====
 AchievementSymbol.find_or_create_by!(name: "臥麟嘗胆") do |s|
   s.min_score = 2
-  s.img = "symbols/臥麟嘗胆.png"
+  s.img = "symbols/gashinshotan.png"
 end
 
 AchievementSymbol.find_or_create_by!(name: "麟進月歩") do |s|
   s.min_score = 4
-  s.img = "symbols/麟進月歩.png"
+  s.img = "symbols/rinshingeppo.png"
 end
 
 AchievementSymbol.find_or_create_by!(name: "鳳毛麟角") do |s|
   s.min_score = 6
-  s.img = "symbols/鳳毛麟角.png"
+  s.img = "symbols/houmourinkaku.png"
 end
 
  AchievementSymbol.find_or_create_by!(name: "威風麟々") do |s|
   s.min_score = 8
-  s.img = "symbols/威風麟々.png"
+  s.img = "symbols/ifurinrin.png"
  end
 
 AchievementSymbol.find_or_create_by!(name: "天下無麟") do |s|
   s.min_score = 10
-  s.img = "symbols/天下無麟.png"
+  s.img = "symbols/tenkamurin.png"
 end
 
 puts "✅ 称号作成完了"
