@@ -35,7 +35,7 @@ export default function ResultPage() {
       <div style={{ marginTop: 20 }}>
         <button onClick={() => navigate("/quiz")}>もう一度プレイ</button>
         <button onClick={() => navigate("/ranking")}>ランキングを見る</button>
-        <button onClick={() => navigate("/users")}>トップに戻る</button>
+        <button onClick={() => navigate("/user")}>トップに戻る</button>
       </div>
     </div>
   );

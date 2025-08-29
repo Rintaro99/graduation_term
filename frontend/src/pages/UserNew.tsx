@@ -15,8 +15,9 @@ export default function UserNew() {
     onSuccess: (user) => {
       // 一覧を最新化
       queryClient.invalidateQueries({ queryKey: ["users"] });
-      // 詳細へ
-      navigate(`/users/${user.id}`);
+      // ログインページへ
+      // navigate("/login", { replace: true });
+      navigate("/login", { state: { message: "ユーザー登録が完了しました！ログインしてください。" } });
     },
     onError: (err: any) => {
       // Railsの422: { errors: ["..."] }
@@ -87,7 +88,7 @@ export default function UserNew() {
           <button type="submit" disabled={mutation.isPending}>
             {mutation.isPending ? "Creating..." : "Create"}
           </button>
-          <Link to="/users">Cancel</Link>
+          <Link to="/login">Cancel</Link>
         </div>
       </form>
     </div>

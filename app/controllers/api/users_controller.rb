@@ -11,6 +11,20 @@ class Api::UsersController < Api::BaseController
     render json: { message: "not found" }, status: :not_found
   end
 
+  def mypage
+    user = current_api_user
+    best_symbol = user.achievement_symbols.order(min_score: :desc).first
+
+    render json: {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      title: user.achievement_symbols.order(min_score: :desc).first&.name,
+      symbol_img: best_symbol&.img,
+      symbols: user.achievement_symbols.pluck(:name)
+    }
+  end
+
   def create
     u = ApiUser.new(user_params)
     if u.save

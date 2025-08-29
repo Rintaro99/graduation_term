@@ -3,14 +3,18 @@ import { api } from "../api/client";
 import { auth } from "../lib/auth";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 // import { signIn } from "../api/auth"; // ← api/auth から
 // import { auth } from "../lib/auth";   // ← lib/auth から
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [msg, setMsg] = useState<string | null>(null);
   const navigate = useNavigate();
+  const location = useLocation();
+  const [msg, setMsg] = useState<string | null>(
+    (location.state as { message?: string })?.message || null
+  );
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,7 +29,7 @@ export default function Login() {
 
       const token = String(authHeader).replace(/^Bearer\s+/i, "");
       auth.setToken(token);
-      navigate("/users", { replace: true });
+      navigate("/user", { replace: true });
     } catch (err: any) {
       const m = err?.response?.data?.error || err?.message || "ログイン失敗";
       setMsg(`ERROR: ${m}`);
@@ -51,7 +55,12 @@ export default function Login() {
         
       </form>
 
-      {msg && <pre style={{ marginTop: 12, whiteSpace: "pre-wrap" }}>{msg}</pre>}
+      {/* 成功メッセージ・エラーメッセージ両方まとめてここに出す */}
+      {msg && (
+        <pre style={{ marginTop: 12, whiteSpace: "pre-wrap" }}>
+          {msg}
+        </pre>
+      )}
     </div>
   );
 }
