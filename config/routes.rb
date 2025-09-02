@@ -85,5 +85,6 @@ Rails.application.routes.draw do
     end
     resources :challenges, only: [ :create ]
     get "mypage", to: "users#mypage"
+    patch "mypage", to: "users#update_mypage"
   end
 end

@@ -34,6 +34,15 @@ class Api::UsersController < Api::BaseController
     end
   end
 
+  def update_mypage
+    user = current_api_user
+    if user.update(user_update_params)
+      render json: user.slice(:id, :name, :email), status: :ok
+    else
+      render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
   def update
     u = ApiUser.find(params[:id])
     if u.update(user_update_params)
