@@ -45,7 +45,8 @@ export default function UserUpdate() {
             style={{ width: "100%", padding: 8 }}
           />
         </div>
-        <button type="submit">更新</button>
+        <Link to="/forgot-password" style={{display: "block"}}>パスワードをリセットする</Link>
+        <button type="submit" style={{}}>更新</button>
       </form>
       <div style={{ marginTop: 12 }}>
         {message && (
@@ -57,9 +58,7 @@ export default function UserUpdate() {
             {message}
           </p>
         )}
-        <Link to="/" style={{ padding: "8px 12px", border: "1px solid #ccc" }}>
-          トップに戻る
-        </Link>
+        <Link to="/">トップに戻る</Link>
         </div>
     </div>
   );
