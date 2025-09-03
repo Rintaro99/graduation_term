@@ -16,6 +16,7 @@ import ResetPassword from "./pages/ResetPassword";
 import PasswordResetRequestForm from "./pages/PasswordResetRequestForm";
 import ResultPage from "./pages/ResultPage";
 import UserPage from "./pages/UserPage";
+import UserUpdate from "./pages/UserUpdate";
 
 
 const router = createBrowserRouter([
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
       { path: "/result", element: <ResultPage /> },
       { path: "/login", element: <Login /> },
       { path: "/user", element: <UserPage /> },
+      { path: "/user/edit", element: <UserUpdate /> },
       { path: "/users", element: <UsersList /> },
       { path: "/users/new", element: <UserNew /> },
       { path: "/users/:id", element: <UserShow /> },

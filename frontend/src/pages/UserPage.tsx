@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { auth } from "../lib/auth";
+import { Link } from "react-router-dom";
+
 
 type UserData = {
   id: number;
@@ -45,9 +47,9 @@ export default function UserPage() {
         <p>シンボル: なし</p>
         )}
 
-      <button onClick={() => (window.location.href = "/quiz")}>クイズに挑戦</button>
-      <button onClick={() => (window.location.href = "/ranking")}>ランキング</button>
-      <button onClick={() => (window.location.href = "/mypage")}>マイページ</button>
+      <Link to="/quiz">クイズに挑戦</Link>
+      <Link to="/ranking">ランキング</Link>
+      <Link to="/user/edit">プロフィール編集</Link>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import './App.css'
 import { BrowserRouter, Link, Outlet, Route, Routes } from 'react-router-dom'
+import LogoutButton from "./pages/LogoutButton";
 
 export default function App() {
   return (
@@ -11,6 +12,7 @@ export default function App() {
           <Link to="/users">Users</Link>
           <Link to="/users/new">New</Link>
           <Link to="/login">Login</Link>
+          <LogoutButton asLink />
         </nav>
       </header>
 
