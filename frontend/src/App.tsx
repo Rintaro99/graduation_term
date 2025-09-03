@@ -1,6 +1,6 @@
 import './App.css'
 import { BrowserRouter, Link, Outlet, Route, Routes } from 'react-router-dom'
-import LogoutButton from "./pages/LogoutButton";
+import LogoutButton from "./components/LogoutButton";
 
 export default function App() {
   return (

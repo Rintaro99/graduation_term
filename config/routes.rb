@@ -86,5 +86,6 @@ Rails.application.routes.draw do
     resources :challenges, only: [ :create ]
     get "mypage", to: "users#mypage"
     patch "mypage", to: "users#update_mypage"
+    resources :rankings, only: [:index]
   end
 end
