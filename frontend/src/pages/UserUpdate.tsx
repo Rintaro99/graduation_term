@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { api } from "../api/client";
-import LogoutButton from "../pages/LogoutButton";
+import LogoutButton from "../components/LogoutButton";
 
 
 export default function UserUpdate() {
@@ -61,7 +61,7 @@ export default function UserUpdate() {
             {message}
           </p>
         )}
-        <Link to="/">トップに戻る</Link>
+        <Link to="/user">トップに戻る</Link>
         </div>
     </div>
   );
