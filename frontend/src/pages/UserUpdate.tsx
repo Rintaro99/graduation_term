@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { api } from "../api/client";
+import LogoutButton from "../pages/LogoutButton";
+
 
 export default function UserUpdate() {
   const [name, setName] = useState("");
@@ -47,6 +49,7 @@ export default function UserUpdate() {
         </div>
         <Link to="/forgot-password" style={{display: "block"}}>パスワードをリセットする</Link>
         <button type="submit" style={{}}>更新</button>
+        <LogoutButton />
       </form>
       <div style={{ marginTop: 12 }}>
         {message && (
