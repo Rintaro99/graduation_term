@@ -1,15 +1,18 @@
 import { useState } from "react";
 import { api } from "../api/client";
 import { auth } from "../lib/auth";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { useNavigate, useOutletContext, useLocation, Link } from "react-router-dom";
 // import { signIn } from "../api/auth"; // ← api/auth から
 // import { auth } from "../lib/auth";   // ← lib/auth から
+
+type ContextType = {
+  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { setIsLoggedIn } = useOutletContext<ContextType>();
   const navigate = useNavigate();
   const location = useLocation();
   const [msg, setMsg] = useState<string | null>(
@@ -29,6 +32,7 @@ export default function Login() {
 
       const token = String(authHeader).replace(/^Bearer\s+/i, "");
       auth.setToken(token);
+      setIsLoggedIn(true);
       navigate("/user", { replace: true });
     } catch (err: any) {
       const m = err?.response?.data?.error || err?.message || "ログイン失敗";
