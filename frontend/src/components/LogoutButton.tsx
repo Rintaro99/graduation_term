@@ -3,15 +3,17 @@ import { useNavigate } from "react-router-dom";
 
 type Props = {
   asLink?: boolean;
+  onLogout?: () => void;
 };
 
-export default function LogoutButton({ asLink = false }: Props) {
+export default function LogoutButton({ asLink = false, onLogout }: Props) {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
       await signOut();
       alert("ログアウトしました");
+      onLogout?.();
       navigate("/login");
     } catch (err) {
       alert("ログアウトに失敗しました");
