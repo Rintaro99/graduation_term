@@ -27,7 +27,7 @@ end
 
 AchievementSymbol.find_or_create_by!(name: "鳳毛麟角") do |s|
   s.min_score = 6
-  s.img = "symbols/houmourinkaku.png"
+  s.img = "symbols/homorinkaku.png"
 end
 
  AchievementSymbol.find_or_create_by!(name: "威風麟々") do |s|
