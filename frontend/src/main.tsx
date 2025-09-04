@@ -5,7 +5,6 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import './index.css'
 import App from './App.tsx'
 import { queryClient } from "./lib/react-query";
-import UserList from './components/UserList';
 import QuizPlay from "./pages/QuizPlay";
 import Login from "./pages/Login";
 import UsersList from "./pages/UsersList";
@@ -18,6 +17,9 @@ import ResultPage from "./pages/ResultPage";
 import UserPage from "./pages/UserPage";
 import UserUpdate from "./pages/UserUpdate";
 import RankingPage from "./pages/RankingPage";
+import TopPage from "./pages/TopPage";
+import TermsPage from "./pages/TermsPage";
+import PrivacyPage from "./pages/PrivacyPage";
 
 
 const router = createBrowserRouter([
@@ -25,14 +27,16 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
-      { index: true, element: <Navigate to="/users" replace /> },
+      { index: true, element: <TopPage /> },
+      { path: "terms", element: <TermsPage /> },
+      { path: "privacy", element: <PrivacyPage /> },
+      { path: "/login", element: <Login /> },
+      { path: "/users/new", element: <UserNew /> },
       { path: "/quiz", element: <QuizPlay /> },
       { path: "/result", element: <ResultPage /> },
-      { path: "/login", element: <Login /> },
       { path: "/user", element: <UserPage /> },
       { path: "/user/edit", element: <UserUpdate /> },
       { path: "/users", element: <UsersList /> },
-      { path: "/users/new", element: <UserNew /> },
       { path: "/users/:id", element: <UserShow /> },
       { path: "/users/:id/edit", element: <UserEdit /> },
       { path: "reset-password", element: <ResetPassword /> },
