@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createUser } from "../api/users";
 import { UserCreateSchema, type UserCreateInput } from "../schemas/user";
 import { useNavigate, Link } from "react-router-dom";
+import { Button } from "flowbite-react";
 
 export default function UserNew() {
   const [form, setForm] = useState<UserCreateInput>({ email: "", password: "", name: "" });
@@ -44,8 +45,8 @@ export default function UserNew() {
   };
 
   return (
-    <div style={{ padding: 16, maxWidth: 420 }}>
-      <h2 style={{ marginBottom: 12 }}>New User</h2>
+    <div className="max-w-150 w-full mx-auto mt-15">
+      <h2 className="text-3xl">新規登録</h2>
 
       {errors.length > 0 && (
         <div style={{ color: "crimson", marginBottom: 12 }}>
@@ -53,9 +54,9 @@ export default function UserNew() {
         </div>
       )}
 
-      <form onSubmit={onSubmit} style={{ display: "grid", gap: 12 }}>
-        <label style={{ display: "grid", gap: 4 }}>
-          <span>Email</span>
+      <form onSubmit={onSubmit} className="mt-10 grid gap-5">
+        <label className="grid gap-2">
+          <span>メアド</span>
           <input
             type="email"
             value={form.email}
@@ -64,31 +65,31 @@ export default function UserNew() {
           />
         </label>
 
-        <label style={{ display: "grid", gap: 4 }}>
-          <span>Password</span>
+        <label className="grid gap-2">
+          <span>パスワード</span>
           <input
             type="password"
             value={form.password}
             onChange={(e) => setForm({ ...form, password: e.target.value })}
-            placeholder="6+ characters"
+            placeholder="6文字以上"
           />
         </label>
 
-        <label style={{ display: "grid", gap: 4 }}>
-          <span>Name (optional)</span>
+        <label className="grid gap-2">
+          <span>ニックネーム</span>
           <input
             type="text"
             value={form.name ?? ""}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
-            placeholder="Your name"
+            placeholder="りん"
           />
         </label>
 
-        <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-          <button type="submit" disabled={mutation.isPending}>
+        <div className="flex justify-center mt-5">
+          <Button color="dark" type="submit" disabled={mutation.isPending}>
             {mutation.isPending ? "Creating..." : "Create"}
-          </button>
-          <Link to="/login">Cancel</Link>
+          </Button>
+          <Button as={Link} to="/" color="gray" className="ml-8">キャンセル</Button>
         </div>
       </form>
     </div>
