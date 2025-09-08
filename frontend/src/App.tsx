@@ -14,36 +14,22 @@ export default function App() {
   }, [isLoggedIn]);
 
   return (
-    <div style={{ padding: 16, maxWidth: 800, margin: "0 auto" }}>
-      <header
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          marginBottom: 16,
-        }}
-      >
-        <h1 style={{ fontSize: 20 }}>りんって書ける？</h1>
+    <div className="">
+      <header className="flex justify-between items-center h-10 px-10">
+        <Link to="/">
+          <img src="../public/top_page_logo.jpg" alt="トップページへ" className='w-15'/>
+        </Link>
 
         {isLoggedIn && (
           <div style={{ position: "relative" }}>
             {/* ハンバーガーボタン */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              style={{
-                width: 40,
-                height: 32,
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-around",
-                background: "transparent",
-                border: "none",
-                cursor: "pointer",
-              }}
+              className='w-8 h-7 flex flex-col justify-around bg-transparent border-0 cursor-pointer'
             >
-              <span style={{  width: 40, height: 2, background: "#FFF" }}></span>
-              <span style={{ width: 40, height: 2, background: "#FFF" }}></span>
-              <span style={{ width: 40, height: 2, background: "#FFF" }}></span>
+              <span className='w-8 bg-white h-0.5'></span>
+              <span className='w-8 bg-white h-0.5'></span>
+              <span className='w-8 bg-white h-0.5'></span>
             </button>
 
             {/* ドロップダウンメニュー */}
