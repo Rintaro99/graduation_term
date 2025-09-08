@@ -62,6 +62,7 @@ export default function UserNew() {
             value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
             placeholder="example@example.com"
+            className="text-black"
           />
         </label>
 
@@ -72,6 +73,7 @@ export default function UserNew() {
             value={form.password}
             onChange={(e) => setForm({ ...form, password: e.target.value })}
             placeholder="6文字以上"
+            className="text-black"
           />
         </label>
 
@@ -82,6 +84,7 @@ export default function UserNew() {
             value={form.name ?? ""}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
             placeholder="りん"
+            className="text-black"
           />
         </label>
 
@@ -89,7 +92,7 @@ export default function UserNew() {
           <Button color="dark" type="submit" disabled={mutation.isPending}>
             {mutation.isPending ? "Creating..." : "Create"}
           </Button>
-          <Button as={Link} to="/" color="gray" className="ml-8">キャンセル</Button>
+          <Button as={Link} to="/" color="gray" className="ml-8 cursor-pointer">キャンセル</Button>
         </div>
       </form>
     </div>
