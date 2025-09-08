@@ -14,10 +14,7 @@ export default function HomePage() {
         <Link to="/terms" style={{ marginRight: 16 }}>利用規約</Link>
         <Link to="/privacy">プライバシーポリシー</Link>
       </div>
-      <div className="p-10 space-y-6">
-      <p className="text-3xl text-red-500">Tailwind 効いてる？</p>
-      <button className="btn btn-primary">daisyUI ボタン</button>
-    </div>
+      <div className="bg-foobar text-white p-4">テスト</div>
     </div>
   );
 }
