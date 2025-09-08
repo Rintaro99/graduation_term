@@ -16,7 +16,9 @@ export default function App() {
   return (
     <div className="">
       <header className="flex justify-between items-center h-10 px-10">
-        <h1 className='text-xs'>りんって書ける？</h1>
+        <Link to="/">
+          <img src="../public/top_page_logo.jpg" alt="トップページへ" className='w-15'/>
+        </Link>
 
         {isLoggedIn && (
           <div style={{ position: "relative" }}>

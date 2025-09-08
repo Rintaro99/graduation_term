@@ -3,7 +3,7 @@ import { Button } from "flowbite-react";
 
 export default function HomePage() {
   return (
-    <div className="mt-10">
+    <div className="mt-30">
       <h1 className="text-5xl font-zen" style={{ fontFamily: "'Zen Maru Gothic', sans-serif" }}>りんって書ける？</h1>
 
       <div className="mt-30 flex justify-center">
