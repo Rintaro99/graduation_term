@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 type Props = {
   asLink?: boolean;
   onLogout?: () => void;
+  className?: string;
 };
 
 export default function LogoutButton({ asLink = false, onLogout }: Props) {
