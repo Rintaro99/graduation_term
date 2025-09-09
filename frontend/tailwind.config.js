@@ -5,7 +5,12 @@ export default {
     "./node_modules/flowbite/**/*.js",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        kaisei: ['"Kaisei Tokumin"', 'serif'],
+        rampart: ['"Rampart One"', 'cursive'],
+      }
+    },
   },
   plugins: [],
 };
