@@ -2,6 +2,7 @@ import { useState } from "react";
 import { api } from "../api/client";
 import { auth } from "../lib/auth";
 import { useNavigate, useOutletContext, useLocation, Link } from "react-router-dom";
+import { Button } from "flowbite-react";
 // import { signIn } from "../api/auth"; // ← api/auth から
 // import { auth } from "../lib/auth";   // ← lib/auth から
 
@@ -41,30 +42,40 @@ export default function Login() {
   };
 
   return (
-    <div style={{ padding: 16, maxWidth: 420, margin: "0 auto" }}>
-      <h2>ログイン（学習用：保存はまだしない）</h2>
-      <form onSubmit={onSubmit}>
-        <div style={{ marginBottom: 12 }}>
-          <label>メール</label>
-          <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" style={{ width: "100%", padding: 8 }} />
-        </div>
-        <div style={{ marginBottom: 12 }}>
-          <label>パスワード</label>
-          <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" style={{ width: "100%", padding: 8 }} />
-        </div>
-        <button type="submit" style={{ padding: "8px 12px" }}>送信</button>
-        <div style={{ marginTop: 12 }}>
-          <Link to="/forgot-password">パスワードを忘れた？</Link>
-        </div>
-        
-      </form>
+    <div className="max-w-150 w-full mx-auto mt-15">
+      <h2 className="text-3xl">ログイン</h2>
 
       {/* 成功メッセージ・エラーメッセージ両方まとめてここに出す */}
       {msg && (
-        <pre style={{ marginTop: 12, whiteSpace: "pre-wrap" }}>
+        <pre style={{ marginTop: 12, whiteSpace: "pre-wrap" }} className="text-red-500">
           {msg}
         </pre>
       )}
+      
+      <form onSubmit={onSubmit} className="mt-10 grid gap-4">
+        <label className="grid gap-2">
+          <span>メール</span>
+          <input value={email} 
+            onChange={(e) => setEmail(e.target.value)} 
+            type="email" 
+            placeholder="example@example.com"
+            className="text-black" />
+        </label>
+        <label className="grid gap-2">
+          <span>パスワード</span>
+          <input value={password} 
+            onChange={(e) => setPassword(e.target.value)} 
+            type="password" 
+            placeholder="abc1234"
+            className="text-black" />
+        </label>
+        <div className="flex mt-10 justify-center">
+          <Button type="submit" color="indigo" className="dark:hover:bg-indigo-800 w-45" >送信</Button>
+          <Button as={ Link } to="/" color="pink" className="w-45 ml-10">トップページへ戻る</Button>
+        </div>
+        <Button as={Link} to="/forgot-password" className="text-blue-600 underline">パスワードを忘れた？</Button>
+        
+      </form>
     </div>
   );
 }
