@@ -2,8 +2,10 @@ import './App.css'
 import { BrowserRouter, Link, Outlet, Route, Routes } from 'react-router-dom'
 import LogoutButton from "./components/LogoutButton";
 import { useState, useEffect } from "react";
+import { Dropdown } from "flowbite-react";
 
 export default function App() {
+  console.log("DEBUG Dropdown:", Dropdown);
   const [isLoggedIn, setIsLoggedIn] = useState(
     !!localStorage.getItem("auth_token")
   );
@@ -23,16 +25,39 @@ export default function App() {
         {isLoggedIn && (
           <div style={{ position: "relative" }}>
             {/* ハンバーガーボタン */}
-            <button
+            {/* <button
               onClick={() => setMenuOpen(!menuOpen)}
               className='w-8 h-7 flex flex-col justify-around bg-transparent border-0 cursor-pointer'
             >
               <span className='w-8 bg-white h-0.5'></span>
               <span className='w-8 bg-white h-0.5'></span>
               <span className='w-8 bg-white h-0.5'></span>
-            </button>
+            </button> */}
 
-            {/* ドロップダウンメニュー */}
+            <Dropdown
+              dismissOnClick={true}
+              renderTrigger={() => (
+                <button
+                  className="w-8 h-7 flex flex-col justify-around bg-transparent border-0 cursor-pointer"
+                >
+                  <span className="w-8 bg-white h-0.5"></span>
+                  <span className="w-8 bg-white h-0.5"></span>
+                  <span className="w-8 bg-white h-0.5"></span>
+                </button>
+              )}
+              className='w-50'
+            >
+              {/* ドロップダウンメニュー */}
+              <Link
+                to="/user/edit"
+                className='text-blue-800 underline'
+              >
+                プロフィール編集
+              </Link>
+              <LogoutButton 
+                asLink onLogout={() => setIsLoggedIn(false)}
+              />
+            </Dropdown>
             {menuOpen && (
               <nav
                 style={{

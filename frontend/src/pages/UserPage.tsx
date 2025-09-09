@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { auth } from "../lib/auth";
 import { Link } from "react-router-dom";
-
+import { Button } from "flowbite-react";
 
 type UserData = {
   id: number;
@@ -32,24 +32,30 @@ export default function UserPage() {
   if (!user) return <p>読み込み中...</p>;
 
   return (
-    <div>
-      <h2>{user.name || "名無し"} さんのページ</h2>
-      <p>称号: {user.title || "なし"}</p>
+    <div className="max-w-150 w-full mx-auto mt-10 grid gap-4">
+      <div className="">
+        <h2 style={{ fontFamily: "'Rampart One', cursive" }} className="text-5xl">{user.name || "名無し"}</h2>
+      </div>
       {user.symbol_img ? (
-        <div>
-            <img
-            src={`/${user.symbol_img}`}
-            alt={user.title || "シンボル"}
-            width={150}
-            />
+        <div className="mt-7 relative before:content-[''] before:absolute before:bottom-[-15px] before:left-1/2 before:-translate-x-1/2 before:w-70 before:h-20 before:rounded-full before:bg-black/40 before:blur-xl">
+          <img
+          src={`/${user.symbol_img}`}
+          alt={user.title || "シンボル"}
+          width={150}
+          className="mx-auto w-70 relative z-10"
+          />
         </div>
         ) : (
         <p>シンボル: なし</p>
         )}
+        <div className="bg-[url('/name_frame.png')] bg-contain bg-center bg-no-repeat mt-5">
+          <p style={{ fontFamily: "'Kaisei Tokumin', serif" }} className="text-4xl font-kaisei">{user.title || "なし"}</p>
+        </div>
 
-      <Link to="/quiz">クイズに挑戦</Link>
-      <Link to="/ranking">ランキング</Link>
-      <Link to="/user/edit">プロフィール編集</Link>
+      <div className="mt-5 flex justify-center">
+        <Button as={ Link } to="/quiz" color="amber" style={{ fontFamily: "'Dela Gothic One', cursive" }} className="text-xl bg-red-700 hover:bg-red-800">クイズに挑戦</Button>
+        <Button as={ Link } to="/ranking" color="amber" style={{ fontFamily: "'Dela Gothic One', cursive" }} className="text-xl ml-10 bg-orange-700 hover:bg-orange-800">ランキング</Button>
+      </div>
     </div>
   );
 }

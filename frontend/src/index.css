@@ -10,8 +10,6 @@
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
-
-  padding: 20px 0;
   /* font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -61,8 +59,8 @@ button:focus-visible {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #2f4f4f;
   }
   a:hover {
     color: #747bff;
@@ -71,3 +69,42 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* ================================================font===================================================== */
+/* homura */
+@font-face {
+  font-family: 'Homura Mincho';
+  src: url('/fonts/homura-minch/01HomuraM-ExtraLight.otf') format('opentype');
+  font-weight: 200;
+}
+@font-face {
+  font-family: 'Homura Mincho';
+  src: url('/fonts/homura-minch/02HomuraM-Light.otf') format('opentype');
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'Homura Mincho';
+  src: url('/fonts/homura-minch/03HomuraM-SemiLight.otf') format('opentype');
+  font-weight: 350;
+}
+@font-face {
+  font-family: 'Homura Mincho';
+  src: url('/fonts/homura-minch/04HomuraM-Medium.otf') format('opentype');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Homura Mincho';
+  src: url('/fonts/homura-minch/05HomuraM-SemiBold.otf') format('opentype');
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'Homura Mincho';
+  src: url('/fonts/homura-minch/06HomuraM-Bold.otf') format('opentype');
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'Homura Mincho';
+  src: url('/fonts/homura-minch/07HomuraM-Heavy.otf') format('opentype');
+  font-weight: 900;
+}
+
