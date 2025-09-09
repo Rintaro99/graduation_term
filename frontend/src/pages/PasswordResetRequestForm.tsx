@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { api } from "../api/client";
+import { Button } from "flowbite-react";
 
 export default function PasswordResetRequestForm() {
   const [email, setEmail] = useState("");
@@ -20,18 +21,18 @@ export default function PasswordResetRequestForm() {
   };
 
   return (
-    <div style={{ maxWidth: 400, margin: "0 auto", padding: 16 }}>
-      <h2>パスワードリセットリクエスト</h2>
-      <form onSubmit={handleSubmit}>
+    <div className="mt-15 max-w-150 w-full mx-auto grid gap-10">
+      <h2 className="text-3xl">パスワードリセットリクエスト</h2>
+      <form onSubmit={handleSubmit} className="grid gap-3">
         <input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="メールアドレス"
+          placeholder="example@example.com"
           required
-          style={{ width: "100%", marginBottom: 12, padding: 8 }}
+          className="text-black w-full"
         />
-        <button type="submit">送信</button>
+        <Button color="indigo" className="w-40 mx-auto mt-5 dark:hover:bg-indigo-800" type="submit">送信</Button>
       </form>
       {msg && <p>{msg}</p>}
     </div>

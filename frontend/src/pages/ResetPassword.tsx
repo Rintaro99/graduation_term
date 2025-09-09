@@ -1,6 +1,7 @@
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import { Button } from "flowbite-react";
 
 export default function ResetPassword() {
   const [searchParams] = useSearchParams();
@@ -34,29 +35,33 @@ export default function ResetPassword() {
   };
 
   return (
-    <div style={{ padding: 16 }}>
-      <h2>パスワード再設定</h2>
+    <div className="max-w-150 w-full mx-auto mt-15 grid gap-8">
+      <h2 className="text-3xl">パスワード再設定</h2>
       {errors.map((m, i) => (
         <div key={i} style={{ color: "red" }}>・{m}</div>
       ))}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>新しいパスワード</label>
+      <form onSubmit={handleSubmit} className="grid gap-6">
+        <div className="grid gap-3">
+          <label className="block">新しいパスワード</label>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            placeholder="abc1234"
+            className="text-black"
           />
         </div>
-        <div>
-          <label>パスワード確認</label>
+        <div className="grid gap-3">
+          <label className="block">パスワード確認</label>
           <input
             type="password"
             value={passwordConfirmation}
             onChange={(e) => setPasswordConfirmation(e.target.value)}
+            placeholder="abc1234"
+            className="text-black"
           />
         </div>
-        <button type="submit">更新</button>
+        <Button type="submit" color="indigo" className="w-40 mx-auto dark:hover:bg-indigo-800" >更新</Button>
       </form>
     </div>
   );
