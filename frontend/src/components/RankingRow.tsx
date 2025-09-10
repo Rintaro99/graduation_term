@@ -21,7 +21,7 @@ export default function RankingRow({ rank, name, title, symbolUrl, score, isMe }
 
   // 自分の行なら背景ハイライト
   const rowStyle: React.CSSProperties = isMe
-    ? { backgroundColor: "#f0f8ff" }
+    ? { backgroundColor: "rgb(252 165 165 / var(--tw-bg-opacity, 1))" }
     : {};
 
   return (
@@ -34,7 +34,7 @@ export default function RankingRow({ rank, name, title, symbolUrl, score, isMe }
           <img
             src={symbolUrl}
             alt={title || "シンボル"}
-            style={{ width: 40, height: 40 }}
+            className="w-13 mx-auto"
           />
         ) : (
           "-"

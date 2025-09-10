@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getRanking } from "../api/ranking";
 import RankingRow from "../components/RankingRow";
 import { Link } from "react-router-dom";
+import { Button } from "flowbite-react";
 
 type UserRank = {
   name: string;
@@ -26,11 +27,10 @@ export default function RankingPage() {
   }, []);
 
   return (
-    <div style={{ padding: 20 }}>
-      <h2>ランキング</h2>
-      <h3>上位10名</h3>
+    <div className="mt-15 w-full max-w-150 mx-auto grid">
+      <h2 className="text-5xl text-slate-300" style={{ fontFamily: "'Dela Gothic One', cursive" }}>ランキング</h2>
 
-      <table border={1} cellPadding={8} style={{ borderCollapse: "collapse", width: "100%" }}>
+      <table border={1} cellPadding={8} className="mt-7">
         <thead>
           <tr>
             <th>順位</th>
@@ -55,11 +55,18 @@ export default function RankingPage() {
         </tbody>
       </table>
 
-      <h3 style={{ marginTop: 20 }}>あなたの順位</h3>
-      <p>{myRank ? `${myRank}位 (スコア: ${myScore})` : "まだスコアがありません"}</p>
-      <div style={{ marginTop: 20 }}>
-        <Link to="/user">トップに戻る</Link>
-      </div>
+      <h3 className="mt-5">あなたの順位</h3>
+      <p className="mt-3 text-lg text-red-300">
+        {myRank ? (
+          <>
+            {myRank}位 <br />
+            <span>スコア: {myScore}</span>
+          </>
+        ) : (
+          "まだスコアがありません"
+        )}
+      </p>
+      <Button as={ Link }  to="/user" className="mt-5 mx-auto bg-cyan-700 hover:bg-cyan-800" style={{ fontFamily: "'Dela Gothic One', cursive" }}>トップに戻る</Button>
     </div>
   );
 }
