@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getToken } from "../api/auth";
 import { useNavigate } from "react-router-dom";
+import { Button } from "flowbite-react";
 
 type Choice = {
   id: number;
@@ -80,20 +81,20 @@ export default function QuizPlay() {
 
   if (mode === "question") {
     return (
-      <div>
-        <h2>問題 {currentIndex + 1}</h2>
-        <p>{currentQuestion.content}</p>
-        <ul>
+      <div className="w-full max-w-150 mx-auto mt-15">
+        <h2 className="text-3xl text-left" style={{ fontFamily: "'Kaisei Tokumin', serif" }}>問題 {currentIndex + 1}</h2>
+        <p className="mt-7">{currentQuestion.content}</p>
+        <ul className="mt-5">
           {currentQuestion.choices.map((choice) => (
-            <li key={choice.id}>
-              <button onClick={() => handleAnswer(choice)}>
+            <li className="mt-2" key={choice.id}>
+              <Button color="gray" className="mx-auto" onClick={() => handleAnswer(choice)}>
                 {choice.content}
-              </button>
+              </Button>
             </li>
           ))}
         </ul>
-        <p>問題 {currentIndex + 1} / {questions.length}</p>
-        <div style={{ background: "#eee", borderRadius: "8px", overflow: "hidden", height: "10px" }}>
+        <p className="mt-5">問題 {currentIndex + 1} / {questions.length}</p>
+        <div className="mt-3 bg-white" style={{ borderRadius: "8px", overflow: "hidden", height: "10px" }}>
           <div
             style={{
               width: `${((currentIndex + 1) / questions.length) * 100}%`,
@@ -102,6 +103,13 @@ export default function QuizPlay() {
             }}
           />
         </div>
+        <Button
+          color=""
+          className="mt-10 mx-auto bg-cyan-700 hover:bg-cyan-800"
+          onClick={() => navigate("/user")}
+        >
+          トップへ戻る
+        </Button>
       </div>
     );
   }
