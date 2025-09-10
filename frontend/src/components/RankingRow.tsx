@@ -21,7 +21,7 @@ export default function RankingRow({ rank, name, title, symbolUrl, score, isMe }
 
   // 自分の行なら背景ハイライト
   const rowStyle: React.CSSProperties = isMe
-    ? { backgroundColor: "rgb(255 251 235 / var(--tw-bg-opacity, 1));" }
+    ? { backgroundColor: "rgb(252 165 165 / var(--tw-bg-opacity, 1))" }
     : {};
 
   return (
