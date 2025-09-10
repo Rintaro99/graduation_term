@@ -28,7 +28,7 @@ export default function RankingPage() {
 
   return (
     <div className="mt-15 w-full max-w-150 mx-auto grid">
-      <h2 className="text-5xl text-yellow-500" style={{ fontFamily: "'Reggae One', cursive" }}>ランキング</h2>
+      <h2 className="text-5xl text-slate-300" style={{ fontFamily: "'Dela Gothic One', cursive" }}>ランキング</h2>
 
       <table border={1} cellPadding={8} className="mt-7">
         <thead>
@@ -66,7 +66,7 @@ export default function RankingPage() {
           "まだスコアがありません"
         )}
       </p>
-      <Button as={ Link }  to="/user" className="mt-5 mx-auto bg-cyan-700 hover:bg-cyan-800"style={{ fontFamily: "'Dela Gothic One', cursive" }}>トップに戻る</Button>
+      <Button as={ Link }  to="/user" className="mt-5 mx-auto bg-cyan-700 hover:bg-cyan-800" style={{ fontFamily: "'Dela Gothic One', cursive" }}>トップに戻る</Button>
     </div>
   );
 }
