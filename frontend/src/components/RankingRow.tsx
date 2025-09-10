@@ -34,7 +34,7 @@ export default function RankingRow({ rank, name, title, symbolUrl, score, isMe }
           <img
             src={symbolUrl}
             alt={title || "シンボル"}
-            style={{ width: 40, height: 40 }}
+            className="w-13 mx-auto"
           />
         ) : (
           "-"
