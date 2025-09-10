@@ -1,5 +1,6 @@
 import { signOut } from "../api/auth";
 import { useNavigate } from "react-router-dom";
+import { Button } from "flowbite-react";
 
 type Props = {
   asLink?: boolean;
@@ -42,9 +43,12 @@ export default function LogoutButton({ asLink = false, onLogout }: Props) {
 
   // ページ用（ボタン風）
   return (
-    <button onClick={handleLogout}>
+    <Button onClick={handleLogout}
+      color="red"
+      style={{ fontFamily: "'Dela Gothic One', cursive" }}
+    >
       ログアウト
-    </button>
+    </Button>
   );
 }
 
