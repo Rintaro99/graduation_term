@@ -103,6 +103,13 @@ export default function QuizPlay() {
             }}
           />
         </div>
+        <Button
+          color=""
+          className="mt-10 mx-auto bg-cyan-700 hover:bg-cyan-800"
+          onClick={() => navigate("/user")}
+        >
+          トップへ戻る
+        </Button>
       </div>
     );
   }
