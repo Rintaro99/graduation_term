@@ -116,15 +116,28 @@ export default function QuizPlay() {
 
   if (mode === "explanation") {
     return (
-      <div>
-        <h2>解説</h2>
-        <p style={{ color: isCorrect ? "green" : "red", fontWeight: "bold" }}>
+      <div className="w-full max-w-150 mx-auto mt-15 grid gap-3">
+        <h2 className="text-3xl text-left" style={{ fontFamily: "'Kaisei Tokumin', serif" }}>解説</h2>
+        <p className="mt-5 text-3xl" style={{ color: isCorrect ? "green" : "red", fontWeight: "900",fontFamily: "'M PLUS Rounded 1c', sans-serif" }}>
           {isCorrect ? "✅ 正解！" : "❌ 不正解…"}
         </p>
-        <p>あなたの回答: {lastChoice?.content}</p>
-        <p>正解: {currentQuestion.choices.find(c => c.is_correct)?.content}</p>
-        <p>{currentQuestion.explanation}</p>
-        <button onClick={handleNext}>次へ</button>
+        <p className="mt-7 text-lg">あなたの回答
+          <br />
+          <span className="text-2xl">{lastChoice?.content}</span>
+        </p>
+        <p className="text-lg text-orange-500">正解
+          <br />
+          <span className="text-2xl">{currentQuestion.choices.find(c => c.is_correct)?.content}</span>
+        </p>
+        <p className="mt-5">{currentQuestion.explanation}</p>
+        <Button color="dark" className="w-40 mx-auto mt-5 dark:hover:bg-gray-900" onClick={handleNext}>次へ</Button>
+        <Button
+          color=""
+          className="mx-auto bg-cyan-700 hover:bg-cyan-800"
+          onClick={() => navigate("/user")}
+        >
+          トップへ戻る
+        </Button>
       </div>
     );
   }
