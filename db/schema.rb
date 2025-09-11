@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_08_28_113518) do
+ActiveRecord::Schema[7.2].define(version: 2025_09_11_020209) do
   create_table "achievement_symbols", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.string "img"
@@ -36,6 +36,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_28_113518) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "admin", default: false, null: false
     t.index ["email"], name: "index_api_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_api_users_on_reset_password_token", unique: true
   end
