@@ -20,6 +20,7 @@ import RankingPage from "./pages/RankingPage";
 import TopPage from "./pages/TopPage";
 import TermsPage from "./pages/TermsPage";
 import PrivacyPage from "./pages/PrivacyPage";
+import ApiPostList from "./pages/ApiPostList";
 
 
 const router = createBrowserRouter([
@@ -42,6 +43,7 @@ const router = createBrowserRouter([
       { path: "reset-password", element: <ResetPassword /> },
       { path: "/forgot-password", element:<PasswordResetRequestForm /> },
       { path: "/ranking", element:<RankingPage /> },
+      { path: "/posts", element:<ApiPostList /> },
     ],
   },
 ]);
