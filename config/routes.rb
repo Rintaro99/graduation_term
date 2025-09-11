@@ -87,5 +87,8 @@ Rails.application.routes.draw do
     get "mypage", to: "users#mypage"
     patch "mypage", to: "users#update_mypage"
     resources :rankings, only: [ :index ]
+    resources :api_posts do
+      resource :favorite, only: [:create, :destroy], controller: "api_post_favorites"
+    end
   end
 end
