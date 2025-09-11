@@ -1,14 +1,14 @@
 class Api::ApiPostsController < Api::BaseController
-    before_action :set_api_post, only: [:show, :update, :destroy]
-    before_action :require_admin!, only: [:create, :update, :destroy]
+    before_action :set_api_post, only: [ :show, :update, :destroy ]
+    before_action :require_admin!, only: [ :create, :update, :destroy ]
 
     def index
         posts = ApiPost.all.includes(:api_user)
-        render json: posts.as_json(include: { api_user: { only: [:id, :email, :name] } })
+        render json: posts.as_json(include: { api_user: { only: [ :id, :email, :name ] } })
     end
 
     def show
-        render json: @api_post.as_json(include: { api_user: { only: [:id, :email, :name] } })
+        render json: @api_post.as_json(include: { api_user: { only: [ :id, :email, :name ] } })
     end
 
     def create

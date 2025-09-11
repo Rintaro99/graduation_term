@@ -7,6 +7,6 @@ class CreateApiPostFavorites < ActiveRecord::Migration[7.2]
       t.timestamps
     end
     # 同じ組み合わせは1回しか登録できないようにする
-    add_index :api_post_favorites, [:api_user_id, :api_post_id], unique: true
+    add_index :api_post_favorites, [ :api_user_id, :api_post_id ], unique: true
   end
 end
