@@ -21,6 +21,7 @@ import TopPage from "./pages/TopPage";
 import TermsPage from "./pages/TermsPage";
 import PrivacyPage from "./pages/PrivacyPage";
 import ApiPostList from "./pages/ApiPostList";
+import ApiPostShow from "./pages/ApiPostShow";
 
 
 const router = createBrowserRouter([
@@ -44,6 +45,7 @@ const router = createBrowserRouter([
       { path: "/forgot-password", element:<PasswordResetRequestForm /> },
       { path: "/ranking", element:<RankingPage /> },
       { path: "/posts", element:<ApiPostList /> },
+      { path: "/posts/:id", element: <ApiPostShow /> },
     ],
   },
 ]);
