@@ -8,6 +8,10 @@ class ApiUser < ApplicationRecord
   has_many :api_challenges, dependent: :destroy, inverse_of: :api_user
   has_many :user_symbols, dependent: :destroy
   has_many :achievement_symbols, through: :user_symbols
+  # 掲示板関連
+  has_many :api_posts, dependent: :destroy
+  has_many :api_post_favorites, dependent: :destroy
+  has_many :favorite_api_posts, through: :api_post_favorites, source: :api_post
 
   # 称号（スコアに応じて一番高いもの）
   def achievement_title
