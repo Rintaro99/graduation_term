@@ -1,18 +1,26 @@
 import { useEffect, useState } from "react";
 import ApiPostItem from "../components/ApiPostItem";
+import type { ApiPost } from "../types/ApiPost";
+import { usePostFavorite } from "../hooks/usePostFavorite";
 
-type ApiPost = {
-  id: number;
-  title: string;
-  content: string;
-  api_user: { id: number; name: string | null; email: string };
-};
+// type ApiPost = {
+//   id: number;
+//   title: string;
+//   content: string;
+//   api_user: { id: number; name: string | null; email: string };
+// };
 
 const PER_PAGE = 10;
 
 export default function ApiPostList() {
   const [posts, setPosts] = useState<ApiPost[]>([]);
   const [page, setPage] = useState(1);
+  const { toggleFavorite } = usePostFavorite();
+
+  const handleToggle = (id: number, favorited: boolean) => {
+    const post = posts.find((p) => p.id === id);
+    if (post) toggleFavorite(post, undefined, setPosts);
+  };
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -24,7 +32,11 @@ export default function ApiPostList() {
       });
       if (res.ok) {
         const data = await res.json();
-        setPosts(data);
+        const postsWithFav = data.map((p: any) => ({
+          ...p,
+          favorited: p.favorited,
+        }));
+        setPosts(postsWithFav);
       }
     };
     fetchPosts();
@@ -39,7 +51,11 @@ export default function ApiPostList() {
       <h1 className="text-xl font-bold mb-4">投稿一覧</h1>
       <ul>
         {pagePosts.map((post) => (
-          <ApiPostItem key={post.id} post={post} />
+          <ApiPostItem
+            key={post.id}
+            post={post}
+            onToggleFavorite={handleToggle}
+          />
         ))}
       </ul>
 
