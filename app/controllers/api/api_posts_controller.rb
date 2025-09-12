@@ -23,7 +23,7 @@ class Api::ApiPostsController < Api::BaseController
 
     def show
         post = @api_post
-        
+
         render json: {
             id: post.id,
             title: post.title,
