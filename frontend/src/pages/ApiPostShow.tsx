@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { HeartIcon as HeartOutline } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartSolid } from "@heroicons/react/24/solid";
+import { usePostFavorite } from "../hooks/usePostFavorite";
 
 type ApiPost = {
   id: number;
@@ -16,6 +17,7 @@ type ApiPost = {
 export default function ApiPostShow() {
   const { id } = useParams();
   const [post, setPost] = useState<ApiPost | null>(null);
+  const { toggleFavorite } = usePostFavorite();
 
   const fetchPost = async () => {
     const res = await fetch(`http://localhost:3000/api/api_posts/${id}`, {
@@ -34,23 +36,6 @@ export default function ApiPostShow() {
     fetchPost();
   }, [id]);
 
-  const toggleFavorite = async () => {
-    if (!post) return;
-    const url = `http://localhost:3000/api/api_posts/${post.id}/favorite`;
-    const method = post.favorited ? "DELETE" : "POST";
-
-    const res = await fetch(url, {
-      method,
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("auth_token")}`,
-      },
-    });
-    if (res.ok) {
-      setPost({ ...post, favorited: !post.favorited });
-    }
-  };
-
   if (!post) return <p>読み込み中...</p>;
 
   return (
@@ -60,7 +45,7 @@ export default function ApiPostShow() {
       <p className="text-sm text-gray-500">
         投稿者: {post.api_user.name || post.api_user.email}
       </p>
-      <button onClick={toggleFavorite}>
+      <button onClick={() => toggleFavorite(post, setPost)}>
         {post.favorited ? (
           <motion.div
             initial={{ scale: 0.8 }}

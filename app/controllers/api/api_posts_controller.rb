@@ -4,11 +4,39 @@ class Api::ApiPostsController < Api::BaseController
 
     def index
         posts = ApiPost.all.includes(:api_user)
-        render json: posts.as_json(include: { api_user: { only: [ :id, :email, :name ] } })
+        render json: posts.map { |post|
+            {
+                id: post.id,
+                title: post.title,
+                content: post.content,
+                created_at: post.created_at,
+                updated_at: post.updated_at,
+                api_user: {
+                    id: post.api_user.id,
+                    name: post.api_user.name,
+                    email: post.api_user.email
+                },
+                favorited: current_api_user.api_post_favorites.exists?(api_post_id: post.id)
+            }
+        }
     end
 
     def show
-        render json: @api_post.as_json(include: { api_user: { only: [ :id, :email, :name ] } })
+        post = @api_post
+        
+        render json: {
+            id: post.id,
+            title: post.title,
+            content: post.content,
+            created_at: post.created_at,
+            updated_at: post.updated_at,
+            api_user: {
+                id: post.api_user.id,
+                name: post.api_user.name,
+                email: post.api_user.email
+            },
+            favorited: current_api_user.api_post_favorites.exists?(api_post_id: post.id)
+        }
     end
 
     def create
