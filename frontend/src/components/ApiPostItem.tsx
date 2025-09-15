@@ -18,21 +18,20 @@ type Props = {
 
 export default function ApiPostItem({ post, onToggleFavorite }: Props) {
   return (
-    <li className="mb-6 border-b pb-2">
-      <Link to={`/posts/${post.id}`} className="block">
+    <li className="mb-3 border-b pb-2 flex justify-between">
+      <Link to={`/posts/${post.id}`} className="block w-full">
+        <p className="text-xs text-gray-400 text-left">
+          {new Date(post.created_at).toLocaleString()}
+        </p>
         <h2 className="text-lg font-semibold">{post.title}</h2>
-        <p className="text-gray-700">
-          {post.content.length > 50
-            ? post.content.slice(0, 50) + "..."
+        <p className="text-gray-400 mt-2">
+          {post.content.length > 30
+            ? post.content.slice(0, 30) + "..."
             : post.content}
         </p>
-        <p className="text-sm text-gray-500">
+        {/* <p className="text-sm text-gray-500">
           投稿者: {post.api_user.name || post.api_user.email}
-        </p>
-        <p className="text-xs text-gray-400">
-          投稿日: {new Date(post.created_at).toLocaleString()}<br />
-          更新日: {new Date(post.updated_at).toLocaleString()}
-        </p>
+        </p> */}
       </Link>
       <button
         onClick={(e) => {
@@ -40,7 +39,6 @@ export default function ApiPostItem({ post, onToggleFavorite }: Props) {
           console.log("お気に入りクリック:", post.id, post.favorited);
           onToggleFavorite(post.id, !!post.favorited);
         }}
-        className="ml-4"
       >
         {post.favorited ? (
           <HeartSolid className="w-6 h-6 text-red-500 transition-transform duration-300 transform hover:scale-110" />
