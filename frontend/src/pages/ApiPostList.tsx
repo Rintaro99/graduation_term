@@ -60,15 +60,17 @@ export default function ApiPostList() {
   const pagePosts = posts.slice(start, end);
 
   return (
-    <div className="max-w-2xl mx-auto p-4">
-      <h1 className="text-xl font-bold mb-4">投稿一覧</h1>
+    <div className="max-w-150 w-full mx-auto mt-15 grid gap-3">
+      <h1 className="text-3xl font-bold" style={{ fontFamily: "'Zen Maru Gothic', sans-serif" }}>りんの日常</h1>
       {user?.admin && (
-        <Link
+        <Button
+          color= "blue"
+          as={ Link }
           to="/posts/new"
-          className="px-3 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+          className="w-40 ml-auto"
         >
           新規投稿
-        </Link>
+        </Button>
       )}
       <ul>
         {pagePosts.map((post) => (
@@ -85,7 +87,7 @@ export default function ApiPostList() {
         <button
           onClick={() => setPage(page - 1)}
           disabled={page === 1}
-          className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
+          className="text-neutral-400 px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
         >
           前へ
         </button>
@@ -93,12 +95,12 @@ export default function ApiPostList() {
         <button
           onClick={() => setPage(page + 1)}
           disabled={end >= posts.length}
-          className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
+          className="text-neutral-400 px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
         >
           次へ
         </button>
       </div>
-      <Button as={Link} to="/user" color="gray">トップに戻る</Button>
+      <Button as={Link} to="/user" className="mt-5 mx-auto bg-cyan-700 hover:bg-cyan-800" style={{ fontFamily: "'Dela Gothic One', cursive" }}>トップに戻る</Button>
     </div>
   );
 }
