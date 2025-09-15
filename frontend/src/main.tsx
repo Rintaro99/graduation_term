@@ -22,6 +22,7 @@ import TermsPage from "./pages/TermsPage";
 import PrivacyPage from "./pages/PrivacyPage";
 import ApiPostList from "./pages/ApiPostList";
 import ApiPostShow from "./pages/ApiPostShow";
+import PostForm from "./pages/PostForm";
 
 
 const router = createBrowserRouter([
@@ -46,6 +47,7 @@ const router = createBrowserRouter([
       { path: "/ranking", element:<RankingPage /> },
       { path: "/posts", element:<ApiPostList /> },
       { path: "/posts/:id", element: <ApiPostShow /> },
+      { path: "/posts/new", element: <PostForm /> },
     ],
   },
 ]);
