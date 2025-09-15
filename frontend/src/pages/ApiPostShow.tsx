@@ -6,6 +6,7 @@ import { HeartIcon as HeartSolid } from "@heroicons/react/24/solid";
 import { usePostFavorite } from "../hooks/usePostFavorite";
 import type { User } from "../types/User";
 import type { ApiPost } from "../types/ApiPost";
+import { Button } from "flowbite-react";
 
 export default function ApiPostShow() {
   const { id } = useParams();
@@ -73,22 +74,22 @@ export default function ApiPostShow() {
   if (!post) return <p>読み込み中...</p>;
 
   return (
-    <div className="max-w-2xl mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">{post.title}</h1>
-      <p className="mb-4">{post.content}</p>
-      <p className="text-sm text-gray-500">
-        投稿者: {post.api_user.name || post.api_user.email}
-      </p>
-      <p className="text-xs text-gray-400 mt-1">
+    <div className="max-w-150 w-full mx-auto mt-15 grid gap-3">
+      <p className="text-xs text-gray-400 text-left">
         投稿日: {new Date(post.created_at).toLocaleString()}<br />
-        更新日: {new Date(post.updated_at).toLocaleString()}
       </p>
-      <button onClick={() => toggleFavorite(post, setPost)}>
+      <h1 className="text-3xl font-bold">{post.title}</h1>
+      <p className="mt-8">{post.content}</p>
+      {/* <p className="text-sm text-gray-500">
+        投稿者: {post.api_user.name || post.api_user.email}
+      </p> */}
+      <button onClick={() => toggleFavorite(post, setPost)} className="flex justify-center">
         {post.favorited ? (
           <motion.div
             initial={{ scale: 0.8 }}
             animate={{ scale: 1.2 }}
             transition={{ type: "spring", stiffness: 300, damping: 10 }}
+            className="flex justify-center"
           >
             <HeartSolid className="w-8 h-8 text-red-500" />
           </motion.div>
@@ -97,29 +98,34 @@ export default function ApiPostShow() {
         )}
       </button>
 
-      {/* 管理者だけ編集ボタン */}
-      {user?.admin && (
-        <Link
-          to={`/posts/${post.id}/edit`}
-          className="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600 mr-2"
-        >
-          投稿を編集
-        </Link>
-      )}
-
-      {/* 管理者だけ削除ボタン */}
-      {user?.admin && (
-        <button
-          onClick={handleDelete}
-          className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
-        >
-          投稿を削除
-        </button>
-      )}
+      <div className="flex justify-center mt-5">
+        {/* 管理者だけ編集ボタン */}
+        {user?.admin && (
+          <Button
+            as={ Link }
+            to={`/posts/${post.id}/edit`}
+            color="yellow"
+            className="bg-yellow-500 hover:bg-yellow-700 font-bold"
+          >
+            投稿を編集
+          </Button>
+        )}
+        {/* 管理者だけ削除ボタン */}
+        {user?.admin && (
+          <Button
+            as={ Link }
+            onClick={handleDelete}
+            color="red"
+            className="bg-red-500 font-bold ml-3"
+          >
+            投稿を削除
+          </Button>
+        )}
+      </div>
 
       <Link
         to="/posts"
-        className="text-blue-500 hover:underline"
+        className="text-white-500 hover:underline text-left mt-15"
       >
         ← 投稿一覧へ戻る
       </Link>
