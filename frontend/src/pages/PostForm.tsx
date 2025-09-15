@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { auth } from "../lib/auth";
+import { Button } from "flowbite-react";
+import { Link } from "react-router-dom";
+
 
 export default function PostForm() {
   const [title, setTitle] = useState("");
@@ -68,6 +71,14 @@ export default function PostForm() {
       >
         投稿する
       </button>
+      <Button
+        as={Link}
+        to="/posts"
+        color="gray"
+        className="px-4 py-2"
+        >
+        投稿一覧へ戻る
+        </Button>
     </form>
   );
 }

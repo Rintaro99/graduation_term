@@ -54,11 +54,17 @@ export default function App() {
               >
                 プロフィール編集
               </Link>
+              <Link
+                to="/posts"
+                className="block px-4 text-blue-800 underline"
+              >
+                りんの日常
+              </Link>
               <LogoutButton 
                 asLink onLogout={() => setIsLoggedIn(false)}
               />
             </Dropdown>
-            {menuOpen && (
+            {/* {menuOpen && (
               <nav
                 style={{
                   position: "absolute",
@@ -83,7 +89,7 @@ export default function App() {
                   </li>
                 </ul>
               </nav>
-            )}
+            )} */}
           </div>
         )}
       </header>

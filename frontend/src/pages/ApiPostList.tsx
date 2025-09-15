@@ -5,6 +5,7 @@ import { usePostFavorite } from "../hooks/usePostFavorite";
 import PostForm from "../pages/PostForm";
 import type { User } from "../types/User";
 import { Link } from "react-router-dom";
+import { Button } from "flowbite-react";
 
 const PER_PAGE = 10;
 
@@ -97,6 +98,7 @@ export default function ApiPostList() {
           次へ
         </button>
       </div>
+      <Button as={Link} to="/user" color="gray">トップに戻る</Button>
     </div>
   );
 }
