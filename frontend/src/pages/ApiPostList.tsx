@@ -2,13 +2,10 @@ import { useEffect, useState } from "react";
 import ApiPostItem from "../components/ApiPostItem";
 import type { ApiPost } from "../types/ApiPost";
 import { usePostFavorite } from "../hooks/usePostFavorite";
-
-// type ApiPost = {
-//   id: number;
-//   title: string;
-//   content: string;
-//   api_user: { id: number; name: string | null; email: string };
-// };
+import PostForm from "../pages/PostForm";
+import type { User } from "../types/User";
+import { Link } from "react-router-dom";
+import { Button } from "flowbite-react";
 
 const PER_PAGE = 10;
 
@@ -16,12 +13,16 @@ export default function ApiPostList() {
   const [posts, setPosts] = useState<ApiPost[]>([]);
   const [page, setPage] = useState(1);
   const { toggleFavorite } = usePostFavorite();
+  const [user, setUser] = useState<User | null>(null);
+  const [showForm, setShowForm] = useState(false);
 
+  // 投稿のトグル
   const handleToggle = (id: number, favorited: boolean) => {
     const post = posts.find((p) => p.id === id);
     if (post) toggleFavorite(post, undefined, setPosts);
   };
 
+  // 投稿一覧を取得
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await fetch("http://localhost:3000/api/api_posts", {
@@ -42,6 +43,18 @@ export default function ApiPostList() {
     fetchPosts();
   }, []);
 
+  // ユーザー情報を取得（admin判定用）
+  useEffect(() => {
+    const token = localStorage.getItem("auth_token");
+    if (!token) return;
+    fetch("http://localhost:3000/api/mypage", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((res) => res.json())
+      .then((data: User) => setUser(data))
+      .catch(console.error);
+  }, []);
+
   const start = (page - 1) * PER_PAGE;
   const end = start + PER_PAGE;
   const pagePosts = posts.slice(start, end);
@@ -49,6 +62,14 @@ export default function ApiPostList() {
   return (
     <div className="max-w-2xl mx-auto p-4">
       <h1 className="text-xl font-bold mb-4">投稿一覧</h1>
+      {user?.admin && (
+        <Link
+          to="/posts/new"
+          className="px-3 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+        >
+          新規投稿
+        </Link>
+      )}
       <ul>
         {pagePosts.map((post) => (
           <ApiPostItem
@@ -77,6 +98,7 @@ export default function ApiPostList() {
           次へ
         </button>
       </div>
+      <Button as={Link} to="/user" color="gray">トップに戻る</Button>
     </div>
   );
 }

@@ -2,17 +2,10 @@ import { useEffect, useState } from "react";
 import { auth } from "../lib/auth";
 import { Link } from "react-router-dom";
 import { Button } from "flowbite-react";
-
-type UserData = {
-  id: number;
-  name: string;
-  title: string;
-  symbols: string[];
-  symbol_img?: string | null;
-};
+import type { User } from "../types/User";
 
 export default function UserPage() {
-  const [user, setUser] = useState<UserData | null>(null);
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     const token = auth.getToken();
@@ -22,7 +15,7 @@ export default function UserPage() {
       headers: { "Authorization": `Bearer ${token}` }
     })
       .then(res => res.json())
-      .then((data: UserData) => {
+      .then((data: User) => {
         console.log("DEBUG mypage data:", data);
         setUser(data);
         })

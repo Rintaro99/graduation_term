@@ -19,6 +19,7 @@ class Api::UsersController < Api::BaseController
       id: user.id,
       name: user.name,
       email: user.email,
+      admin: user.admin,
       title: user.achievement_symbols.order(min_score: :desc).first&.name,
       symbol_img: best_symbol&.img,
       symbols: user.achievement_symbols.pluck(:name)
