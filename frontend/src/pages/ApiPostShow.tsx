@@ -5,14 +5,7 @@ import { HeartIcon as HeartOutline } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartSolid } from "@heroicons/react/24/solid";
 import { usePostFavorite } from "../hooks/usePostFavorite";
 import type { User } from "../types/User";
-
-type ApiPost = {
-  id: number;
-  title: string;
-  content: string;
-  api_user: { id: number; name: string | null; email: string };
-  favorited?: boolean;
-};
+import type { ApiPost } from "../types/ApiPost";
 
 export default function ApiPostShow() {
   const { id } = useParams();

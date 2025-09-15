@@ -29,6 +29,10 @@ export default function ApiPostItem({ post, onToggleFavorite }: Props) {
         <p className="text-sm text-gray-500">
           投稿者: {post.api_user.name || post.api_user.email}
         </p>
+        <p className="text-xs text-gray-400">
+          投稿日: {new Date(post.created_at).toLocaleString()}<br />
+          更新日: {new Date(post.updated_at).toLocaleString()}
+        </p>
       </Link>
       <button
         onClick={(e) => {
