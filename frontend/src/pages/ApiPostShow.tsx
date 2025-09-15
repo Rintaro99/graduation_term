@@ -113,7 +113,6 @@ export default function ApiPostShow() {
         {/* 管理者だけ削除ボタン */}
         {user?.admin && (
           <Button
-            as={ Link }
             onClick={handleDelete}
             color="red"
             className="bg-red-500 font-bold ml-3"
