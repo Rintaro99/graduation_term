@@ -38,47 +38,44 @@ export default function PostForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-lg mx-auto mt-6 p-4 border rounded shadow">
-      <h3 className="text-xl mb-4">新規投稿</h3>
-
+    <form onSubmit={handleSubmit} className="max-w-150 w-full mx-auto mt-15 grid gap-4">
+      <h3 className="text-3xl ">新規投稿</h3>
       {message && <p className="mb-2 text-red-500">{message}</p>}
-
-      <div className="mb-3">
-        <label className="block mb-1">タイトル</label>
+      <div className="mt-5 grid gap-2">
+        <label className="block text-xl">タイトル</label>
         <input
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="w-full border px-3 py-2 rounded"
+          className="w-full border px-3 py-2 rounded text-black"
           required
         />
       </div>
 
-      <div className="mb-3">
-        <label className="block mb-1">本文</label>
+      <div className="grid gap-2">
+        <label className="block text-xl">本文</label>
         <textarea
           value={content}
           onChange={(e) => setContent(e.target.value)}
-          className="w-full border px-3 py-2 rounded"
+          className="w-full border px-3 py-2 rounded bg-white text-black"
           rows={4}
           required
         />
       </div>
 
-      <button
+      <Button
         type="submit"
-        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        color="blue"
+        className="mt-5 w-40 mx-auto cursor:pointer"
       >
         投稿する
-      </button>
-      <Button
-        as={Link}
+      </Button>
+      <Link
         to="/posts"
-        color="gray"
-        className="px-4 py-2"
-        >
-        投稿一覧へ戻る
-        </Button>
+        className="text-white-500 hover:underline text-left mt-15"
+      >
+        ← 投稿一覧へ戻る
+      </Link>
     </form>
   );
 }
