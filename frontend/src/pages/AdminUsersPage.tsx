@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import type { AdminUser } from "../types/Admin";
 import { Button } from "flowbite-react";
+import { Link } from "react-router-dom";
+import { useAdminUsers } from "../hooks/useAdminUsers";
 
 export default function AdminUsersPage() {
   const [users, setUsers] = useState<AdminUser[]>([]);
+  const { deleteUser } = useAdminUsers();
 
   useEffect(() => {
     const token = localStorage.getItem("auth_token");
@@ -38,8 +41,18 @@ export default function AdminUsersPage() {
             <p>称号: {user.title || "なし"}</p>
             <p>シンボル: {user.symbols.join(", ") || "なし"}</p>
             <div className="flex gap-2 mt-2">
-              <Button color="red" onClick={() => handleDelete(user.id)}>削除</Button>
-              {/* 編集機能は後で追加 */}
+            {/* 編集 */}
+              <Button as={Link} to={`/admin/users/${user.id}/edit`} color="yellow">
+                編集
+              </Button>
+            {/* 削除 */}
+              <Button color="red" onClick={() => deleteUser(user.id)}>
+                削除
+              </Button>
+            {/* 詳細へ */}
+              <Button as={Link} to={`/admin/users/${user.id}`} color="blue">
+                詳細
+              </Button>
             </div>
           </div>
         ))}

@@ -25,6 +25,8 @@ import ApiPostShow from "./pages/ApiPostShow";
 import PostForm from "./pages/PostForm";
 import PostEdit from "./pages/PostEdit";
 import AdminUsersPage from './pages/AdminUsersPage.tsx';
+import AdminFavoritesPage from './pages/AdminFavoritesPage.tsx';
+import AdminUserShow from './pages/AdminUserShow.tsx';
 
 
 const router = createBrowserRouter([
@@ -52,6 +54,8 @@ const router = createBrowserRouter([
       { path: "/posts/new", element: <PostForm /> },
       { path: "/posts/:id/edit", element: <PostEdit /> },
       { path: "/admin/users", element: <AdminUsersPage /> },
+      { path: "/admin/favorites", element: <AdminFavoritesPage /> },
+      { path: "/admin/users/:id", element: <AdminUserShow /> },
     ],
   },
 ]);

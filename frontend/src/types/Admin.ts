@@ -5,6 +5,7 @@ export type AdminUser = {
   score: number;
   symbols: string[];
   title?: string | null;
+  favorites?: AdminFavorite[];
 };
 
 export type AdminFavorite = {
