@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { auth } from "../lib/auth";
+import { Button } from "flowbite-react";
 
 export default function PostEdit() {
   const { id } = useParams();
@@ -49,46 +50,49 @@ export default function PostEdit() {
   };
 
   return (
-    <div className="max-w-lg mx-auto mt-6 p-4 border rounded shadow">
-      <h2 className="text-xl mb-4">投稿を編集</h2>
-      {message && <p className="mb-2 text-red-500">{message}</p>}
+    <div className="max-w-150 w-full mx-auto mt-15 grid gap-4">
+      <h2 className="text-3xl">投稿を編集</h2>
+      {message && <p className="text-green-500">{message}</p>}
 
       <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label className="block mb-1">タイトル</label>
+        <div className="mt-5 grid gap-2">
+          <label className="block text-xl">タイトル</label>
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-full border px-3 py-2 rounded"
+            className="w-full border px-3 py-2 rounded text-black"
             required
           />
         </div>
 
-        <div className="mb-3">
-          <label className="block mb-1">本文</label>
+        <div className="grid gap-2 mt-5">
+          <label className="block text-x">本文</label>
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            className="w-full border px-3 py-2 rounded"
+            className="w-full border px-3 py-2 rounded bg-white text-black"
             rows={4}
             required
           />
         </div>
 
-        <div className="flex gap-4">
-          <button
+        <div className="mt-8 flex justify-center gap-4">
+          <Button
+            color="blue"
             type="submit"
-            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+            className=""
           >
             更新する
-          </button>
-          <Link
+          </Button>
+          <Button
+          as={ Link }
             to={`/posts/${id}`}
-            className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
+            color="gray"
+            className=""
           >
             戻る
-          </Link>
+          </Button>
         </div>
       </form>
     </div>

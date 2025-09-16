@@ -49,6 +49,12 @@ export default function App() {
             >
               {/* ドロップダウンメニュー */}
               <Link
+                to="/user"
+                className='text-blue-800 underline block'
+              >
+                トップに戻る
+              </Link>
+              <Link
                 to="/user/edit"
                 className='text-blue-800 underline'
               >

@@ -33,10 +33,11 @@ export default function ApiPostList() {
       });
       if (res.ok) {
         const data = await res.json();
-        const postsWithFav = data.map((p: any) => ({
-          ...p,
-          favorited: p.favorited,
-        }));
+        const postsWithFav = data
+            .map((p: any) => ({ ...p, favorited: p.favorited }))
+            .sort((a: ApiPost, b: ApiPost) =>
+              new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+            );
         setPosts(postsWithFav);
       }
     };
