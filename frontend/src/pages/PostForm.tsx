@@ -39,8 +39,8 @@ export default function PostForm() {
 
   return (
     <form onSubmit={handleSubmit} className="max-w-150 w-full mx-auto mt-15 grid gap-4">
-      <h3 className="text-3xl ">新規投稿</h3>
-      {message && <p className="mb-2 text-red-500">{message}</p>}
+      <h3 className="text-3xl">新規投稿</h3>
+      {message && <p className="mb-2 text-green-500">{message}</p>}
       <div className="mt-5 grid gap-2">
         <label className="block text-xl">タイトル</label>
         <input
@@ -66,13 +66,13 @@ export default function PostForm() {
       <Button
         type="submit"
         color="blue"
-        className="mt-5 w-40 mx-auto cursor:pointer"
+        className="mt-5 w-40 mx-auto cursor:pointer font-bold"
       >
         投稿する
       </Button>
       <Link
         to="/posts"
-        className="text-white-500 hover:underline text-left mt-15"
+        className="text-white-500 hover:underline text-left mt-15 font-bold"
       >
         ← 投稿一覧へ戻る
       </Link>
