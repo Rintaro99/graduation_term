@@ -3,17 +3,29 @@ import { BrowserRouter, Link, Outlet, Route, Routes } from 'react-router-dom'
 import LogoutButton from "./components/LogoutButton";
 import { useState, useEffect } from "react";
 import { Dropdown } from "flowbite-react";
+import type { User } from "./types/User"; 
 
 export default function App() {
   console.log("DEBUG Dropdown:", Dropdown);
   const [isLoggedIn, setIsLoggedIn] = useState(
     !!localStorage.getItem("auth_token")
   );
+  const [user, setUser] = useState<User | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    setMenuOpen(false);
-  }, [isLoggedIn]);
+    if (!isLoggedIn) return;
+
+    const token = localStorage.getItem("auth_token");
+    if (!token) return;
+
+    fetch("http://localhost:3000/api/mypage", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then(res => res.json())
+      .then(setUser)
+      .catch(console.error);
+    }, [isLoggedIn]);
 
   return (
     <div className="">
@@ -66,6 +78,13 @@ export default function App() {
               >
                 りんの日常
               </Link>
+              {user && user.admin === true && (
+                <>
+                  <Link to="/admin/users" className="block px-4 text-blue-800 underline">
+                    ユーザー管理
+                  </Link>
+                </>
+              )}
               <LogoutButton 
                 asLink onLogout={() => setIsLoggedIn(false)}
               />
