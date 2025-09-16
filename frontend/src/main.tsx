@@ -24,6 +24,7 @@ import ApiPostList from "./pages/ApiPostList";
 import ApiPostShow from "./pages/ApiPostShow";
 import PostForm from "./pages/PostForm";
 import PostEdit from "./pages/PostEdit";
+import AdminUsersPage from './pages/AdminUsersPage.tsx';
 
 
 const router = createBrowserRouter([
@@ -50,6 +51,7 @@ const router = createBrowserRouter([
       { path: "/posts/:id", element: <ApiPostShow /> },
       { path: "/posts/new", element: <PostForm /> },
       { path: "/posts/:id/edit", element: <PostEdit /> },
+      { path: "/admin/users", element: <AdminUsersPage /> },
     ],
   },
 ]);
