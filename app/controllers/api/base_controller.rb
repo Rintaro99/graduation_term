@@ -26,4 +26,11 @@ class Api::BaseController < ActionController::API
   def render_unauthorized(_e)
     render json: { error: "unauthorized" }, status: :unauthorized
   end
+
+  # 管理者チェック
+  def require_admin!
+    unless current_api_user&.admin?
+      render json: { error: "管理者のみアクセス可能です" }, status: :forbidden
+    end
+  end
 end
