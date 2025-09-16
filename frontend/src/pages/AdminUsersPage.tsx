@@ -33,6 +33,15 @@ export default function AdminUsersPage() {
   return (
     <div className="max-w-3xl mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">ユーザー管理</h1>
+      {/* 投稿管理ボタン */}
+      <div className="flex gap-2 mb-6">
+        <Button as={Link} to="/posts" color="green">
+          投稿一覧へ
+        </Button>
+        <Button as={Link} to="/posts/new" color="blue">
+          新規投稿
+        </Button>
+      </div>
       <div className="grid gap-4">
         {users.map(user => (
           <div key={user.id} className="border rounded p-4 shadow">
