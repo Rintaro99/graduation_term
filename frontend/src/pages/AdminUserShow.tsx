@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import type { AdminUser } from "../types/Admin";
 import { Button } from "flowbite-react";
 import { useAdminUsers } from "../hooks/useAdminUsers";
@@ -7,6 +7,7 @@ import { useAdminUsers } from "../hooks/useAdminUsers";
 export default function AdminUserShow() {
   const { id } = useParams();
   const [user, setUser] = useState<AdminUser | null>(null);
+  const navigate = useNavigate();
   const { deleteUser } = useAdminUsers();
 
   useEffect(() => {
@@ -37,7 +38,10 @@ export default function AdminUserShow() {
           編集
         </Button>
         {/* 削除 */}
-        <Button color="red" onClick={() => deleteUser(user.id, true)}>
+        <Button
+          color="red"
+          onClick={() => deleteUser(user.id, () => navigate("/admin/users"))}
+        >
           削除
         </Button>
         {/* 一覧に戻る */}

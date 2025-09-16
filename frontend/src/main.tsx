@@ -27,6 +27,7 @@ import PostEdit from "./pages/PostEdit";
 import AdminUsersPage from './pages/AdminUsersPage.tsx';
 import AdminFavoritesPage from './pages/AdminFavoritesPage.tsx';
 import AdminUserShow from './pages/AdminUserShow.tsx';
+import AdminUserEdit from './pages/AdminUserEdit.tsx';
 
 
 const router = createBrowserRouter([
@@ -56,6 +57,7 @@ const router = createBrowserRouter([
       { path: "/admin/users", element: <AdminUsersPage /> },
       { path: "/admin/favorites", element: <AdminFavoritesPage /> },
       { path: "/admin/users/:id", element: <AdminUserShow /> },
+      { path: "/admin/users/:id/edit", element: <AdminUserEdit /> },
     ],
   },
 ]);

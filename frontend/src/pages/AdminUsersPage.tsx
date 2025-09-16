@@ -46,7 +46,14 @@ export default function AdminUsersPage() {
                 編集
               </Button>
             {/* 削除 */}
-              <Button color="red" onClick={() => deleteUser(user.id)}>
+              <Button 
+                color="red" 
+                onClick={() => 
+                  deleteUser(user.id, () =>
+                    setUsers(prev => prev.filter(u => u.id !== user.id))
+                  )
+                }
+              >
                 削除
               </Button>
             {/* 詳細へ */}

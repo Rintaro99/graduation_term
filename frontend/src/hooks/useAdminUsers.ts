@@ -5,7 +5,7 @@ export function useAdminUsers() {
   const navigate = useNavigate();
 
   // ユーザー削除
-  const deleteUser = async (id: number, redirectToList: boolean = false) => {
+  const deleteUser = async (id: number, onSuccess?: () => void) => {
     if (!window.confirm("このユーザーを削除しますか？")) return;
     const token = localStorage.getItem("auth_token");
     if (!token) return;
@@ -17,9 +17,7 @@ export function useAdminUsers() {
 
     if (res.ok) {
       alert("削除しました");
-      if (redirectToList) {
-        navigate("/admin/users");
-      }
+      if (onSuccess) onSuccess();
     } else {
       alert("削除に失敗しました");
     }
