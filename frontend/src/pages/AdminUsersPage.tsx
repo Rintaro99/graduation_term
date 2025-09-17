@@ -35,10 +35,13 @@ export default function AdminUsersPage() {
     <div className="max-w-150 mx-auto w-full mt-10 grid gap-3">
       <h1 className="text-3xl font-bold">ユーザー管理</h1>
       {/* 投稿管理ボタン */}
-      <div className="flex gap-2 mt-4 justify-end">
-        <Button as={Link} to="/posts" color="green">
-          投稿一覧へ
-        </Button>
+      <div className="grid gap-3 ml-auto">
+        <Link 
+          to="/posts" 
+          className="text-white hover:underline text-sm"
+        >
+          投稿一覧へ→
+        </Link>
         <Button as={Link} to="/posts/new" color="blue">
           新規投稿
         </Button>
