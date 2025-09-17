@@ -22,6 +22,13 @@ export default function UserUpdate() {
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // バリデーションチェック
+    if (!name.trim() || !email.trim()) {
+      setMessage("名前とメールは必須です");
+      return;
+    }
+
     api.patch("/api/mypage", { user: { name, email } })
       .then(() => setMessage("プロフィールを更新しました"))
       .catch(() => setMessage("更新に失敗しました"));
@@ -30,6 +37,17 @@ export default function UserUpdate() {
   return (
     <div className="mt-15 w-full max-w-150 mx-auto">
       <h2 className="mt-10 text-3xl font-bold">プロフィール編集</h2>
+      <div className="mt-5">
+        {message && (
+          <p
+            className={message.includes("失敗") || message.includes("必須") || message.includes("不正")
+              ? "text-red-500"
+              : "text-green-600"}
+          >
+            {message}
+          </p>
+        )}
+      </div>
       <form onSubmit={onSubmit} className="grid gap-5 mt-5">
         <div className="grid gap-3">
           <label>名前</label>
@@ -48,19 +66,10 @@ export default function UserUpdate() {
             className="p-2 bg-white text-black w-full"
           />
         </div>
-        <Button as={Link} to="/forgot-password" className="text-blue-600 underline text-xl">パスワードをリセット</Button>
+        <Link to="/forgot-password" className="text-blue-600 underline text-xl">パスワードをリセット</Link>
+        <Button type="submit" color="indigo" className="dark:hover:bg-indigo-800 w-30 mx-auto">更新</Button>
       </form>
       <div className="mt-3">
-        {message && (
-          <p
-            style={{
-                color: message.includes("失敗") ? "red" : "green",
-            }}
-          >
-            {message}
-          </p>
-        )}
-        <Button type="submit" color="indigo" className="dark:hover:bg-indigo-800 w-30 mx-auto">更新</Button>
         <div className="flex justify-center mt-5">
           <LogoutButton />
           <Button as={ Link }  to="/user" className="ml-7 bg-cyan-700 hover:bg-cyan-800" style={{ fontFamily: "'Dela Gothic One', cursive" }}>トップに戻る</Button>
