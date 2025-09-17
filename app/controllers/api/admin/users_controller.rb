@@ -32,12 +32,18 @@ class Api::Admin::UsersController < Api::BaseController
       favorites: favorites.map do |fav|
         {
           id: fav.id,
+          created_at: fav.created_at, # ← お気に入り登録日時
           post: {
             id: fav.api_post.id,
             title: fav.api_post.title,
-            content: fav.api_post.content
-          },
-          created_at: fav.created_at
+            content: fav.api_post.content,
+            created_at: fav.api_post.created_at, # ← 投稿の作成日時を追加
+            api_user: {
+              id: fav.api_post.api_user.id,
+              name: fav.api_post.api_user.name,
+              email: fav.api_post.api_user.email
+            }
+          }
         }
       end
     }

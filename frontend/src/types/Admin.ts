@@ -11,6 +11,15 @@ export type AdminUser = {
 export type AdminFavorite = {
   id: number;
   user: { id: number; name: string | null; email: string };
-  post: { id: number; title: string; content?: string };
-  created_at: string;
+  post: {
+    id: number;
+    title: string;
+    content: string;
+    created_at: string;
+    api_user: {
+      id: number;
+      name: string | null;
+      email: string;
+    };
+  };
 };
