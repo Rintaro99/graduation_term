@@ -44,32 +44,32 @@ export default function AdminUserEdit() {
   };
 
   return (
-    <div className="max-w-md mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">ユーザー編集</h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
+    <div className="max-w-150 w-full mx-auto mt-15">
+      <h1 className="text-3xl font-bold">ユーザー編集</h1>
+      <form onSubmit={handleSubmit} className="space-y-6 mt-10">
+        <div className="grid gap-3">
           <label className="block text-sm font-medium mb-1">名前</label>
           <input
             type="text"
             name="name"
             value={form.name || ""}
             onChange={handleChange}
-            className="w-full border rounded px-3 py-2"
+            className="w-full border rounded px-3 py-2 text-black"
           />
         </div>
 
-        <div>
+        <div className="grid gap-3">
           <label className="block text-sm font-medium mb-1">メール</label>
           <input
             type="email"
             name="email"
             value={form.email || ""}
             onChange={handleChange}
-            className="w-full border rounded px-3 py-2"
+            className="w-full border rounded px-3 py-2 text-black"
           />
         </div>
 
-        <div className="flex gap-2 mt-4">
+        <div className="flex gap-2 mt-6 justify-center">
           <Button type="submit" color="blue">
             更新
           </Button>
