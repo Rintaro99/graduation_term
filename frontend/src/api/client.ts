@@ -8,6 +8,7 @@ export const api = axios.create({
   timeout: 15000,
 });
 
+// リクエスト時にトークンを付与
 api.interceptors.request.use((config) => {
   const token = auth.getToken();
   if (token) {
@@ -17,7 +18,19 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
+
+// レスポンス共通処理
 api.interceptors.response.use(
   (res) => res,
-  (err) => Promise.reject(err)
+  (err) => {
+    const url = err.config?.url || "";
+    if (err.response?.status === 401) {
+      // ログインAPIは除外
+      if (!url.includes("/api/api_users/sign_in")) {
+        auth.clearToken?.();
+        window.location.href = "/login?expired=1";
+      }
+    }
+    return Promise.reject(err);
+  }
 );
