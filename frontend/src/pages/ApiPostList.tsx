@@ -61,7 +61,7 @@ export default function ApiPostList() {
   const pagePosts = posts.slice(start, end);
 
   return (
-    <div className="max-w-150 w-full mx-auto mt-15 grid gap-3">
+    <div className="max-w-150 w-full mx-auto mt-5 sm:mt-15 grid gap-3">
       <h1 className="text-3xl font-bold" style={{ fontFamily: "'Zen Maru Gothic', sans-serif" }}>りんの日常</h1>
       {user?.admin && (
         <div className="ml-auto grid gap-2">
@@ -81,7 +81,7 @@ export default function ApiPostList() {
           </Button>
         </div>
       )}
-      <ul>
+      <ul className="mt-5 sm:mt-10">
         {pagePosts.map((post) => (
           <ApiPostItem
             key={post.id}

@@ -22,7 +22,7 @@ export default function PasswordResetRequestForm() {
 
   return (
     <div className="mt-15 max-w-150 w-full mx-auto grid gap-10">
-      <h2 className="text-3xl">パスワードリセットリクエスト</h2>
+      <h2 className="text-xl sm:text-3xl">パスワードリセットリクエスト</h2>
       <form onSubmit={handleSubmit} className="grid gap-3">
         <input
           type="email"

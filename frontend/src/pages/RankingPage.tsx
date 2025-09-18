@@ -27,17 +27,17 @@ export default function RankingPage() {
   }, []);
 
   return (
-    <div className="mt-15 w-full max-w-150 mx-auto grid">
-      <h2 className="text-5xl text-slate-300" style={{ fontFamily: "'Dela Gothic One', cursive" }}>ランキング</h2>
+    <div className="mt-5 sm:mt-15 w-full max-w-150 mx-auto grid">
+      <h2 className="text-3xl sm:text-5xl text-slate-300" style={{ fontFamily: "'Dela Gothic One', cursive" }}>ランキング</h2>
 
-      <table border={1} cellPadding={8} className="mt-7">
+      <table border={1} cellPadding={8} className="mt-7 w-full mx-auto">
         <thead>
           <tr>
-            <th>順位</th>
-            <th>名前</th>
-            <th>称号</th>
-            <th>シンボル</th>
-            <th>スコア</th>
+            <th className="text-sm sm:text-base">順位</th>
+            <th className="text-sm sm:text-base">名前</th>
+            <th className="text-sm sm:text-base">称号</th>
+            <th className="text-sm sm:text-base">シンボル</th>
+            <th className="text-sm sm:text-base">スコア</th>
           </tr>
         </thead>
         <tbody>

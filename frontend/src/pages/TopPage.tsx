@@ -4,11 +4,13 @@ import { Button } from "flowbite-react";
 export default function HomePage() {
   return (
     <div className="mt-30">
-      <h1 className="text-5xl font-zen" style={{ fontFamily: "'Zen Maru Gothic', sans-serif" }}>りんって書ける？</h1>
+      <h1 className="text-5xl font-zen md:text-3xl" style={{ fontFamily: "'Zen Maru Gothic', sans-serif" }}>
+        りんって<br className="sm:hidden block"/>書ける？
+      </h1>
 
-      <div className="mt-30 flex justify-center">
+      <div className="mt-20 flex justify-center">
         <Button as={Link} to="/login" color="indigo" className="px-10 dark:hover:bg-indigo-800">ログイン</Button>
-        <Button as={Link} to="/users/new" color="red" className="ml-20 px-10">新規登録</Button>
+        <Button as={Link} to="/users/new" color="red" className="ml-10 px-10">新規登録</Button>
       </div>
 
       <div className="mt-10">

@@ -32,7 +32,18 @@ export default function AdminUserShow() {
         <p>Email: {user.email}</p>
         <p>スコア: {user.score}</p>
         <p>称号: {user.title || "なし"}</p>
-        <p>シンボル: {user.symbols.join(", ") || "なし"}</p>
+        {user.symbol_img ? (
+          <div className="mt-7 relative before:content-[''] before:absolute before:bottom-[-15px] before:left-1/2 before:-translate-x-1/2 before:w-70 before:h-20 before:rounded-full before:bg-black/40 before:blur-xl">
+            <img
+              src={`/${user.symbol_img}`}
+              alt={user.title || "シンボル"}
+              width={150}
+              className="mx-auto w-50 sm:w-70 relative z-10"
+            />
+          </div>
+        ) : (
+          <p>シンボル: なし</p>
+        )}
       </div>
       <div className="flex gap-2 mt-7 justify-center">
         {/* 編集 */}

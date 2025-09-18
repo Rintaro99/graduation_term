@@ -81,7 +81,7 @@ export default function QuizPlay() {
 
   if (mode === "question") {
     return (
-      <div className="w-full max-w-150 mx-auto mt-15">
+      <div className="w-full max-w-150 mx-auto mt-7 sm:mt-15">
         <h2 className="text-3xl text-left" style={{ fontFamily: "'Kaisei Tokumin', serif" }}>問題 {currentIndex + 1}</h2>
         <p className="mt-7">{currentQuestion.content}</p>
         <ul className="mt-5">
@@ -117,7 +117,7 @@ export default function QuizPlay() {
 
   if (mode === "explanation") {
     return (
-      <div className="w-full max-w-150 mx-auto mt-15 grid gap-3">
+      <div className="w-full max-w-150 mx-auto mt-7 sm:mt-15 grid gap-3">
         <h2 className="text-3xl text-left px-2" style={{ fontFamily: "'Kaisei Tokumin', serif" }}>解説</h2>
         <p className="mt-5 text-3xl" style={{ color: isCorrect ? "green" : "red", fontWeight: "900",fontFamily: "'M PLUS Rounded 1c', sans-serif" }}>
           {isCorrect ? "✅ 正解！" : "❌ 不正解…"}
