@@ -49,6 +49,9 @@ export default function UserPage() {
         <Button as={ Link } to="/quiz" color="amber" style={{ fontFamily: "'Dela Gothic One', cursive" }} className="text-xl bg-red-700 hover:bg-red-800">クイズに挑戦</Button>
         <Button as={ Link } to="/ranking" color="amber" style={{ fontFamily: "'Dela Gothic One', cursive" }} className="text-xl ml-5 sm:ml-10 bg-orange-700 hover:bg-orange-800">ランキング</Button>
       </div>
+      <div className="text-right mt-5 sm:pr-10">
+        <Link to="/posts" style={{ fontFamily: "'Zen Maru Gothic', sans-serif" }} className="text-base text_white border-b text-right">りんの日常 →</Link>
+      </div>
     </div>
   );
 }
