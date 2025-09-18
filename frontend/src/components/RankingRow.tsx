@@ -26,9 +26,9 @@ export default function RankingRow({ rank, name, title, symbolUrl, score, isMe }
 
   return (
     <tr style={rowStyle}>
-      <td style={rankStyle}>{rank}</td>
-      <td style={rankStyle}>{name}</td>
-      <td style={rankStyle}>{title || "-"}</td>
+      <td className="text-sm sm:text-base" style={rankStyle}>{rank}</td>
+      <td className="text-sm sm:text-base" style={rankStyle}>{name}</td>
+      <td className="text-sm sm:text-base" style={rankStyle}>{title || "-"}</td>
       <td>
         {symbolUrl ? (
           <img
@@ -40,7 +40,7 @@ export default function RankingRow({ rank, name, title, symbolUrl, score, isMe }
           "-"
         )}
       </td>
-      <td style={rankStyle}>{score}</td>
+      <td className="text-sm sm:text-base" style={rankStyle}>{score}</td>
     </tr>
   );
 }
