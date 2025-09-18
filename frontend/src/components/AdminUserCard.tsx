@@ -16,7 +16,7 @@ export default function AdminUserCard({ user, onDelete }: Props) {
       <p>スコア: {user.score}</p>
       <p>称号: {user.title || "なし"}</p>
       {user.symbol_img ? (
-        <div className="mt-7 relative before:content-[''] before:absolute before:bottom-[-15px] before:left-1/2 before:-translate-x-1/2 before:w-70 before:h-20 before:rounded-full before:bg-black/40 before:blur-xl">
+        <div className="mt-7 relative before:content-[''] before:absolute before:bottom-[5px] before:left-1/2 before:-translate-x-1/2 before:w-70 before:h-20 before:rounded-full before:bg-black/40 before:blur-xl">
           <img
             src={`/${user.symbol_img}`}
             alt={user.title || "シンボル"}
