@@ -45,7 +45,7 @@ export default function UserNew() {
   };
 
   return (
-    <div className="max-w-150 w-full mx-auto mt-15">
+    <div className="max-w-100 w-full mx-auto mt-10 sm:mt-15 sm:max-w-150">
       <h2 className="text-3xl">新規登録</h2>
 
       {errors.length > 0 && (
@@ -54,7 +54,7 @@ export default function UserNew() {
         </div>
       )}
 
-      <form onSubmit={onSubmit} className="mt-10 grid gap-5">
+      <form onSubmit={onSubmit} className="mt-5 grid gap-5">
         <label className="grid gap-2">
           <span>メアド</span>
           <input
@@ -62,7 +62,7 @@ export default function UserNew() {
             value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
             placeholder="example@example.com"
-            className="text-black"
+            className="text-black w-80 mx-auto sm:w-full"
           />
         </label>
 
@@ -73,7 +73,7 @@ export default function UserNew() {
             value={form.password}
             onChange={(e) => setForm({ ...form, password: e.target.value })}
             placeholder="6文字以上"
-            className="text-black"
+            className="text-black w-80 mx-auto sm:w-full"
           />
         </label>
 
@@ -84,7 +84,7 @@ export default function UserNew() {
             value={form.name ?? ""}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
             placeholder="りん"
-            className="text-black"
+            className="text-black w-80 mx-auto sm:w-full"
           />
         </label>
 
