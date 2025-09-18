@@ -64,14 +64,22 @@ export default function ApiPostList() {
     <div className="max-w-150 w-full mx-auto mt-15 grid gap-3">
       <h1 className="text-3xl font-bold" style={{ fontFamily: "'Zen Maru Gothic', sans-serif" }}>りんの日常</h1>
       {user?.admin && (
-        <Button
-          color= "blue"
-          as={ Link }
-          to="/posts/new"
-          className="w-40 ml-auto"
-        >
-          新規投稿
-        </Button>
+        <div className="ml-auto grid gap-2">
+          <Link
+            to="/admin/users"
+            className="text-white hover:underline text-sm"
+          >
+            ユーザー一覧へ→
+          </Link>
+          <Button
+            color= "blue"
+            as={ Link }
+            to="/posts/new"
+            className="w-40"
+          >
+            新規投稿
+          </Button>
+        </div>
       )}
       <ul>
         {pagePosts.map((post) => (

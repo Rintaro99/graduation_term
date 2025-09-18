@@ -16,8 +16,13 @@ export default function Login() {
   const { setIsLoggedIn } = useOutletContext<ContextType>();
   const navigate = useNavigate();
   const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const expired = params.get("expired");
+
   const [msg, setMsg] = useState<string | null>(
-    (location.state as { message?: string })?.message || null
+    expired
+    ? "セッションが切れました。再度ログインしてください。"
+    : (location.state as { message?: string })?.message || null
   );
 
   const onSubmit = async (e: React.FormEvent) => {
