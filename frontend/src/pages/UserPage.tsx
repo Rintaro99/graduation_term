@@ -40,10 +40,10 @@ export default function UserPage() {
         </div>
         ) : (
         <p>シンボル: なし</p>
-        )}
-        <div className="bg-[url('/name_frame.png')] bg-contain bg-center bg-no-repeat mt-5">
-          <p style={{ fontFamily: "'Kaisei Tokumin', serif" }} className="text-2xl sm:text-4xl font-kaisei">{user.title || "なし"}</p>
-        </div>
+      )}
+      <div className="bg-[url('/name_frame.png')] bg-contain bg-center bg-no-repeat mt-5">
+        <p style={{ fontFamily: "'Kaisei Tokumin', serif" }} className="text-2xl sm:text-4xl font-kaisei">{user.title || "なし"}</p>
+      </div>
 
       <div className="mt-5 flex justify-center">
         <Button as={ Link } to="/quiz" color="amber" style={{ fontFamily: "'Dela Gothic One', cursive" }} className="text-xl bg-red-700 hover:bg-red-800">クイズに挑戦</Button>

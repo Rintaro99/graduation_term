@@ -7,13 +7,18 @@ class Api::Admin::UsersController < Api::BaseController
     users = ApiUser.includes(:achievement_symbols)
 
     render json: users.map { |user|
+      best_score = user.api_challenges.maximum(:score) || 0
+      best_symbol = AchievementSymbol.where("min_score <= ?", best_score)
+                                      .order(min_score: :desc)
+                                      .first
       {
         id: user.id,
         name: user.name,
         email: user.email,
-        score: user.api_challenges.sum(:score), # 合計スコア
+        score: best_score,
         symbols: user.achievement_symbols.pluck(:name),
-        title: user.achievement_symbols.order(min_score: :desc).first&.name
+        title: best_symbol&.name,
+        symbol_img: best_symbol&.img
       }
     }
   end
@@ -22,14 +27,20 @@ class Api::Admin::UsersController < Api::BaseController
     user = ApiUser.find(params[:id])
     favorites = user.api_post_favorites.includes(:api_post)
 
+    best_score = user.api_challenges.maximum(:score) || 0
+      best_symbol = AchievementSymbol.where("min_score <= ?", best_score)
+                                     .order(min_score: :desc)
+                                     .first
+
     render json: {
       id: user.id,
-      name: user.name,
-      email: user.email,
-      score: user.api_challenges.sum(:score),
-      symbols: user.achievement_symbols.pluck(:name),
-      title: user.achievement_symbols.order(min_score: :desc).first&.name,
-      favorites: favorites.map do |fav|
+        name: user.name,
+        email: user.email,
+        score: best_score,
+        symbols: user.achievement_symbols.pluck(:name),
+        title: best_symbol&.name,
+        symbol_img: best_symbol&.img,
+        favorites: favorites.map do |fav|
         {
           id: fav.id,
           created_at: fav.created_at, # ← お気に入り登録日時
