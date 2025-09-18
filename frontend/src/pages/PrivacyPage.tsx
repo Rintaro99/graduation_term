@@ -21,7 +21,7 @@ export default function PrivacyPage() {
           また、利用状況の把握のため、CookieやIPアドレス等のアクセス情報を取得する場合があります。
         </p>
 
-        <p className="mt-7 sm:mt-13 text-xl sm:text-2xl">
+        <p className="mt-5 sm:mt-13 text-xl sm:text-2xl">
           第2条（利用目的）
         </p>
         <p className="mt-3 sm:mt-5 text-sm sm:text-sm"> 
@@ -42,14 +42,14 @@ export default function PrivacyPage() {
           </li>
         </ul>
 
-        <p className="mt-7 sm:mt-13 text-xl sm:text-2xl">
+        <p className="mt-5 sm:mt-13 text-xl sm:text-2xl">
           第3条（第三者提供）
         </p>
         <p className="mt-3 sm:mt-5 text-sm sm:text-sm"> 
           運営者は、法令に基づく場合を除き、ユーザーの個人情報を第三者に提供することはありません。
         </p>
 
-        <p className="mt-7 sm:mt-13 text-xl sm:text-2xl">
+        <p className="mt-5 sm:mt-13 text-xl sm:text-2xl">
           第4条（業務委託）
         </p>
         <p className="mt-3 sm:mt-5 text-sm sm:text-sm"> 
@@ -57,14 +57,14 @@ export default function PrivacyPage() {
           この場合、適切な委託先を選定し、個人情報が安全に管理されるよう監督します。
         </p>
 
-        <p className="mt-7 sm:mt-13 text-xl sm:text-2xl">
+        <p className="mt-5 sm:mt-13 text-xl sm:text-2xl">
           第5条（安全管理）
         </p>
         <p className="mt-3 sm:mt-5 text-sm sm:text-sm"> 
           運営者は、個人情報の漏洩、紛失、改ざん等を防止するため、適切な安全管理措置を講じます。
         </p>
 
-        <p className="mt-7 sm:mt-13 text-xl sm:text-2xl">
+        <p className="mt-5 sm:mt-13 text-xl sm:text-2xl">
           第6条（ユーザーの権利）
         </p>
         <p className="mt-3 sm:mt-5 text-sm sm:text-sm"> 
@@ -72,15 +72,15 @@ export default function PrivacyPage() {
           その際は、下記お問い合わせ先までご連絡ください。
         </p>
 
-        <p className="mt-7 sm:mt-13 text-xl sm:text-2xl">
-          第7条（プライバシーポリシーの変更）
+        <p className="mt-5 sm:mt-13 text-xl sm:text-2xl">
+          第7条<br className="sm:hidden" />（プライバシーポリシーの変更）
         </p>
         <p className="mt-3 sm:mt-5 text-sm sm:text-sm"> 
           運営者は、必要に応じて本ポリシーを変更できるものとします。<br />
           変更後の内容は、本サービス上に掲載した時点で効力を生じます。
         </p>
 
-        <p className="mt-7 sm:mt-13 text-xl sm:text-2xl">
+        <p className="mt-5 sm:mt-13 text-xl sm:text-2xl">
           第8条（お問い合わせ窓口）
         </p>
         <p className="mt-3 sm:mt-5 text-sm sm:text-sm"> 
