@@ -35,7 +35,7 @@ export default function UserUpdate() {
   };
 
   return (
-    <div className="mt-15 w-full max-w-150 mx-auto">
+    <div className="mt-5 sm:mt-15 w-full max-w-150 mx-auto">
       <h2 className="mt-10 text-3xl font-bold">プロフィール編集</h2>
       <div className="mt-5">
         {message && (
