@@ -31,7 +31,7 @@ export default function App() {
     <div className="py-8 py-4 md:py-0">
       <header className="flex justify-between items-center px-10">
         <Link to="/">
-          <img src="../public/top_page_logo.jpg" alt="トップページへ" className='w-15'/>
+          <img src="../public/top_page_logo.jpg" alt="トップページへ" className='w-10 sm:w-15'/>
         </Link>
 
         {isLoggedIn && (
