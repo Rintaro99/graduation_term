@@ -28,7 +28,7 @@ export default function App() {
     }, [isLoggedIn]);
 
   return (
-    <div className="py-8 px-4 md:py-0">
+    <div className="py-5 px-4">
       <header className="flex justify-between items-center ">
         <Link to="/">
           <img src="../public/top_page_logo.jpg" alt="トップページへ" className='w-10 sm:w-15'/>
