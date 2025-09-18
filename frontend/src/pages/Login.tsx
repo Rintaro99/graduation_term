@@ -47,9 +47,8 @@ export default function Login() {
   };
 
   return (
-    <div className="max-w-150 w-full mx-auto mt-15">
+    <div className="max-w-100 sm:max-w-150 w-full mx-auto mb:mt-15 mt-10">
       <h2 className="text-3xl">ログイン</h2>
-
       {/* 成功メッセージ・エラーメッセージ両方まとめてここに出す */}
       {msg && (
         <pre style={{ marginTop: 12, whiteSpace: "pre-wrap" }} className="text-red-500">
@@ -57,14 +56,14 @@ export default function Login() {
         </pre>
       )}
       
-      <form onSubmit={onSubmit} className="mt-10 grid gap-4">
+      <form onSubmit={onSubmit} className="mt-5 mb:mt-10 grid gap-4">
         <label className="grid gap-2">
           <span>メール</span>
           <input value={email} 
             onChange={(e) => setEmail(e.target.value)} 
             type="email" 
             placeholder="example@example.com"
-            className="text-black" />
+            className="text-black w-80 mx-auto sm:w-full" />
         </label>
         <label className="grid gap-2">
           <span>パスワード</span>
@@ -72,11 +71,11 @@ export default function Login() {
             onChange={(e) => setPassword(e.target.value)} 
             type="password" 
             placeholder="abc1234"
-            className="text-black" />
+            className="text-black w-80 mx-auto sm:w-full" />
         </label>
         <div className="flex mt-10 justify-center">
-          <Button type="submit" color="indigo" className="dark:hover:bg-indigo-800 w-45" >送信</Button>
-          <Button as={ Link } to="/" color="pink" className="w-45 ml-10">トップページへ戻る</Button>
+          <Button type="submit" color="indigo" className="dark:hover:bg-indigo-800 w-35 sm:w-45" >送信</Button>
+          <Button as={ Link } to="/" color="pink" className="w-35 sm:ml-10 ml-5 sm:w-45">トップページへ戻る</Button>
         </div>
         <Button as={Link} to="/forgot-password" className="text-blue-600 underline">パスワードを忘れた？</Button>
         
