@@ -91,8 +91,8 @@ Rails.application.routes.draw do
       resource :favorite, only: [ :create, :destroy ], controller: "api_post_favorites"
     end
     namespace :admin do
-      resources :users, only: [:index, :show, :update, :destroy]
-      resources :favorites, only: [:index]
+      resources :users, only: [ :index, :show, :update, :destroy ]
+      resources :favorites, only: [ :index ]
     end
   end
 end

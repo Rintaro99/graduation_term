@@ -1,6 +1,6 @@
 class Api::Admin::UsersController < Api::BaseController
   before_action :require_admin!  # 管理者専用
-  before_action :set_user, only: [:update, :destroy]
+  before_action :set_user, only: [ :update, :destroy ]
 
   # ユーザー一覧
   def index
