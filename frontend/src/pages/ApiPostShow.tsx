@@ -7,6 +7,10 @@ import { usePostFavorite } from "../hooks/usePostFavorite";
 import type { User } from "../types/User";
 import type { ApiPost } from "../types/ApiPost";
 import { Button } from "flowbite-react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import okaidia from "react-syntax-highlighter/dist/esm/styles/prism/okaidia";
 
 export default function ApiPostShow() {
   const { id } = useParams();
@@ -79,7 +83,32 @@ export default function ApiPostShow() {
         投稿日: {new Date(post.created_at).toLocaleString()}<br />
       </p>
       <h1 className="text-3xl font-bold">{post.title}</h1>
-      <p className="mt-8">{post.content}</p>
+      <div className="mt-8 prose max-w-none">
+        <ReactMarkdown
+          remarkPlugins={[remarkGfm]}
+          components={{
+            code({ inline, className, children, ...props }: any) {
+              const match = /language-(\w+)/.exec(className || "");
+              return !inline && match ? (
+                <SyntaxHighlighter
+                  style={okaidia}
+                  language={match[1]}
+                  PreTag="div"
+                  {...props}
+                >
+                  {String(children).replace(/\n$/, "")}
+                </SyntaxHighlighter>
+              ) : (
+                <code className="bg-gray-800 text-pink-400 px-1 rounded" {...props}>
+                  {children}
+                </code>
+              );
+            },
+          }}
+        >
+          {post.content}
+        </ReactMarkdown>
+      </div>
       {/* <p className="text-sm text-gray-500">
         投稿者: {post.api_user.name || post.api_user.email}
       </p> */}
