@@ -2,10 +2,8 @@ import axios from "axios";
 import { auth } from "../lib/auth";
 
 const baseURL =
-  import.meta.env.VITE_API_BASE_URL?.trim();
-
-  console.log("API baseURL:", baseURL);
-
+  import.meta.env.VITE_API_BASE_URL?.trim()|| "NO_ENV_VALUE";
+  console.log("🌍 API baseURL in build:", baseURL);
 export const api = axios.create({
   baseURL,
   timeout: 15000,
