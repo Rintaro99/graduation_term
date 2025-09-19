@@ -4,6 +4,8 @@ import { auth } from "../lib/auth";
 const baseURL =
   import.meta.env.VITE_API_BASE_URL?.trim() || "/api";
 
+  console.log("API baseURL:", baseURL);
+
 export const api = axios.create({
   baseURL,
   timeout: 15000,
