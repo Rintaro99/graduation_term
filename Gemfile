@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 ruby "3.4.3"
 
-gem "rails", "~> 7.2.2", ">= 7.2.2.1"
+gem "rails", "~> 8.0.2"
 gem "sprockets-rails"
 gem "puma", ">= 5.0"
 gem "importmap-rails"
@@ -44,7 +44,7 @@ end
 gem "sorcery", "0.16.3"
 gem "importmap-rails"
 gem "config"
-gem "rails-i18n", "~> 7.0"
+gem "rails-i18n", "~> 8.0"
 # esbuildから移行
 # gem "jsbundling-rails", "~> 1.3"
 # deviseでsnsログイン用
