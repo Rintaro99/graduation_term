@@ -2,13 +2,12 @@
 #  管理者ユーザー設定
 # =====================================================================================
 
-puts "🌱 Seeding admin user..."
+puts "🌱 Seeding admin ApiUser..."
 
-User.find_or_create_by!(email: "admin@gmail.com") do |user|
-  user.name = "admin"
-  user.password = "0000"
-  user.password_confirmation = "0000"
-  user.admin = true
+ApiUser.find_or_create_by!(email: "admin@gmail.com") do |user|
+  user.name = "管理者"
+  user.password = "adminn"
+  user.password_confirmation = "adminn"
 end
 
-puts "✅ Admin user created!"
+puts "✅ Admin ApiUser created!"
