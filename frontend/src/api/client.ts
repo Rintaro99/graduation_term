@@ -1,10 +1,11 @@
 import axios from "axios";
 import { auth } from "../lib/auth";
 
-const baseURL = (import.meta.env.VITE_API_BASE_URL ?? '').trim();
+const baseURL =
+  import.meta.env.VITE_API_BASE_URL?.trim() || "/api";
 
 export const api = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL,
   timeout: 15000,
 });
 
