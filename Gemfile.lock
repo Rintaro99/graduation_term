@@ -198,7 +198,6 @@ GEM
     multi_json (1.17.0)
     multi_xml (0.7.2)
       bigdecimal (~> 3.1)
-    mysql2 (0.5.6)
     net-http (0.6.0)
       uri
     net-imap (0.5.10)
@@ -456,7 +455,6 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   letter_opener_web (= 2.0.0)
-  mysql2 (>= 0.5.3, < 0.6.0)
   pg
   puma (>= 5.0)
   rack-cors

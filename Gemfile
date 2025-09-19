@@ -19,7 +19,7 @@ end
 
 group :development, :test do
   # MySQL ドライバ（ローカル開発・テスト用）
-  gem "mysql2", ">= 0.5.3", "< 0.6.0"
+  # gem "mysql2", ">= 0.5.3", "< 0.6.0"
   # もしテストで sqlite3 を使いたければ残しても OK
   gem "sqlite3"
   gem "debug", platforms: %i[mri windows], require: "debug/prelude"
