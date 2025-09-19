@@ -149,6 +149,16 @@ puts "✅ 選択肢作成完了"
 puts "🌱 Seeding completed!"
 
 
+# ===== 管理者ユーザー（ApiUser） =====
+ApiUser.find_or_create_by!(email: "admin@gmail.com") do |user|
+  user.name = "管理者"                # ニックネーム
+  user.password = "adminn"            # パスワード
+  user.password_confirmation = "adminn"
+end
+
+puts "✅ 管理者ユーザー作成完了"
+
+
 # =====================================================================================
 #  seedsファイルの読み込み
 # =====================================================================================
