@@ -3,7 +3,10 @@ import { BrowserRouter, Link, Outlet, Route, Routes } from 'react-router-dom'
 import LogoutButton from "./components/LogoutButton";
 import { useState, useEffect } from "react";
 import { Dropdown } from "flowbite-react";
-import type { User } from "./types/User"; 
+import type { User } from "./types/User";
+
+console.log("🌍 Runtime ENV VITE_API_BASE_URL:", import.meta.env.VITE_API_BASE_URL);
+
 
 export default function App() {
   console.log("🌍 ENV TEST:", import.meta.env.VITE_API_BASE_URL);
