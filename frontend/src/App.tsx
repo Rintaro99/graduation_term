@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { Dropdown } from "flowbite-react";
 import type { User } from "./types/User";
 
-console.log("Build ENV VITE_API_BASE_URL:", import.meta.env.VITE_API_BASE_URL);
+console.log("✅ Runtime ENV TEST:", import.meta.env);
 
 
 export default function App() {
