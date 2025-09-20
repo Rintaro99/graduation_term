@@ -6,6 +6,8 @@ import { Dropdown } from "flowbite-react";
 import type { User } from "./types/User"; 
 
 export default function App() {
+  console.log("🌍 ENV TEST:", import.meta.env.VITE_API_BASE_URL);
+  (window as any).__DEBUG_API_BASE_URL__ = import.meta.env.VITE_API_BASE_URL;
   console.log("DEBUG Dropdown:", Dropdown);
   const [isLoggedIn, setIsLoggedIn] = useState(
     !!localStorage.getItem("auth_token")
