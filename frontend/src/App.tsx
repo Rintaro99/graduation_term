@@ -8,8 +8,8 @@ import type { User } from "./types/User";
 console.log("✅ Runtime ENV TEST:", import.meta.env);
 console.log("✅ ENV TEST full:", import.meta.env);
 console.log("🌍 Runtime ENV:", import.meta.env.VITE_API_BASE_URL);
-
-
+console.log(import.meta.env.VITE_API_BASE_URL);
+console.log("✅ 全部のENV:", import.meta.env);
 
 export default function App() {
   console.log("🌍 ENV TEST:", import.meta.env.VITE_API_BASE_URL);
