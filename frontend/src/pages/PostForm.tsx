@@ -14,8 +14,9 @@ export default function PostForm() {
     const token = auth.getToken();
     if (!token) return;
 
+    const baseURL = import.meta.env.VITE_API_BASE_URL;
     try {
-      const res = await fetch("http://localhost:3000/api/api_posts", {
+      const res = await fetch(`${baseURL}/api/api_posts`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

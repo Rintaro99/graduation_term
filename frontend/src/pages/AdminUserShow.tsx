@@ -10,12 +10,13 @@ export default function AdminUserShow() {
   const [user, setUser] = useState<AdminUser | null>(null);
   const navigate = useNavigate();
   const { deleteUser } = useAdminUsers();
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
     const token = localStorage.getItem("auth_token");
     if (!token) return;
 
-    fetch(`http://localhost:3000/api/admin/users/${id}`, {
+    fetch(`${baseURL}/api/admin/users/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then(res => res.json())

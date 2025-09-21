@@ -3,12 +3,13 @@ import type { AdminFavorite } from "../types/Admin";
 
 export default function AdminFavoritesPage() {
   const [favorites, setFavorites] = useState<AdminFavorite[]>([]);
+  const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
     const token = localStorage.getItem("auth_token");
     if (!token) return;
 
-    fetch("http://localhost:3000/api/admin/favorites", {
+    fetch(`${API_BASE}/api/admin/favorites`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then(res => res.json())
@@ -24,7 +25,7 @@ export default function AdminFavoritesPage() {
           <div key={fav.id} className="border rounded p-4 shadow">
             <p>ユーザー: {fav.user.name || fav.user.email}</p>
             <p>投稿: {fav.post.title}</p>
-            <p className="text-xs text-gray-500">登録日時: {new Date(fav.created_at).toLocaleString()}</p>
+            <p className="text-xs text-gray-500">登録日時: {new Date(fav.post.created_at).toLocaleString()}</p>
           </div>
         ))}
       </div>

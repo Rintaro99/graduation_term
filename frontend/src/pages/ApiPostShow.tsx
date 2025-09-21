@@ -21,7 +21,8 @@ export default function ApiPostShow() {
 
   // 投稿取得
   const fetchPost = async () => {
-    const res = await fetch(`http://localhost:3000/api/api_posts/${id}`, {
+    const baseURL = import.meta.env.VITE_API_BASE_URL;
+    const res = await fetch(`${baseURL}/api/api_posts/${id}`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("auth_token")}`,
@@ -37,7 +38,8 @@ export default function ApiPostShow() {
   useEffect(() => {
     const token = localStorage.getItem("auth_token");
     if (!token) return;
-    fetch("http://localhost:3000/api/mypage", {
+    const baseURL = import.meta.env.VITE_API_BASE_URL;
+    fetch(`${baseURL}/api/mypage`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then(res => res.json())
@@ -51,8 +53,9 @@ export default function ApiPostShow() {
 
     const token = localStorage.getItem("auth_token");
     if (!token) return;
+    const baseURL = import.meta.env.VITE_API_BASE_URL;
     try {
-      const res = await fetch(`http://localhost:3000/api/api_posts/${post?.id}`, {
+      const res = await fetch(`${baseURL}/api/api_posts/${post?.id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,

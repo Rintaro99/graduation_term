@@ -18,7 +18,7 @@ export default function AdminUserEdit() {
     const token = localStorage.getItem("auth_token");
     if (!token || !id) return;
 
-    fetch(`http://localhost:3000/api/admin/users/${id}`, {
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/users/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())

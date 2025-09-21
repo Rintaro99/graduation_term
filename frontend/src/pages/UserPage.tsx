@@ -11,7 +11,8 @@ export default function UserPage() {
     const token = auth.getToken();
     if (!token) return;
 
-    fetch("http://localhost:3000/api/mypage", {
+    const baseURL = import.meta.env.VITE_API_BASE_URL;
+    fetch(`${baseURL}/api/mypage`, {
       headers: { "Authorization": `Bearer ${token}` }
     })
       .then(res => res.json())

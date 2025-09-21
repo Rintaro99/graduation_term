@@ -15,7 +15,8 @@ export default function PostEdit() {
     const token = auth.getToken();
     if (!token) return;
 
-    fetch(`http://localhost:3000/api/api_posts/${id}`, {
+    const baseURL = import.meta.env.VITE_API_BASE_URL;
+    fetch(`${baseURL}/api/api_posts/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())
@@ -31,7 +32,8 @@ export default function PostEdit() {
     const token = auth.getToken();
     if (!token) return;
 
-    const res = await fetch(`http://localhost:3000/api/api_posts/${id}`, {
+    const baseURL = import.meta.env.VITE_API_BASE_URL;
+    const res = await fetch(`${baseURL}/api/api_posts/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

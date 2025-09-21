@@ -8,12 +8,13 @@ import AdminUserCard from "../components/AdminUserCard";
 export default function AdminUsersPage() {
   const [users, setUsers] = useState<AdminUser[]>([]);
   const { deleteUser } = useAdminUsers();
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
     const token = localStorage.getItem("auth_token");
     if (!token) return;
 
-    fetch("http://localhost:3000/api/admin/users", {
+    fetch(`${baseURL}/api/admin/users`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then(res => res.json())
@@ -24,7 +25,8 @@ export default function AdminUsersPage() {
   const handleDelete = async (id: number) => {
     if (!window.confirm("このユーザーを削除しますか？")) return;
     const token = localStorage.getItem("auth_token");
-    const res = await fetch(`http://localhost:3000/api/admin/users/${id}`, {
+    const baseURL = import.meta.env.VITE_API_BASE_URL;
+    const res = await fetch(`${baseURL}/api/admin/users/${id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });

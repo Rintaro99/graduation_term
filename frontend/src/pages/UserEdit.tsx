@@ -73,8 +73,9 @@ export default function UserEdit() {
   };
 
   const handleSendResetMail = async () => {
+    const baseURL = import.meta.env.VITE_API_BASE_URL;
     try {
-      await axios.post("http://localhost:3000/api/api_users/password", {
+      await axios.post(`${baseURL}/api/api_users/password`, {
         api_user: { email: form.email }, // ← 現在フォームに入っているメールアドレスを利用
       });
       alert("パスワード変更用のメールを送信しました。");

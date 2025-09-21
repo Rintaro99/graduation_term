@@ -24,11 +24,12 @@ export default function QuizPlay() {
   const [lastChoice, setLastChoice] = useState<Choice | null>(null);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const navigate = useNavigate();
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
     const fetchQuestions = async () => {
       const token = getToken();
-      const res = await fetch("http://localhost:3000/api/questions", {
+      const res = await fetch(`${baseURL}/api/questions`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -56,7 +57,7 @@ export default function QuizPlay() {
 
   const handleFinish = async () => {
     const token = getToken();
-    const res = await fetch("http://localhost:3000/api/challenges", {
+    const res = await fetch(`${baseURL}/api/challenges`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

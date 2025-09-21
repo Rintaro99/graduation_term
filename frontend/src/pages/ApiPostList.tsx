@@ -25,7 +25,8 @@ export default function ApiPostList() {
   // 投稿一覧を取得
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await fetch("http://localhost:3000/api/api_posts", {
+      const baseURL = import.meta.env.VITE_API_BASE_URL;
+      const res = await fetch(`${baseURL}/api/api_posts`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("auth_token")}`,
@@ -47,8 +48,9 @@ export default function ApiPostList() {
   // ユーザー情報を取得（admin判定用）
   useEffect(() => {
     const token = localStorage.getItem("auth_token");
+    const baseURL = import.meta.env.VITE_API_BASE_URL;
     if (!token) return;
-    fetch("http://localhost:3000/api/mypage", {
+    fetch(`${baseURL}/api/mypage`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())

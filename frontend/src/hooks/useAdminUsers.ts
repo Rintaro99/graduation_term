@@ -3,6 +3,7 @@ import type { AdminUser } from "../types/Admin";
 
 export function useAdminUsers() {
   const navigate = useNavigate();
+  const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
   // ユーザー削除
   const deleteUser = async (id: number, onSuccess?: () => void) => {
@@ -10,7 +11,7 @@ export function useAdminUsers() {
     const token = localStorage.getItem("auth_token");
     if (!token) return;
 
-    const res = await fetch(`http://localhost:3000/api/admin/users/${id}`, {
+    const res = await fetch(`${API_BASE}/api/admin/users/${id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -28,7 +29,7 @@ export function useAdminUsers() {
     const token = localStorage.getItem("auth_token");
     if (!token) return null;
 
-    const res = await fetch(`http://localhost:3000/api/admin/users/${id}`, {
+    const res = await fetch(`${API_BASE}/api/admin/users/${id}`, {
       method: "PATCH",
       headers: {
         "Authorization": `Bearer ${token}`,

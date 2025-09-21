@@ -8,9 +8,10 @@ type User = {
 
 export default function UserList() {
   const [users, setUsers] = useState<User[]>([]);
+  const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/users')
+    fetch(`${API_BASE}/api/users`)
       .then((res) => res.json())
       .then((data) => setUsers(data))
       .catch((err) => console.error('API Error:', err));
