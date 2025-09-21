@@ -6,6 +6,7 @@ import { Dropdown } from "flowbite-react";
 import type { User } from "./types/User";
 
 console.log("✅ Runtime ENV TEST:", import.meta.env);
+console.log("✅ ENV TEST full:", import.meta.env);
 
 
 export default function App() {
