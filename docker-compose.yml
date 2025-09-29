@@ -1,15 +1,21 @@
 version: '3'
 services:
   db:
-    image: mysql:5.7
+    # image: mysql:5.7
+    image: postgres:15
     platform: linux/amd64
     environment:
       TZ: Asia/Tokyo
-      MYSQL_ROOT_PASSWORD: password
+      # MYSQL_ROOT_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: app_development
     volumes:
-      - mysql_data:/var/lib/mysql
+      # - mysql_data:/var/lib/mysql
+      - postgres_data:/var/lib/postgresql/data
     ports:
-      - "15432:3306"        # ホスト15432 → コンテナ3306
+      # - "15432:3306"      # ホスト15432 → コンテナ3306
+      - "15432:5432"
 
   web:
     env_file:
@@ -27,10 +33,14 @@ services:
     environment:
       TZ: Asia/Tokyo
       SELENIUM_DRIVER_URL: http://chrome:4444/wd/hub
-      MYSQL_HOST: db
-      MYSQL_USER: root
-      MYSQL_PASSWORD: password
-      MYSQL_PORT: 3306
+      # MYSQL_HOST: db
+      # MYSQL_USER: root
+      # MYSQL_PASSWORD: password
+      # MYSQL_PORT: 3306
+      POSTGRES_HOST: db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_PORT: 5432
     ports:
       - "3000:3000"
     depends_on:
@@ -43,6 +53,9 @@ services:
       - "4444:4444"
 
 volumes:
-  mysql_data:
+  # mysql_data:
+  # bundle_data:
+  # node_modules:
+  postgres_data:
   bundle_data:
   node_modules:
