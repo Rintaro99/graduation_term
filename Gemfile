@@ -11,6 +11,7 @@ gem "stimulus-rails"
 gem "jbuilder"
 gem "bootsnap", require: false
 gem "tzinfo-data", platforms: %i[ windows jruby ]
+gem "pg"
 
 group :development do
   gem "web-console"
@@ -38,7 +39,7 @@ end
 
 group :production do
   # Heroku 本番では Postgres を使う
-  gem "pg"
+  # gem "pg"
 end
 
 gem "sorcery", "0.16.3"
