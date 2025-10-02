@@ -119,6 +119,7 @@ Rails.application.configure do
   #   enable_starttls_auto: true
   # }
 
+
   config.action_mailer.default_options = {
     from: ENV['MAILER_SENDER']
   }
