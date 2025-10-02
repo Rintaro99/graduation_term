@@ -112,7 +112,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     user_name: 'apikey',
     password: ENV['SENDGRID_API_KEY'],
-    domain: 'your-app.onrender.com',
+    domain: 'how-to-write-rin.onrender.com',
     address: 'smtp.sendgrid.net',
     port: 587,
     authentication: :plain,
