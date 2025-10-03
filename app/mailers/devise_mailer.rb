@@ -9,7 +9,7 @@ class DeviseMailer < Devise::Mailer
     to = Email.new(email: record.email)
     subject = "パスワードリセットのご案内"
 
-    reset_link = edit_password_url(record, reset_password_token: token)
+    reset_link = edit_api_user_password_url(reset_password_token: token)
 
     content = Content.new(
       type: "text/plain",
