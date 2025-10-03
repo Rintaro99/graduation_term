@@ -10,4 +10,10 @@ ApiUser.find_or_create_by!(email: "admin@gmail.com") do |user|
   user.password_confirmation = "adminn"
 end
 
+ApiUser.find_or_create_by!(email: "rin.910491@gmail.com") do |user|
+  user.name = "本番テストユーザー"
+  user.password = "000000"
+  user.password_confirmation = "000000"
+end
+
 puts "✅ Admin ApiUser created!"
