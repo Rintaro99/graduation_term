@@ -4,7 +4,11 @@ class DeviseMailer < Devise::Mailer
   default from: ENV["MAILER_SENDER"]
 
   def reset_password_instructions(record, token, opts = {})
-    Resend.api_key = ENV["RESEND_API_KEY"]  # ←ここがポイント！
+    Rails.logger.info "=== RESEND KEY START ==="
+    Rails.logger.info ENV["RESEND_API_KEY"].inspect
+    Rails.logger.info "=== RESEND KEY END ==="
+
+    Resend.api_key = ENV["RESEND_API_KEY"]
 
     reset_link = edit_api_user_password_url(reset_password_token: token)
 
