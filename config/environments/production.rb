@@ -120,10 +120,16 @@ Rails.application.configure do
   # }
 
   # SendGrid Web API (ActionMailer integration)
-  config.action_mailer.delivery_method = :sendgrid_actionmailer
-  config.action_mailer.sendgrid_actionmailer_settings = {
-    api_key: ENV['SENDGRID_API_KEY'],
-    raise_delivery_errors: true
+  # config.action_mailer.delivery_method = :sendgrid_actionmailer
+  # config.action_mailer.sendgrid_actionmailer_settings = {
+  #   api_key: ENV['SENDGRID_API_KEY'],
+  #   raise_delivery_errors: true
+  # }
+
+  # Resend (ActionMailer integration)
+  config.action_mailer.delivery_method = :resend
+  config.action_mailer.resend_settings = {
+    api_key: ENV['RESEND_API_KEY']
   }
 
   config.action_mailer.default_options = {

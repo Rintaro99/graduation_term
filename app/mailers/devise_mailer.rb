@@ -1,26 +1,21 @@
-require "sendgrid-ruby"
-include SendGrid
+require "resend"
 
 class DeviseMailer < Devise::Mailer
   default from: ENV["MAILER_SENDER"]
 
   def reset_password_instructions(record, token, opts = {})
-    from = Email.new(email: ENV["MAILER_SENDER"])
-    to = Email.new(email: record.email)
-    subject = "パスワードリセットのご案内"
+    resend = Resend::Client.new(api_key: ENV["RESEND_API_KEY"])
 
     reset_link = edit_api_user_password_url(reset_password_token: token)
 
-    content = Content.new(
-      type: "text/plain",
-      value: "以下のリンクからパスワードをリセットしてください:\n#{reset_link}"
+    resend.emails.send(
+      from: ENV["MAILER_SENDER"],
+      to: record.email,
+      subject: "パスワードリセットのご案内",
+      html: <<~HTML
+        <p>以下のリンクからパスワードをリセットしてください:</p>
+        <p><a href="#{reset_link}">こちらをクリック</a></p>
+      HTML
     )
-
-    mail = Mail.new(from, subject, to, content)
-    sg = SendGrid::API.new(api_key: ENV["SENDGRID_API_KEY"])
-    response = sg.client.mail._("send").post(request_body: mail.to_json)
-
-    Rails.logger.info "SendGrid response: #{response.status_code}"
-    response
   end
 end
