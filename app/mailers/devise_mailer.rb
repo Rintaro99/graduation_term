@@ -8,7 +8,7 @@ class DeviseMailer < Devise::Mailer
 
     reset_link = edit_api_user_password_url(reset_password_token: token)
 
-    Resend::Emails.send(
+    Resend::Emails.send({
       from: ENV["MAILER_SENDER"],
       to: record.email,
       subject: "パスワードリセットのご案内",
@@ -16,6 +16,6 @@ class DeviseMailer < Devise::Mailer
         <p>以下のリンクからパスワードをリセットしてください:</p>
         <p><a href="#{reset_link}">こちらをクリック</a></p>
       HTML
-    )
+    })
   end
 end
