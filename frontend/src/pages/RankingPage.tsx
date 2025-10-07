@@ -19,6 +19,7 @@ export default function RankingPage() {
 
   useEffect(() => {
     getRanking().then((data) => {
+      console.log("🏁 ランキングAPIレスポンス:", data);
       setTopUsers(data.top_users);
       setMyRank(data.my_rank);
       setMyScore(data.my_score);
