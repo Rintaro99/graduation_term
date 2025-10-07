@@ -17,8 +17,6 @@ export default function HomePage() {
         <Link to="/terms" className="text-blue-600 underline">利用規約</Link>
         <Link to="/privacy" className="text-blue-600 underline ml-5">プライバシーポリシー</Link>
       </div>
-    </div>
-
-    
+    </div>    
   );
 }

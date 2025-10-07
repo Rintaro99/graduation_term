@@ -6,9 +6,6 @@ import { Dropdown } from "flowbite-react";
 import type { User } from "./types/User";
 
 export default function App() {
-  console.log("🌍 ENV TEST:", import.meta.env.VITE_API_BASE_URL);
-  (window as any).__DEBUG_API_BASE_URL__ = import.meta.env.VITE_API_BASE_URL;
-  console.log("DEBUG Dropdown:", Dropdown);
   const [isLoggedIn, setIsLoggedIn] = useState(
     !!localStorage.getItem("auth_token")
   );
@@ -16,15 +13,12 @@ export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    console.log("🌍 Runtime ENV VITE_API_BASE_URL:", import.meta.env.VITE_API_BASE_URL);
-    (window as any).__DEBUG_API_BASE_URL__ = import.meta.env.VITE_API_BASE_URL;
     if (!isLoggedIn) return;
 
     const token = localStorage.getItem("auth_token");
     if (!token) return;
 
-    const baseURL = import.meta.env.VITE_API_BASE_URL;
-    fetch(`${baseURL}/api/mypage`, {
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/mypage`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then(res => res.json())
