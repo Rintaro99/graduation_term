@@ -97,12 +97,12 @@ Rails.application.routes.draw do
   end
 
   # 本番環境でseeds実行用
-  if Rails.env.production?
-  namespace :admin do
-    post "seed", to: ->(_) {
-      Rails.application.load_seed
-      [200, {}, ["Seed executed!"]]
-    }
-  end
-end
+  # if Rails.env.production?
+  #   namespace :admin do
+  #     post "seed", to: ->(_) {
+  #       Rails.application.load_seed
+  #       [200, {}, ["Seed executed!"]]
+  #     }
+  #   end
+  # end
 end
