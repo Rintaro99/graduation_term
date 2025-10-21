@@ -8,6 +8,8 @@ ApiUser.find_or_create_by!(email: "admin@gmail.com") do |user|
   user.name = "管理者"
   user.password = "adminn"
   user.password_confirmation = "adminn"
+  user.admin = true
+  user.save!
 end
 
 ApiUser.find_or_create_by!(email: "rin.910491@gmail.com") do |user|

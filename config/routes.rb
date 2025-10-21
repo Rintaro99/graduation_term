@@ -94,7 +94,14 @@ Rails.application.routes.draw do
       resources :users, only: [ :index, :show, :update, :destroy ]
       resources :favorites, only: [ :index ]
     end
+
+    post "/run_seeds", to: ->(_) {
+      Rails.application.load_seed
+      [200, { "Content-Type" => "application/json" }, [{ message: "Seeds executed" }.to_json]]
+    }
   end
+
+
 
   # 本番環境でseeds実行用
   # if Rails.env.production?
