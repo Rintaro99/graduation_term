@@ -26,10 +26,20 @@ api.interceptors.response.use(
   (res) => res,
   (err) => {
     const url = err.config?.url || "";
-    if (err.response?.status === 401) {
+    const message =err.response?.data?.error || err.message || "";
+    // トークン期限切れ or 認証切れ
+    if (
+      err.response?.status === 401 ||
+      message.includes("Signature has expired")
+    ) {
       // ログインAPIは除外
       if (!url.includes("/api/api_users/sign_in")) {
+        // 🔔 アラートを表示
+        alert("セッションが切れました。再度ログインしてください。");
+        // トークンとユーザー情報を削除
         auth.clearToken?.();
+        localStorage.removeItem("user");
+        // ログイン画面へ遷移
         window.location.href = "/login?expired=1";
       }
     }
