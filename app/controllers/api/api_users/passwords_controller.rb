@@ -23,7 +23,6 @@ class Api::ApiUsers::PasswordsController < Api::BaseController
     render json: {
       message: "パスワード再設定用のメールを送信しました。メールをご確認ください。"
     }, status: :ok
-  end
     # user = ApiUser.send_reset_password_instructions(resource_params)
 
     # if user.errors.empty?
