@@ -53,7 +53,12 @@ export default function Login() {
       <h2 className="text-3xl">ログイン</h2>
       {/* 成功メッセージ・エラーメッセージ両方まとめてここに出す */}
       {msg && (
-        <pre style={{ marginTop: 12, whiteSpace: "pre-wrap" }} className="text-red-500">
+        <pre
+          style={{ marginTop: 12, whiteSpace: "pre-wrap" }}
+          className={
+            msg.includes("完了") ? "text-green-500" : "text-red-500"
+          }
+        >
           {msg}
         </pre>
       )}

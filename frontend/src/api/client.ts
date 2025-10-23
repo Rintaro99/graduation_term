@@ -27,6 +27,13 @@ api.interceptors.response.use(
   (err) => {
     const url = err.config?.url || "";
     const message =err.response?.data?.error || err.message || "";
+
+    // 🌐 タイムアウトエラー処理
+    if (message.includes("timeout")) {
+      alert("サーバーとの通信がタイムアウトしました。\nしばらく待ってから再度お試しください。");
+      return Promise.reject(err);
+    }
+
     // トークン期限切れ or 認証切れ
     if (
       err.response?.status === 401 ||
@@ -34,7 +41,6 @@ api.interceptors.response.use(
     ) {
       // ログインAPIは除外
       if (!url.includes("/api/api_users/sign_in")) {
-        // 🔔 アラートを表示
         alert("セッションが切れました。再度ログインしてください。");
         // トークンとユーザー情報を削除
         auth.clearToken?.();
