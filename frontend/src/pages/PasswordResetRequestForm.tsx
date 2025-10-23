@@ -9,14 +9,21 @@ export default function PasswordResetRequestForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await api.post(
+      const res = await api.post(
         "/api/api_users/password",
         { api_user: { email } }, // ← body
         { headers: { "Accept": "application/json" } } // ← config
       );
-      setMsg("リセット用のメールを送信しました。/letter_opener で確認してください。");
+      const serverMsg =
+        res.data?.message ||
+        "パスワード再設定用のメールを送信しました。メールをご確認ください。";
+      setMsg(serverMsg);
+
     } catch (err: any) {
-      setMsg("送信に失敗しました。");
+      // ✅ 失敗時も統一した安全メッセージを表示
+      setMsg(
+        "パスワード再設定用のメールを送信しました。メールをご確認ください。"
+      );
     }
   };
 

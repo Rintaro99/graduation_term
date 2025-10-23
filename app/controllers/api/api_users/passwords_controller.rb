@@ -14,7 +14,16 @@ class Api::ApiUsers::PasswordsController < Api::BaseController
   # POST /api/api_users/password
   def create
     ApiUser.send_reset_password_instructions(resource_params)
-    render json: { message: "リセット用のメールを送信しました。" }, status: :ok
+    render json: {
+      message: "パスワード再設定用のメールを送信しました。メールをご確認ください。"
+    }, status: :ok
+  rescue StandardError => e
+    # 万が一の例外も安全なメッセージに統一
+    Rails.logger.error "Password reset error: #{e.message}"
+    render json: {
+      message: "パスワード再設定用のメールを送信しました。メールをご確認ください。"
+    }, status: :ok
+  end
     # user = ApiUser.send_reset_password_instructions(resource_params)
 
     # if user.errors.empty?
