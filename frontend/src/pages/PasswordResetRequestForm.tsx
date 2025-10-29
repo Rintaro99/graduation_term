@@ -22,6 +22,7 @@ export default function PasswordResetRequestForm() {
 
     } catch (err: any) {
       // ✅ 失敗時も統一した安全メッセージを表示
+      console.log("ERROR RESPONSE:", err.response);
       setMsg(
         "パスワード再設定用のメールを送信しました。メールをご確認ください。"
       );
