@@ -13,6 +13,7 @@ class Api::ApiUsers::PasswordsController < Api::BaseController
 
   # POST /api/api_users/password
   def create
+    Rails.logger.info "PASSWORD RESET REQUEST FORMAT: #{request.format}"
     ApiUser.send_reset_password_instructions(resource_params)
     render json: {
       message: "パスワード再設定用のメールを送信しました。メールをご確認ください。"
