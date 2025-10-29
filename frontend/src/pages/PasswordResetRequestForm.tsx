@@ -14,6 +14,7 @@ export default function PasswordResetRequestForm() {
         { api_user: { email } }, // ← body
         { headers: { "Accept": "application/json" } } // ← config
       );
+      console.log("SERVER RESPONSE:", res.data);
       const serverMsg =
         res.data?.message ||
         "パスワード再設定用のメールを送信しました。メールをご確認ください。";
