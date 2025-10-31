@@ -19,6 +19,7 @@ export default function ResetPassword() {
     setErrors([]);
 
     try {
+      console.log("API base:", import.meta.env.VITE_API_BASE_URL);
       await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/api_users/password`, {
         api_user: {
           reset_password_token: token,
