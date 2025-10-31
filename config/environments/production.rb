@@ -132,6 +132,8 @@ Rails.application.configure do
     api_key: ENV['RESEND_API_KEY']
   }
 
+  Resend.api_key = ENV["RESEND_API_KEY"]
+  
   config.action_mailer.default_options = {
     from: ENV['MAILER_SENDER']
   }
