@@ -138,6 +138,6 @@ Rails.application.configure do
 
   config.session_store :cookie_store, key: "_graduation_teram_session", secure: Rails.env.production?
 
-  Rails.logger.info "RESEND_API_KEY loaded?: #{ENV['RESEND_API_KEY'].present?}"
+  puts "RESEND_API_KEY loaded?: #{ENV['RESEND_API_KEY'].present?}"
 
 end
