@@ -20,7 +20,7 @@ export default function ResetPassword() {
 
     try {
       console.log("API base:", import.meta.env.VITE_API_BASE_URL);
-      await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/api_users/password`, {
+      await axios.put(`https://how-to-write-rin.onrender.com/api/api_users/password`, {
         api_user: {
           reset_password_token: token,
           password,
