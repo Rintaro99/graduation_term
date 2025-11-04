@@ -1,7 +1,6 @@
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
     origins "http://localhost:5173",
-            "https://frontend-5zuvnf4fg-rins-projects-f9cab347.vercel.app",
             "https://how-to-write-rin.vercel.app"
 
     resource "/api/*",
