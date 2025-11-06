@@ -19,14 +19,21 @@ export default function ResetPassword() {
     setErrors([]);
 
     try {
-      console.log("API base:", import.meta.env.VITE_API_BASE_URL);
-      await axios.put(`https://how-to-write-rin.onrender.com/api/api_users/password`, {
-        api_user: {
-          reset_password_token: token,
-          password,
-          password_confirmation: passwordConfirmation,
+      await axios.put(
+        `https://how-to-write-rin.onrender.com/api/api_users/password`,
+        {
+          api_user: {
+            reset_password_token: token,
+            password,
+            password_confirmation: passwordConfirmation,
+          },
         },
-      });
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       alert("パスワードを更新しました！");
       navigate("/login"); // ログイン画面へリダイレクトなど
     } catch (err: any) {
