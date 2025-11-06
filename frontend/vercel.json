@@ -11,5 +11,6 @@
       "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS", "HEAD"],
       "dest": "https://how-to-write-rin.onrender.com/api/$1"
     }
-  ]
+  ],
+  "outputDirectory": "dist"
 }
