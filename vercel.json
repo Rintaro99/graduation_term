@@ -2,7 +2,7 @@
   "builds": [
     { "src": "frontend/package.json", "use": "@vercel/static-build" }
   ],
-  "routes": [
+  "rewrites": [
     {
       "src": "/api/(.*)",
       "dest": "https://how-to-write-rin.onrender.com/api/$1"
