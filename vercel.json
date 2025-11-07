@@ -7,10 +7,13 @@
     {
       "source": "/api/(.*)",
       "destination": "https://how-to-write-rin.onrender.com/api/$1"
-    },
+    }
+  ],
+  "redirects": [
     {
       "source": "/(.*)",
-      "destination": "/index.html"
+      "destination": "/",
+      "statusCode": 200
     }
   ]
 }
