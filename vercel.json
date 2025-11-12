@@ -1,17 +1,9 @@
 {
+  "public": "frontend/dist",
   "builds": [
     { "src": "frontend/package.json", "use": "@vercel/static-build" }
   ],
   "outputDirectory": "dist",
-  "cleanUrls": true,
-  "headers": [
-    {
-      "source": "/assets/(.*)",
-      "headers": [
-        { "key": "Content-Type", "value": "application/javascript; charset=utf-8" }
-      ]
-    }
-  ],
   "rewrites": [
     {
       "source": "/api/(.*)",
