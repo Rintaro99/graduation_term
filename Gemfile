@@ -43,7 +43,6 @@ group :production do
 end
 
 gem "sorcery", "0.16.3"
-gem "importmap-rails"
 gem "config"
 gem "rails-i18n", "~> 7.0"
 # esbuildから移行
