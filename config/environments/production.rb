@@ -104,8 +104,8 @@ Rails.application.configure do
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 
   config.action_mailer.default_url_options = {
-  host: "how-to-write-rin.vercel.app",
-  protocol: "https"  # ← こちらでhttpsを指定！
+    host: "how-to-write-rin.onrender.com",
+    protocol: "https"  # ← こちらでhttpsを指定！
   }
   # SendGrid SMTP
   # config.action_mailer.delivery_method = :smtp
