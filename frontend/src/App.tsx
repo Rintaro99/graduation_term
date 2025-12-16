@@ -29,9 +29,7 @@ export default function App() {
   return (
     <div className="py-5 px-4">
       <header className="flex justify-between items-center ">
-        <Link to="/">
-          <img src="/top_page_logo.png" alt="トップページへ" className='w-10 sm:w-15'/>
-        </Link>
+        <img src="/top_page_logo.jpg" alt="ロゴ" className="w-10 sm:w-15"/>
 
         {isLoggedIn && (
           <div style={{ position: "relative" }}>
