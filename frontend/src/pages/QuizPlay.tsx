@@ -88,7 +88,7 @@ export default function QuizPlay() {
         <ul className="mt-5">
           {currentQuestion.choices.map((choice) => (
             <li className="mt-2" key={choice.id}>
-              <Button color="gray" className="mx-auto" onClick={() => handleAnswer(choice)}>
+              <Button className="bg-gray-500 text-white hover:bg-gray-800 cursor-pointer disabled:bg-gray-200 mx-auto" onClick={() => handleAnswer(choice)}>
                 {choice.content}
               </Button>
             </li>
@@ -105,7 +105,6 @@ export default function QuizPlay() {
           />
         </div>
         <Button
-          color=""
           className="mt-10 mx-auto bg-cyan-700 hover:bg-cyan-800"
           onClick={() => navigate("/user")}
           style={{ fontFamily: "'Dela Gothic One', cursive" }}
@@ -132,9 +131,8 @@ export default function QuizPlay() {
           <span className="text-2xl">{currentQuestion.choices.find(c => c.is_correct)?.content}</span>
         </p>
         <p>{currentQuestion.explanation}</p>
-        <Button color="dark" className="w-40 mx-auto mt-5 dark:hover:bg-gray-900" onClick={handleNext}>次へ</Button>
+        <Button  className="w-40 mx-auto mt-5 dark:hover:bg-gray-900 bg-gray-500 text-white cursor-pointer disabled:bg-gray-200" onClick={handleNext}>次へ</Button>
         <Button
-          color=""
           className="mx-auto bg-cyan-700 hover:bg-cyan-800"
           style={{ fontFamily: "'Dela Gothic One', cursive" }}
           onClick={() => navigate("/user")}

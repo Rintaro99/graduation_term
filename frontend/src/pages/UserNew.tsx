@@ -89,7 +89,7 @@ export default function UserNew() {
         </label>
 
         <div className="flex justify-center mt-5">
-          <Button color="dark" type="submit" disabled={mutation.isPending}>
+          <Button className="bg-gray-500 text-white hover:bg-gray-800 cursor-pointer disabled:bg-gray-200" type="submit" disabled={mutation.isPending}>
             {mutation.isPending ? "Creating..." : "Create"}
           </Button>
           <Button as={Link} to="/" color="gray" className="ml-8 cursor-pointer">キャンセル</Button>
