@@ -1,24 +1,90 @@
-# README
+# **概要**
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+本アプリは、「麟」という漢字に関するクイズに挑戦し、他ユーザーとスコアを競い合えるWebアプリです。
+スコアに応じて称号やシンボルを獲得できるランキング機能を実装しています。
+また、管理者である私のみが投稿できるブログ機能も搭載しています。
 
-Things you may want to cover:
+# **制作背景**
 
-* Ruby version
+自分自身を表現できる名刺代わりのアプリを作りたいと考えました。
+私の名前に含まれる「麟」という漢字は、「鱗」や「凛」などに間違えられることが多く、その経験をきっかけに、名前を覚えてもらうためのアプリを作ろうと思いました。
+また、プログラミングスクールで学んだ技術を活かし、設計から本番環境構築まで一貫して開発することにも挑戦しました。
 
-* System dependencies
+# 技術スタック
 
-* Configuration
+## フロントエンド
 
-* Database creation
+- React 19（TypeScript）
+- Vite
+- Tailwind CSS
+- Flowbite / DaisyUI
+- TanStack React Query（データフェッチ管理）
+- Axios（API通信）
+- React Router
+- Zod（バリデーション）
+- React Markdown（ブログ表示）
 
-* Database initialization
+SPA構成を採用し、API通信にはAxiosとReact Queryを使用しています。
+非同期データのキャッシュ管理やローディング制御を効率的に実装しています。
 
-* How to run the test suite
+## バックエンド
 
-* Services (job queues, cache servers, search engines, etc.)
+- Ruby 3.4.3
+- Ruby on Rails 7.2（APIモード）
+- PostgreSQL
+- Puma
 
-* Deployment instructions
+### 認証
 
-* ...
+- Devise
+- devise-jwt（JWT認証）
+
+SPAとの相性を考慮し、ステートレスなJWT認証を採用しています。
+
+### テスト
+
+- RSpec
+- FactoryBot
+- Capybara
+
+### その他
+
+- rack-cors（フロント分離構成対応）
+- SendGrid / Resend（メール送信）
+
+# **システム構成**
+
+## 開発環境
+
+- Docker Compose
+- Rails（APIモード）
+- PostgreSQL（Dockerコンテナ）
+- .envで環境変数管理
+
+Dockerを用いてアプリケーションとデータベースを分離し、ローカル環境差異を防いでいます。
+
+## 本番環境
+
+- フロントエンド：Vercel
+- バックエンド：Render（Web Service）
+- データベース：Render PostgreSQL
+- 認証：JWT（Devise）
+- SSL接続：有効
+- 環境変数管理：Render / Vercel
+
+本番環境ではDATABASE_URLを用いて外部データベースへ接続し、SSL接続を必須としています。
+
+# 工夫した点
+
+- スコアに応じて称号・シンボルを付与する仕組みを実装
+- ランキング機能を実装し、ユーザー同士がスコアを競い合える仕組みを導入
+- フロントとバックを分離することで、表示とビジネスロジックの責務を明確にし、将来的な拡張性を意識した設計に。
+
+# 今後の改善点
+
+- UI/UXの改善
+直感的に操作できる導線設計や、アニメーションの最適化を行う
+- 問題数の増加、ないど別挑戦機能の実装
+継続的に楽しめるコンテンツ量を確保する
+- データベースの構築を、RenderからAWSに移行
+より実務に近いインフラ構成を経験し、スケーラビリティやセキュリティ設計を学ぶ
