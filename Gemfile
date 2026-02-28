@@ -61,4 +61,3 @@ gem "devise-jwt"
 gem "sendgrid-ruby"
 gem "sendgrid-actionmailer"
 gem "resend"
-

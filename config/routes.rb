@@ -97,7 +97,7 @@ Rails.application.routes.draw do
 
     post "/run_seeds", to: ->(_) {
       Rails.application.load_seed
-      [200, { "Content-Type" => "application/json" }, [{ message: "Seeds executed" }.to_json]]
+      [ 200, { "Content-Type" => "application/json" }, [ { message: "Seeds executed" }.to_json ] ]
     }
   end
 
