@@ -19,9 +19,7 @@
 - Tailwind CSS
 - Flowbite / DaisyUI
 - TanStack React Query（データフェッチ管理）
-- Axios（API通信）
 - React Router
-- Zod（バリデーション）
 - React Markdown（ブログ表示）
 
 SPA構成を採用し、API通信にはAxiosとReact Queryを使用しています。
@@ -32,7 +30,6 @@ SPA構成を採用し、API通信にはAxiosとReact Queryを使用していま�
 - Ruby 3.4.3
 - Ruby on Rails 7.2（APIモード）
 - PostgreSQL
-- Puma
 
 ### 認証
 
@@ -72,7 +69,6 @@ Dockerを用いてアプリケーションとデータベースを分離し、�
 - SSL接続：有効
 - 環境変数管理：Render / Vercel
 
-本番環境ではDATABASE_URLを用いて外部データベースへ接続し、SSL接続を必須としています。
 
 # 工夫した点
 
@@ -84,7 +80,7 @@ Dockerを用いてアプリケーションとデータベースを分離し、�
 
 - UI/UXの改善
 直感的に操作できる導線設計や、アニメーションの最適化を行う
-- 問題数の増加、ないど別挑戦機能の実装
+- 問題数の増加、難易度別挑戦機能の実装
 継続的に楽しめるコンテンツ量を確保する
 - データベースの構築を、RenderからAWSに移行
 より実務に近いインフラ構成を経験し、スケーラビリティやセキュリティ設計を学ぶ
