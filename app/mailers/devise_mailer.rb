@@ -17,7 +17,7 @@ class DeviseMailer < Devise::Mailer
           <h2 style="color:#333;">パスワードリセットのご案内 </h2>
           <p>こんにちは、#{record.name} さん。</p>
           <p>以下のボタンをクリックして、新しいパスワードを設定してください。</p>
-          <a href="#{reset_link}" 
+          <a href="#{reset_link}"#{' '}
             style="display:inline-block; background:#1a73e8; color:#fff; padding:10px 20px; text-decoration:none; border-radius:4px;">
             パスワードをリセットする
           </a>

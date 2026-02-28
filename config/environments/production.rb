@@ -129,13 +129,13 @@ Rails.application.configure do
   # Resend (ActionMailer integration)
   config.action_mailer.delivery_method = :resend
   config.action_mailer.resend_settings = {
-    api_key: ENV['RESEND_API_KEY']
+    api_key: ENV["RESEND_API_KEY"]
   }
 
   Resend.api_key = ENV["RESEND_API_KEY"]
-  
+
   config.action_mailer.default_options = {
-    from: ENV['MAILER_SENDER']
+    from: ENV["MAILER_SENDER"]
   }
 
   config.session_store :cookie_store, key: "_graduation_teram_session", secure: Rails.env.production?
