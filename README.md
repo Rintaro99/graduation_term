@@ -61,7 +61,7 @@ Dockerを用いてアプリケーションとデータベースを分離し、�
 
 # ER図
 
-<img width="1011" height="611" alt="er drawio" src="https://github.com/user-attachments/assets/0f97f906-f778-4ef6-84e2-f13731f322bf" />
+<img width="871" height="535" alt="スクリーンショット 2026-03-02 6 23 15" src="https://github.com/user-attachments/assets/f01ad2ad-f4a2-4553-a57f-326b7675e8bc" />
 
 
 # 機能説明
