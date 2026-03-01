@@ -104,10 +104,40 @@ Dockerを用いてアプリケーションとデータベースを分離し、�
 
 [![Image from Gyazo](https://i.gyazo.com/f1211619e68e2b57856520cd7effd68d.png)](https://gyazo.com/f1211619e68e2b57856520cd7effd68d)
 
-
-
-
 パスワードリセットは入力したメールアドレスにパスワードリセット用URLを添付したメールを送り、そこからパスワード変更を行います。
+
+
+## 投稿機能
+管理者権限のあるユーザーのみ、投稿できる機能を備えています。
+
+[![Image from Gyazo](https://i.gyazo.com/618b5123b2afae2453341cbd4690820a.gif)](https://gyazo.com/618b5123b2afae2453341cbd4690820a)
+
+一般ユーザーは、投稿された記事の閲覧、お気に入りをつける機能があります。
+
+## 管理者権限
+
+###　記事の投稿
+
+[![Image from Gyazo](https://i.gyazo.com/6faeaa3fca91ed03cba481f2674a6991.png)](https://gyazo.com/6faeaa3fca91ed03cba481f2674a6991)
+
+[![Image from Gyazo](https://i.gyazo.com/64ff7861f9e7a4044772d8b572902975.gif)](https://gyazo.com/64ff7861f9e7a4044772d8b572902975)
+
+管理者は、記事一覧のページに「ユーザー一覧」(後ほど説明)と「新規投稿」ボタンがある。この新規投稿ボタンから投稿をすることができます。
+
+<img width="787" height="452" alt="スクリーンショット 2026-03-02 0 20 52" src="https://github.com/user-attachments/assets/c016632b-0771-4b45-8d4a-659646b7a2d6" />
+
+また、記事の詳細を見ると編集と削除する機能も管理者権限のあるユーザーのみ付与されています。
+
+### ユーザー一覧
+
+<img width="787" height="765" alt="スクリーンショット 2026-03-02 0 22 49" src="https://github.com/user-attachments/assets/ebfe77df-2d43-4190-a2c9-c270e57a0227" />
+
+管理者のみ、登録されたユーザーの一覧を見ることができます。
+ここでは、ユーザー名、クイズのスコア、称号、シンボルが表示される仕組みとなっています。
+
+[![Image from Gyazo](https://i.gyazo.com/54be3c6134e2733ec1b588abaaece541.gif)](https://gyazo.com/54be3c6134e2733ec1b588abaaece541)
+
+ユーザー一覧の詳細ページでは、上記の情報に加えどの記事をお気に入りにしたのかわかるようになっています。
 
 
 # 工夫した点
