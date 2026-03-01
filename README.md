@@ -63,19 +63,23 @@ Dockerを用いてアプリケーションとデータベースを分離し、�
 
 # 機能説明
 
-## ユーザー認証まわり
-- ユーザー登録
-<img width="724" height="496" alt="スクリーンショット 2026-03-01 22 48 20" src="https://github.com/user-attachments/assets/b94d4fb0-64c3-4bb9-ae20-5625522a8549" />
-- ログイン
-<img width="724" height="496" alt="スクリーンショット 2026-03-01 22 48 27" src="https://github.com/user-attachments/assets/1240738f-fa25-4bb7-9130-eb3fe0580827" />
-- ユーザーページ(初期)
-<img width="791" height="556" alt="スクリーンショット 2026-03-01 22 49 29" src="https://github.com/user-attachments/assets/14d95659-2232-466f-a4c1-0c4cc332a4c8" />
-- ハンバーガーメニュー→プロフィール編集
-<img width="426" height="359" alt="スクリーンショット 2026-03-01 22 50 59" src="https://github.com/user-attachments/assets/ab3dffc1-2648-4e02-a147-6151afc8e6a4" />
-- 名前、メールアドレスの変更可能
-<img width="905" height="647" alt="スクリーンショット 2026-03-01 22 51 11" src="https://github.com/user-attachments/assets/52baa33e-85af-414e-981f-948e5fc29308" />
-- パスワードリセットのリクエスト
-<img width="864" height="534" alt="スクリーンショット 2026-03-01 23 26 44" src="https://github.com/user-attachments/assets/5a27ea4d-535b-44e2-a627-d9528c71181f" />
+## ユーザーページ→クイズチャレンジ
+
+<img width="826" height="517" alt="スクリーンショット 2026-03-01 23 50 53" src="https://github.com/user-attachments/assets/0d70db53-6882-43c2-8cc8-57899c724454" />
+
+新規登録、ログインを行うと、ユーザーページ(初期)になります。
+この状態では、称号とシンボルは無し。
+
+[![Image from Gyazo](https://i.gyazo.com/f76fdca3f1d1158841369c0d67c205ee.gif)](https://gyazo.com/f76fdca3f1d1158841369c0d67c205ee)
+
+クイズ問題では、問題→解説→問題→解説→...という流れで、答えた問題と解答、解説が交互に表示されていく仕組みです。
+
+[![Image from Gyazo](https://i.gyazo.com/3277f8f0b6e6cf9b307a0efb0b3edd1e.gif)](https://gyazo.com/3277f8f0b6e6cf9b307a0efb0b3edd1e)
+
+そして、全10問答えるとそのスコアに応じたシンボルと称号が与えられます。
+そのシンボルと称号は、自分のユーザーページに表示されるようになります。
+
+[![Image from Gyazo](https://i.gyazo.com/1d2d1e897418ea61fe35450f52728eef.png)](https://gyazo.com/1d2d1e897418ea61fe35450f52728eef)
 
 
 
