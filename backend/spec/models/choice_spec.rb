@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Choice, type: :model do
@@ -5,7 +7,7 @@ RSpec.describe Choice, type: :model do
     it 'contentが空だと無効' do
       choice = build(:choice, content: nil)
       choice.validate
-      expect(choice.errors[:content]).to include("を入力してください")
+      expect(choice.errors[:content]).to include('を入力してください')
     end
   end
 

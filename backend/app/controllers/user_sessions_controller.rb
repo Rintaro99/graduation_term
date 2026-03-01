@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserSessionsController < ApplicationController
   # skip_before_action :require_login, only: %i[new create]
 
@@ -17,28 +19,20 @@ class UserSessionsController < ApplicationController
     # Rails.logger.debug "🌐 Sorcery login result: #{@user.inspect}"
 
     if @user
-      redirect_to userpage_path, notice: "ログインしました"
+      redirect_to userpage_path, notice: 'ログインしました'
     else
       @user = User.new(email: email)
       user_record = User.find_by(email: email)
 
       # メールアドレスのエラーチェック
-      if email.blank?
-        @user.errors.add(:email, "を入力してください")
-      end
+      @user.errors.add(:email, 'を入力してください') if email.blank?
 
-      if email.present? && user_record.nil?
-        @user.errors.add(:email, "が登録されていません")
-      end
+      @user.errors.add(:email, 'が登録されていません') if email.present? && user_record.nil?
 
       # パスワードのエラーチェック
-      if password.blank?
-        @user.errors.add(:password, "を入力してください")
-      end
+      @user.errors.add(:password, 'を入力してください') if password.blank?
 
-      if user_record && password.present? && !User.authenticate(email, password)
-        @user.errors.add(:password, "が間違っています")
-      end
+      @user.errors.add(:password, 'が間違っています') if user_record && password.present? && !User.authenticate(email, password)
       render :new, status: :unprocessable_entity
     end
   end

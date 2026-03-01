@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Rails.logger.info "[OmniAuth Init] ENV['GOOGLE_CLIENT_ID'] = #{ENV['GOOGLE_CLIENT_ID'].present? ? 'present' : 'nil'}"
 # Rails.logger.info "[OmniAuth Init] initializer loaded!"
 

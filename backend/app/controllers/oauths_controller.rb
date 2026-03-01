@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OauthsController < ApplicationController
   # skip_before_action :require_login
   include Sorcery::Controller::Submodules::External
@@ -23,7 +25,7 @@ class OauthsController < ApplicationController
       auto_login(@user)
       redirect_to userpage_path, notice: "#{provider.titleize}で新規登録しました"
     rescue ActiveRecord::RecordNotUnique
-      flash[:alert] = "すでにこのメールアドレスが登録されています。別の方法でログインしてください。"
+      flash[:alert] = 'すでにこのメールアドレスが登録されています。別の方法でログインしてください。'
       redirect_to root_path
     end
   end

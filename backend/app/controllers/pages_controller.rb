@@ -1,11 +1,10 @@
+# frozen_string_literal: true
+
 class PagesController < ApplicationController
   # skip_before_action :require_login
-  def terms
-  end
+  def terms; end
 
-  def privacy
-  end
+  def privacy; end
 
-  def data_deletion
-  end
+  def data_deletion; end
 end

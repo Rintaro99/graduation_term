@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class CreateApiUsers < ActiveRecord::Migration[7.2]
   def change
     create_table :api_users do |t|
-      t.string :name                          # ← 追加
-      t.string :email, null: false, default: ""         # Devise必須
-      t.string :encrypted_password, null: false, default: ""   # Devise必須
+      t.string :name # ← 追加
+      t.string :email, null: false, default: '' # Devise必須
+      t.string :encrypted_password, null: false, default: '' # Devise必須
 
       ## Recoverable
       t.string   :reset_password_token

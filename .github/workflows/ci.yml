@@ -8,59 +8,63 @@ on:
 jobs:
   scan_ruby:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+      - uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.4.3
           bundler-cache: true
-      - name: Install Ruby gems (excluding development)
-        run: bundle install --jobs 4 --retry 3 --without development
+          working-directory: backend
 
-      - name: Scan for common Rails security vulnerabilities using static analysis
-        run: bin/brakeman --no-pager
+      - run: bundle install --jobs 4 --retry 3 --without development
+      - run: bin/brakeman --no-pager
 
   scan_js:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+      - uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.4.3
           bundler-cache: true
-      - name: Install Ruby gems (excluding development)
-        run: bundle install --jobs 4 --retry 3 --without development
+          working-directory: backend
 
-      - name: Scan for security vulnerabilities in JavaScript dependencies
-        run: bin/importmap audit
+      - run: bundle install --jobs 4 --retry 3 --without development
+      - run: bin/importmap audit
 
   lint:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    defaults:
+      run:
+        working-directory: backend
 
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.4.3
           bundler-cache: true
-      - name: Install Ruby gems (excluding development)
-        run: bundle install --jobs 4 --retry 3 --without development
+          working-directory: backend
 
-      - name: Lint code for consistent style
-        run: bin/rubocop -f github
+      - run: bundle install --jobs 4 --retry 3 --without development
+      - run: bin/rubocop -f github
 
   test:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
 
     # services:
     #   postgres:
@@ -100,6 +104,7 @@ jobs:
         with:
           ruby-version: 3.4.3
           bundler-cache: true
+          working-directory: backend
 
       # - name: Run tests
       - name: Setup database

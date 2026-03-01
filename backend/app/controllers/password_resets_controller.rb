@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PasswordResetsController < ApplicationController
   # skip_before_action :require_login
 
@@ -7,18 +9,16 @@ class PasswordResetsController < ApplicationController
     email = params[:email]
 
     if email.blank?
-      flash.now[:danger] = "メールアドレスを入力してください"
+      flash.now[:danger] = 'メールアドレスを入力してください'
       render :new, status: :unprocessable_entity
       return
     end
 
     @user = User.find_by(email: email)
 
-    if @user
-      @user.deliver_reset_password_instructions!
-    end
+    @user&.deliver_reset_password_instructions!
 
-    flash[:success]= "パスワードリセットのメールを送信しました"
+    flash[:success] = 'パスワードリセットのメールを送信しました'
     redirect_to login_path
   end
 
@@ -40,9 +40,9 @@ class PasswordResetsController < ApplicationController
     @user.password_confirmation = params[:user][:password_confirmation]
     if @user.change_password(params[:user][:password])
       redirect_to login_path
-      flash[:success]= "パスワードがリセットされました"
+      flash[:success] = 'パスワードがリセットされました'
     else
-      render action: "edit"
+      render action: 'edit'
     end
   end
 end

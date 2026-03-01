@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateApiPosts < ActiveRecord::Migration[7.2]
   def change
     create_table :api_posts do |t|

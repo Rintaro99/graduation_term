@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ResultsController < ApplicationController
   def show
     flash.discard(:alert) # ✅ alertだけ消す
@@ -31,7 +33,7 @@ class ResultsController < ApplicationController
 
     @correct_count = calculate_score(session[:answers]) # 表示用
 
-    current_user.update_symbols! if current_user
+    current_user&.update_symbols!
   end
 
   def reset
@@ -40,7 +42,7 @@ class ResultsController < ApplicationController
     session[:correct_questions] = []
     session[:answers] = {}
     session[:scored] = false
-    redirect_to quiz_path, notice: "クイズをリセットしました！"
+    redirect_to quiz_path, notice: 'クイズをリセットしました！'
   end
 
   private
@@ -48,7 +50,7 @@ class ResultsController < ApplicationController
   def calculate_score(answers)
     correct_count = 0
 
-    answers.each do |question_id, choice_id|
+    answers.each_value do |choice_id|
       choice = Choice.find(choice_id)
       correct_count += 1 if choice.is_correct
     end

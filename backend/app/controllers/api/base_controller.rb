@@ -1,36 +1,41 @@
-class Api::BaseController < ActionController::API
-  before_action :authenticate_api_user!
+# frozen_string_literal: true
 
-  # よくある例外をJSONで統一
-  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
-  rescue_from ActionController::ParameterMissing, with: :render_bad_request
-  # Warden例外が投げられた場合だけ捕まえる（環境差吸収）
-  rescue_from Warden::NotAuthenticated, with: :render_unauthorized if defined?(Warden::NotAuthenticated)
+module Api
+  class BaseController < ActionController::API
+    before_action :authenticate_api_user!
 
-  # 任意: 401時のJSON整形を自前でやりたいときだけ rescue を使う
-  rescue_from Warden::NotAuthenticated, with: :user_not_authenticated
+    # よくある例外をJSONで統一
+    rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
+    rescue_from ActionController::ParameterMissing, with: :render_bad_request
+    # Warden例外が投げられた場合だけ捕まえる（環境差吸収）
+    rescue_from Warden::NotAuthenticated, with: :render_unauthorized if defined?(Warden::NotAuthenticated)
 
-  private
-  def user_not_authenticated
-    render json: { error: "認証されていません" }, status: :unauthorized
-  end
+    # 任意: 401時のJSON整形を自前でやりたいときだけ rescue を使う
+    rescue_from Warden::NotAuthenticated, with: :user_not_authenticated
 
-  def render_not_found(e)
-    render json: { error: "not_found", message: e.message }, status: :not_found
-  end
+    private
 
-  def render_bad_request(e)
-    render json: { error: "bad_request", message: e.message }, status: :bad_request
-  end
+    def user_not_authenticated
+      render json: { error: '認証されていません' }, status: :unauthorized
+    end
 
-  def render_unauthorized(_e)
-    render json: { error: "unauthorized" }, status: :unauthorized
-  end
+    def render_not_found(e)
+      render json: { error: 'not_found', message: e.message }, status: :not_found
+    end
 
-  # 管理者チェック
-  def require_admin!
-    unless current_api_user&.admin?
-      render json: { error: "管理者のみアクセス可能です" }, status: :forbidden
+    def render_bad_request(e)
+      render json: { error: 'bad_request', message: e.message }, status: :bad_request
+    end
+
+    def render_unauthorized(_e)
+      render json: { error: 'unauthorized' }, status: :unauthorized
+    end
+
+    # 管理者チェック
+    def require_admin!
+      return if current_api_user&.admin?
+
+      render json: { error: '管理者のみアクセス可能です' }, status: :forbidden
     end
   end
 end

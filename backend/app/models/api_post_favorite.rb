@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApiPostFavorite < ApplicationRecord
   belongs_to :api_user
   belongs_to :api_post

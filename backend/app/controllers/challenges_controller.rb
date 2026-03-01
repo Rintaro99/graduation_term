@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChallengesController < ApplicationController
   # before_action :require_login
 
@@ -7,14 +9,14 @@ class ChallengesController < ApplicationController
     answers = params[:answers]
     score = calculate_score(answers)
     current_user.challenges.create(score: score)
-    redirect_to ranking_path, notice: "スコアを保存しました！"
+    redirect_to ranking_path, notice: 'スコアを保存しました！'
   end
 
   private
 
   def calculate_score(answers)
     correct_count = 0
-    answers.each do |question_id, choice_id|
+    answers.each_value do |choice_id|
       choice = Choice.find(choice_id)
       correct_count += 1 if choice.is_correct
     end

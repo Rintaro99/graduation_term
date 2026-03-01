@@ -1,11 +1,12 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   # skip_before_action :require_login, only: %i[new create]
-  before_action :set_user, only: [ :show, :edit, :update, :userpage ]
+  before_action :set_user, only: %i[show edit update userpage]
 
   def show
-    current_user.update_symbols! if current_user
+    current_user&.update_symbols!
   end
-
 
   def new
     @user = User.new
@@ -14,12 +15,12 @@ class UsersController < ApplicationController
   def edit
     # 編集対象のフィールドをparamsで受け取る
     @field = params[:field]
-    render partial: "edit_field", formats: [ :html ]
+    render partial: 'edit_field', formats: [:html]
   end
 
   def update
     if @user.update(user_params)
-      redirect_to mypage_path, notice: "更新しました"
+      redirect_to mypage_path, notice: '更新しました'
     else
       render :show
     end

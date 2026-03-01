@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApiPost < ApplicationRecord
   belongs_to :api_user
   has_many :api_post_favorites, dependent: :destroy

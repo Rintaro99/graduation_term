@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 # The first thing you need to configure is which modules you need in your app.
 # The default is nothing which will include only core features (password encryption, login/logout).
 #
 # Available submodules are: :user_activation, :http_basic_auth, :remember_me,
 # :reset_password, :session_timeout, :brute_force_protection, :activity_logging,
 # :magic_login, :external
-Rails.application.config.sorcery.submodules = [ :reset_password, :external ]
+Rails.application.config.sorcery.submodules = %i[reset_password external]
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
@@ -80,11 +82,11 @@ Rails.application.config.sorcery.configure do |config|
   # i.e. [:twitter, :facebook, :github, :linkedin, :xing, :google, :liveid, :salesforce, :slack, :line].
   # Default: `[]`
   #
-  config.external_providers = [ :google, :twitter, :facebook ]
+  config.external_providers = %i[google twitter facebook]
 
-  config.google.key = ENV["GOOGLE_CLIENT_ID"]
-  config.google.secret = ENV["GOOGLE_CLIENT_SECRET"]
-  config.google.callback_url = ENV["GOOGLE_CALLBACK_URL"]
+  config.google.key = ENV['GOOGLE_CLIENT_ID']
+  config.google.secret = ENV['GOOGLE_CLIENT_SECRET']
+  config.google.callback_url = ENV['GOOGLE_CALLBACK_URL']
   # if Rails.env.production?
   #   config.google.callback_url = "https://cryptic-coast-70717-f9eb22b0cbd6.herokuapp.com/oauth/google/callback"
   # else
@@ -92,18 +94,18 @@ Rails.application.config.sorcery.configure do |config|
   #   # config.google.callback_url = "http://localhost:3000/oauth/callback?provider=google"
   #   # config.google.callback_url = ENV["GOOGLE_CALLBACK_URL"]
   # end
-  config.google.user_info_mapping = { email: "email", name: "name" }
+  config.google.user_info_mapping = { email: 'email', name: 'name' }
 
-  config.twitter.key = ENV["TWITTER_API_KEY"]
-  config.twitter.secret = ENV["TWITTER_API_SECRET"]
-  config.twitter.callback_url = "https://cryptic-coast-70717-f9eb22b0cbd6.herokuapp.com/oauth/twitter/callback"
-  config.twitter.user_info_path = "/1.1/account/verify_credentials.json?include_email=true"
-  config.twitter.user_info_mapping = { email: "email", name: "name" }
+  config.twitter.key = ENV['TWITTER_API_KEY']
+  config.twitter.secret = ENV['TWITTER_API_SECRET']
+  config.twitter.callback_url = 'https://cryptic-coast-70717-f9eb22b0cbd6.herokuapp.com/oauth/twitter/callback'
+  config.twitter.user_info_path = '/1.1/account/verify_credentials.json?include_email=true'
+  config.twitter.user_info_mapping = { email: 'email', name: 'name' }
 
-  config.facebook.key = ENV["FACEBOOK_APP_ID"]
-  config.facebook.secret = ENV["FACEBOOK_APP_SECRET"]
-  config.facebook.callback_url = "http://localhost:3000/oauth/callback?provider=facebook"
-  config.facebook.user_info_mapping = { email: "email", name: "name" }
+  config.facebook.key = ENV['FACEBOOK_APP_ID']
+  config.facebook.secret = ENV['FACEBOOK_APP_SECRET']
+  config.facebook.callback_url = 'http://localhost:3000/oauth/callback?provider=facebook'
+  config.facebook.user_info_mapping = { email: 'email', name: 'name' }
 
   # config.external_path = "/auth" # デフォルトのままでもOKだが明示的に
 
@@ -255,7 +257,6 @@ Rails.application.config.sorcery.configure do |config|
   # config.line.bot_prompt = "normal"
   # config.line.user_info_mapping = {name: 'displayName'}
 
-
   # For information about Discord API
   # https://discordapp.com/developers/docs/topics/oauth2
   # config.discord.key = "xxxxxx"
@@ -276,7 +277,7 @@ Rails.application.config.sorcery.configure do |config|
     # Specify username attributes, for example: [:username, :email].
     # Default: `[:email]`
     #
-    user.username_attribute_names = [ :email ]
+    user.username_attribute_names = [:email]
 
     # Change *virtual* password attribute, the one which is used until an encrypted one is generated.
     # Default: `:password`
@@ -592,7 +593,7 @@ Rails.application.config.sorcery.configure do |config|
 
   # This line must come after the 'user config' block.
   # Define which model authenticates with sorcery.
-  config.user_class = "User"
+  config.user_class = 'User'
 
   # Rails.application.config.middleware.use OmniAuth::Builder do
   # provider :google,

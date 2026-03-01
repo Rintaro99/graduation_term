@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApiUser < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -16,7 +18,7 @@ class ApiUser < ApplicationRecord
   # 称号（スコアに応じて一番高いもの）
   def achievement_title
     score = api_challenges.maximum(:score) || 0
-    symbol = AchievementSymbol.where("min_score <= ?", score).order(min_score: :desc).first
+    symbol = AchievementSymbol.where('min_score <= ?', score).order(min_score: :desc).first
     symbol&.title # なければ nil
   end
 end

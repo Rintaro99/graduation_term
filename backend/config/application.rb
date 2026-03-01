@@ -1,6 +1,8 @@
-require_relative "boot"
+# frozen_string_literal: true
 
-require "rails/all"
+require_relative 'boot'
+
+require 'rails/all'
 # require 'omniauth-google-oauth2'
 # require 'omniauth-twitter'
 # require 'omniauth-facebook'
@@ -9,7 +11,7 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-require "sorcery"
+require 'sorcery'
 
 module App
   class Application < Rails::Application
@@ -40,6 +42,6 @@ module App
     config.api_only = true
 
     config.middleware.use ActionDispatch::Cookies
-    config.middleware.use ActionDispatch::Session::CookieStore, key: "how_to_write_rin"
+    config.middleware.use ActionDispatch::Session::CookieStore, key: 'how_to_write_rin'
   end
 end
