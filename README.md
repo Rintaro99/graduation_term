@@ -135,6 +135,8 @@ Dockerを用いてアプリケーションとデータベースを分離し、�
 
 [![Image from Gyazo](https://i.gyazo.com/54be3c6134e2733ec1b588abaaece541.gif)](https://gyazo.com/54be3c6134e2733ec1b588abaaece541)
 
+[![Image from Gyazo](https://i.gyazo.com/ce6b51aa2c17d454d4a8b5fd1e7d6e04.gif)](https://gyazo.com/ce6b51aa2c17d454d4a8b5fd1e7d6e04)
+
 ユーザー一覧の詳細ページでは、上記の情報に加えどの記事をお気に入りにしたのかわかるようになっています。
 
 
