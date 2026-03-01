@@ -17,7 +17,6 @@ export default function UserPage() {
     })
       .then(res => res.json())
       .then((data: User) => {
-        console.log("DEBUG mypage data:", data);
         setUser(data);
         })
       .catch(err => console.error(err));
