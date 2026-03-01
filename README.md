@@ -133,9 +133,11 @@ Dockerを用いてアプリケーションとデータベースを分離し、�
 管理者のみ、登録されたユーザーの一覧を見ることができます。  
 ここでは、ユーザー名、クイズのスコア、称号、シンボルが表示される仕組みとなっています。
 
-[![Image from Gyazo](https://i.gyazo.com/54be3c6134e2733ec1b588abaaece541.gif)](https://gyazo.com/54be3c6134e2733ec1b588abaaece541)
 
-[![Image from Gyazo](https://i.gyazo.com/ce6b51aa2c17d454d4a8b5fd1e7d6e04.gif)](https://gyazo.com/ce6b51aa2c17d454d4a8b5fd1e7d6e04)
+
+https://github.com/user-attachments/assets/c1c3d929-9fdd-4b03-b21c-a4fd5df11a18
+
+
 
 ユーザー一覧の詳細ページでは、上記の情報に加えどの記事をお気に入りにしたのかわかるようになっています。
 
