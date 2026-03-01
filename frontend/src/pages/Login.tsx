@@ -10,8 +10,6 @@ type ContextType = {
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-console.log("VITE_API_BASE_URL (from Login):", import.meta.env.VITE_API_BASE_URL);
-
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
