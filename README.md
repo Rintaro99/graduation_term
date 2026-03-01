@@ -30,8 +30,6 @@
 - Devise
 - devise-jwt（JWT認証）
 
-SPAとの相性を考慮し、ステートレスなJWT認証を採用しています。
-
 ### テスト
 
 - RSpec
@@ -67,7 +65,7 @@ Dockerを用いてアプリケーションとデータベースを分離し、�
 
 <img width="826" height="517" alt="スクリーンショット 2026-03-01 23 50 53" src="https://github.com/user-attachments/assets/0d70db53-6882-43c2-8cc8-57899c724454" />
 
-新規登録、ログインを行うと、ユーザーページ(初期)になります。
+新規登録、ログインを行うと、ユーザーページ(初期)になります。  
 この状態では、称号とシンボルは無し。
 
 [![Image from Gyazo](https://i.gyazo.com/f76fdca3f1d1158841369c0d67c205ee.gif)](https://gyazo.com/f76fdca3f1d1158841369c0d67c205ee)
@@ -76,7 +74,7 @@ Dockerを用いてアプリケーションとデータベースを分離し、�
 
 [![Image from Gyazo](https://i.gyazo.com/3277f8f0b6e6cf9b307a0efb0b3edd1e.gif)](https://gyazo.com/3277f8f0b6e6cf9b307a0efb0b3edd1e)
 
-そして、全10問答えるとそのスコアに応じたシンボルと称号が与えられます。
+そして、全10問答えるとそのスコアに応じたシンボルと称号が与えられます。  
 そのシンボルと称号は、自分のユーザーページに表示されるようになります。
 
 [![Image from Gyazo](https://i.gyazo.com/1d2d1e897418ea61fe35450f52728eef.png)](https://gyazo.com/1d2d1e897418ea61fe35450f52728eef)
@@ -86,7 +84,7 @@ Dockerを用いてアプリケーションとデータベースを分離し、�
 
 [![Image from Gyazo](https://i.gyazo.com/601bd00ac515a635cf87dc7a1570941a.png)](https://gyazo.com/601bd00ac515a635cf87dc7a1570941a)
 
-ランキング機能では、他のユーザー名前の称号、シンボル、スコアがランキング順で表示されます。
+ランキング機能では、他のユーザー名前の称号、シンボル、スコアがランキング順で表示されます。  
 ランキング表の自分の位置は色でハイライトされ、どの順位か一目でわかるようになっています。
 
 
@@ -132,7 +130,7 @@ Dockerを用いてアプリケーションとデータベースを分離し、�
 
 <img width="787" height="765" alt="スクリーンショット 2026-03-02 0 22 49" src="https://github.com/user-attachments/assets/ebfe77df-2d43-4190-a2c9-c270e57a0227" />
 
-管理者のみ、登録されたユーザーの一覧を見ることができます。
+管理者のみ、登録されたユーザーの一覧を見ることができます。  
 ここでは、ユーザー名、クイズのスコア、称号、シンボルが表示される仕組みとなっています。
 
 [![Image from Gyazo](https://i.gyazo.com/54be3c6134e2733ec1b588abaaece541.gif)](https://gyazo.com/54be3c6134e2733ec1b588abaaece541)
