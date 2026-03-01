@@ -1,0 +1,17 @@
+<div class="container">
+    <h2>成績結果</h2>
+
+<p>出題済み問題数：<%= @answered_count %> / 全問題数：<%= @total_questions %></p>
+<p>正解数：<%= @correct_count %> 問</p>
+
+<% if @all_answered %>
+  <p>お疲れ様でした！すべての問題を解きました🎉</p>
+<% else %>
+  <p>あと <%= @total_questions - @answered_count %> 問残っています。</p>
+<% end %>
+
+<br>
+
+<%= link_to "トップに戻る", userpage_path, class: "btn btn-primary" %> |
+<%= link_to "もう一度挑戦する", reset_quiz_path, method: :delete, data: { confirm: "本当にリセットしますか？" }, class: "btn btn-danger" %>
+</div>

@@ -1,0 +1,21 @@
+<div class="container">
+  <h1>ランキング</h1>
+
+  <table border="1" cellpadding="5" cellspacing="0">
+    <tr>
+      <th>順位</th>
+      <th>ユーザー名</th>
+      <th>合計スコア</th>
+    </tr>
+
+    <% @users.each_with_index do |user, index| %>
+      <tr>
+        <td><%= index + 1 %>位</td>
+        <td><%= user.name %></td>
+        <td><%= user.best_score %> 点</td>
+      </tr>
+    <% end %>
+  </table>
+
+  <%= link_to "トップへ戻る", userpage_path %>
+</div>

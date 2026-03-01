@@ -1,0 +1,16 @@
+<div class="container">
+    <h2><%= @question.content %></h2>
+
+<p>
+  あなたの回答は 
+  <% if @correct %>
+    <strong>正解！🎉</strong>
+  <% else %>
+    <strong>不正解...😢</strong>
+  <% end %>
+</p>
+
+<p>解説：<%= @question.explanation %></p>
+
+<%= link_to "次の問題へ", quiz_path %>
+</div>

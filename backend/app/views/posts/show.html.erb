@@ -1,0 +1,11 @@
+<div class="container">
+    <h1><%= @post.title %></h1>
+    <p><%= @post.body %></p>
+
+    <% if current_user&.admin? %>
+        <%= link_to "編集", edit_post_path(@post), class: "btn btn-sm btn-outline-primary" %>
+        <%= link_to "削除", post_path(@post), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger btn-sm" %>
+    <% end %>
+
+    <%= link_to "一覧に戻る", posts_path %>
+</div>
