@@ -19,6 +19,9 @@
 
 - React 19（TypeScript）
 - Vite
+
+### UI
+
 - Tailwind CSS
 - Flowbite / DaisyUI
 
