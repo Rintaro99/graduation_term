@@ -11,7 +11,7 @@ module Api
       u = ApiUser.select(:id, :email, :name).find(params[:id])
       render json: u.as_json(only: %i[id email name])
     rescue ActiveRecord::RecordNotFound
-      render json: { message: 'not found' }, status: :not_found
+      render json: { message: "not found" }, status: :not_found
     end
 
     def mypage
@@ -66,7 +66,7 @@ module Api
 
     def base_fields
       f = %i[id email]
-      f << :name if ApiUser.column_names.include?('name')
+      f << :name if ApiUser.column_names.include?("name")
       f
     end
 
@@ -75,13 +75,13 @@ module Api
     end
 
     def user_update_params
-      permitted = [:email]
-      permitted << :name if ApiUser.column_names.include?('name')
+      permitted = [ :email ]
+      permitted << :name if ApiUser.column_names.include?("name")
       permitted += %i[password password_confirmation]
       attrs = params.require(:user).permit(permitted).to_h
       attrs.compact_blank!
       # password が無いなら確認用も落とす（ノイズ防止）
-      attrs.delete('password_confirmation') unless attrs.key?('password')
+      attrs.delete("password_confirmation") unless attrs.key?("password")
       attrs
     end
   end

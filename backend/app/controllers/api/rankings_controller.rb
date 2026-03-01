@@ -5,10 +5,10 @@ module Api
     def index
       # 各ユーザーの最高スコアを集計
       users_with_scores = ApiUser
-                          .select('api_users.id, api_users.name, MAX(api_challenges.score) AS best_score')
+                          .select("api_users.id, api_users.name, MAX(api_challenges.score) AS best_score")
                           .joins(:api_challenges)
-                          .group('api_users.id')
-                          .order(Arel.sql('MAX(api_challenges.score) DESC'))
+                          .group("api_users.id")
+                          .order(Arel.sql("MAX(api_challenges.score) DESC"))
 
       # 上位10名
       top_users = users_with_scores.limit(10)

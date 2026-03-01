@@ -16,26 +16,26 @@ module Api
     private
 
     def user_not_authenticated
-      render json: { error: '認証されていません' }, status: :unauthorized
+      render json: { error: "認証されていません" }, status: :unauthorized
     end
 
     def render_not_found(e)
-      render json: { error: 'not_found', message: e.message }, status: :not_found
+      render json: { error: "not_found", message: e.message }, status: :not_found
     end
 
     def render_bad_request(e)
-      render json: { error: 'bad_request', message: e.message }, status: :bad_request
+      render json: { error: "bad_request", message: e.message }, status: :bad_request
     end
 
     def render_unauthorized(_e)
-      render json: { error: 'unauthorized' }, status: :unauthorized
+      render json: { error: "unauthorized" }, status: :unauthorized
     end
 
     # 管理者チェック
     def require_admin!
       return if current_api_user&.admin?
 
-      render json: { error: '管理者のみアクセス可能です' }, status: :forbidden
+      render json: { error: "管理者のみアクセス可能です" }, status: :forbidden
     end
   end
 end

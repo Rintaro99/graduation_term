@@ -17,13 +17,13 @@ module Api
       def create
         ApiUser.send_reset_password_instructions(email: params[:api_user][:email])
         render json: {
-          message: 'パスワード再設定用のメールを送信しました。メールをご確認ください。'
+          message: "パスワード再設定用のメールを送信しました。メールをご確認ください。"
         }, status: :ok
       rescue StandardError => e
         # 万が一の例外も安全なメッセージに統一
         Rails.logger.error "Password reset error: #{e.message}"
         render json: {
-          message: 'パスワード再設定用のメールを送信しました。メールをご確認ください。'
+          message: "パスワード再設定用のメールを送信しました。メールをご確認ください。"
         }, status: :ok
         # user = ApiUser.send_reset_password_instructions(resource_params)
 
@@ -47,7 +47,7 @@ module Api
 
         if user.errors.empty?
           user.unlock_access! if user.respond_to?(:unlock_access!) && user.unlock_access!
-          render json: { message: 'パスワードを更新しました' }, status: :ok
+          render json: { message: "パスワードを更新しました" }, status: :ok
         else
           Rails.logger.error "RESET ERRORS: #{user.errors.full_messages.inspect}"
           render json: { errors: user.errors.full_messages }, status: :unprocessable_entity

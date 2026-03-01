@@ -13,7 +13,7 @@ module Api
     end
 
     def random
-      random_function = ActiveRecord::Base.connection.adapter_name.downcase.include?('mysql') ? 'RAND()' : 'RANDOM()'
+      random_function = ActiveRecord::Base.connection.adapter_name.downcase.include?("mysql") ? "RAND()" : "RANDOM()"
       question = Question.order(Arel.sql(random_function)).first
       render json: question.as_json(include: :choices)
     end

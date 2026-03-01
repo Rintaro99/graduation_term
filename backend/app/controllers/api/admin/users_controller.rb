@@ -12,7 +12,7 @@ module Api
 
         render json: users.map { |user|
           best_score = user.api_challenges.maximum(:score) || 0
-          best_symbol = AchievementSymbol.where('min_score <= ?', best_score)
+          best_symbol = AchievementSymbol.where("min_score <= ?", best_score)
                                          .order(min_score: :desc)
                                          .first
           {
@@ -32,7 +32,7 @@ module Api
         favorites = user.api_post_favorites.includes(:api_post)
 
         best_score = user.api_challenges.maximum(:score) || 0
-        best_symbol = AchievementSymbol.where('min_score <= ?', best_score)
+        best_symbol = AchievementSymbol.where("min_score <= ?", best_score)
                                        .order(min_score: :desc)
                                        .first
 
@@ -67,7 +67,7 @@ module Api
       # ユーザー更新（例: 名前やメールアドレス）
       def update
         if @user.update(user_params)
-          render json: { message: '更新しました', user: @user }
+          render json: { message: "更新しました", user: @user }
         else
           render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
         end
@@ -76,7 +76,7 @@ module Api
       # ユーザー削除
       def destroy
         @user.destroy
-        render json: { message: '削除しました' }
+        render json: { message: "削除しました" }
       end
 
       private

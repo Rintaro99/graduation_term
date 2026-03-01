@@ -19,9 +19,9 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
 
     if @post.save
-      redirect_to @post, notice: '投稿が作成されました。'
+      redirect_to @post, notice: "投稿が作成されました。"
     else
-      render :new, notice: '投稿の作成に失敗しました。'
+      render :new, notice: "投稿の作成に失敗しました。"
     end
   end
 
@@ -32,7 +32,7 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to @post, notice: '投稿が更新されました。'
+      redirect_to @post, notice: "投稿が更新されました。"
     else
       render :edit
     end
@@ -41,7 +41,7 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to posts_path, notice: '投稿を削除しました。'
+    redirect_to posts_path, notice: "投稿を削除しました。"
   end
 
   private
@@ -53,6 +53,6 @@ class PostsController < ApplicationController
   def require_admin
     return if current_user&.admin?
 
-    redirect_to root_path, alert: '管理者だけがアクセスできます。'
+    redirect_to root_path, alert: "管理者だけがアクセスできます。"
   end
 end

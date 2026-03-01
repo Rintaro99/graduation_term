@@ -1,19 +1,19 @@
 # frozen_string_literal: true
 
-require 'resend'
+require "resend"
 
 class DeviseMailer < Devise::Mailer
-  default from: ENV['MAILER_SENDER']
+  default from: ENV["MAILER_SENDER"]
 
   def reset_password_instructions(record, token, _opts = {})
-    Resend.api_key = ENV['RESEND_API_KEY']
+    Resend.api_key = ENV["RESEND_API_KEY"]
 
     reset_link = edit_api_user_password_url(reset_password_token: token)
 
     Resend::Emails.send({
-                          from: ENV['MAILER_SENDER'],
+                          from: ENV["MAILER_SENDER"],
                           to: record.email,
-                          subject: 'パスワードリセットのご案内',
+                          subject: "パスワードリセットのご案内",
                           html: <<~HTML
                             <div style="font-family: 'Helvetica Neue', Arial, sans-serif; background-color:#fafafa; padding:24px;">
                               <h2 style="color:#333;">パスワードリセットのご案内 </h2>

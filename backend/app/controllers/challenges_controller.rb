@@ -9,7 +9,7 @@ class ChallengesController < ApplicationController
     answers = params[:answers]
     score = calculate_score(answers)
     current_user.challenges.create(score: score)
-    redirect_to ranking_path, notice: 'スコアを保存しました！'
+    redirect_to ranking_path, notice: "スコアを保存しました！"
   end
 
   private

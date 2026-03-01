@@ -24,12 +24,12 @@ module Api
         def respond_with(resource, _opts = {})
           if resource.persisted?
             render json: {
-              message: 'ユーザー登録に成功しました。',
+              message: "ユーザー登録に成功しました。",
               user: resource
             }, status: :ok
           else
             render json: {
-              message: 'ユーザー登録に失敗しました。',
+              message: "ユーザー登録に失敗しました。",
               errors: resource.errors.full_messages
             }, status: :unprocessable_entity
           end
@@ -37,7 +37,7 @@ module Api
 
         # 退会（アカウント削除）時のレスポンス
         def respond_to_on_destroy
-          render json: { message: '退会しました' }, status: :ok
+          render json: { message: "退会しました" }, status: :ok
         end
 
         # def configure_permitted_parameters

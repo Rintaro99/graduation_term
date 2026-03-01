@@ -75,7 +75,7 @@ module Api
     end
 
     def require_admin!
-      render json: { error: '管理者のみ操作可能です' }, status: :forbidden unless current_api_user.admin?
+      render json: { error: "管理者のみ操作可能です" }, status: :forbidden unless current_api_user.admin?
     end
   end
 end

@@ -8,7 +8,7 @@ module Api
       # スコア保存
       challenge = current_api_user.api_challenges.create!(score: params[:score])
       # スコアに応じた称号を判定
-      symbol = AchievementSymbol.where('min_score <= ?', challenge.score)
+      symbol = AchievementSymbol.where("min_score <= ?", challenge.score)
                                 .order(min_score: :desc)
                                 .first
       if symbol

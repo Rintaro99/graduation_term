@@ -2,15 +2,15 @@
 
 class AnswersController < ApplicationController
   def check
-    puts '===== params ====='
+    puts "===== params ====="
     puts params.inspect
-    puts '=================='
+    puts "=================="
 
     current_question = Question.find_by(id: params[:question_id])
 
     # 未選択チェック
     if params[:choice_id].blank?
-      redirect_to question_path(current_question), alert: '選択肢を選んでから回答してください！'
+      redirect_to question_path(current_question), alert: "選択肢を選んでから回答してください！"
       return
     end
 

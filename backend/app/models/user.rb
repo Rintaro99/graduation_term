@@ -13,7 +13,7 @@ class User < ApplicationRecord
   attr_accessor :terms_of_service
 
   # 利用規約の同意が必須
-  validates :terms_of_service, acceptance: { message: 'に同意してください' }
+  validates :terms_of_service, acceptance: { message: "に同意してください" }
 
   # validates :password, length: { minimum: 3 }, if: -> { new_record? || changes[:crypted_password] }
   # validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
@@ -33,7 +33,7 @@ class User < ApplicationRecord
     return unless best_score
 
     # スコアを満たしているが、まだ持っていない称号だけ取得
-    unlocked = AchievementSymbol.where('min_score <= ?', best_score)
+    unlocked = AchievementSymbol.where("min_score <= ?", best_score)
     new_symbols = unlocked.where.not(id: achievement_symbol_ids)
 
     logger.debug "DEBUG: user best score = #{best_score}"

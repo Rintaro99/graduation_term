@@ -7,21 +7,21 @@ class OmniauthCallbacksController < ApplicationController
   # end
 
   def google
-    handle_auth 'Google'
+    handle_auth "Google"
   end
 
   def twitter
-    handle_auth 'Twitter'
+    handle_auth "Twitter"
   end
 
   def facebook
-    handle_auth 'Facebook'
+    handle_auth "Facebook"
   end
 
   private
 
   def handle_auth(kind)
-    auth = request.env['omniauth.auth']
+    auth = request.env["omniauth.auth"]
 
     user = User.find_or_create_by(provider: auth.provider, uid: auth.uid) do |u|
       u.name = auth.info.name

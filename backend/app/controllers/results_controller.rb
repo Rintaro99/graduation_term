@@ -42,7 +42,7 @@ class ResultsController < ApplicationController
     session[:correct_questions] = []
     session[:answers] = {}
     session[:scored] = false
-    redirect_to quiz_path, notice: 'クイズをリセットしました！'
+    redirect_to quiz_path, notice: "クイズをリセットしました！"
   end
 
   private

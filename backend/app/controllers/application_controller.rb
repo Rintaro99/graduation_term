@@ -7,6 +7,6 @@ class ApplicationController < ActionController::Base
 
   def not_authenticated
     # redirect_to root_path, alert: "ログインしてください"
-    render json: { error: '認証が必要です' }, status: :unauthorized
+    render json: { error: "認証が必要です" }, status: :unauthorized
   end
 end
