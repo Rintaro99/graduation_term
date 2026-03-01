@@ -82,6 +82,33 @@ Dockerを用いてアプリケーションとデータベースを分離し、�
 [![Image from Gyazo](https://i.gyazo.com/1d2d1e897418ea61fe35450f52728eef.png)](https://gyazo.com/1d2d1e897418ea61fe35450f52728eef)
 
 
+## ランキング機能
+
+[![Image from Gyazo](https://i.gyazo.com/601bd00ac515a635cf87dc7a1570941a.png)](https://gyazo.com/601bd00ac515a635cf87dc7a1570941a)
+
+ランキング機能では、他のユーザー名前の称号、シンボル、スコアがランキング順で表示されます。
+ランキング表の自分の位置は色でハイライトされ、どの順位か一目でわかるようになっています。
+
+
+## プロフィール編集、パスワードリセット
+
+[![Image from Gyazo](https://i.gyazo.com/4d3a7dd596b510e2eab1caa47523ae61.png)](https://gyazo.com/4d3a7dd596b510e2eab1caa47523ae61)
+
+プロフィール編集は右上のハンバーガーメニューから行います。
+
+[![Image from Gyazo](https://i.gyazo.com/fdd884729f8c1ac904c212238f74b930.png)](https://gyazo.com/fdd884729f8c1ac904c212238f74b930)
+
+ここで名前とメールアドレスの変更が可能となります。
+
+<img width="1116" height="465" alt="スクリーンショット 2026-03-02 0 10 49" src="https://github.com/user-attachments/assets/95da5001-b94d-446b-81f8-c681cff800c8" />
+
+[![Image from Gyazo](https://i.gyazo.com/f1211619e68e2b57856520cd7effd68d.png)](https://gyazo.com/f1211619e68e2b57856520cd7effd68d)
+
+
+
+
+パスワードリセットは入力したメールアドレスにパスワードリセット用URLを添付したメールを送り、そこからパスワード変更を行います。
+
 
 # 工夫した点
 
