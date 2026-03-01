@@ -18,12 +18,6 @@
 - Vite
 - Tailwind CSS
 - Flowbite / DaisyUI
-- TanStack React Query（データフェッチ管理）
-- React Router
-- React Markdown（ブログ表示）
-
-SPA構成を採用し、API通信にはAxiosとReact Queryを使用しています。
-非同期データのキャッシュ管理やローディング制御を効率的に実装しています。
 
 ## バックエンド
 
@@ -56,7 +50,6 @@ SPAとの相性を考慮し、ステートレスなJWT認証を採用してい�
 - Docker Compose
 - Rails（APIモード）
 - PostgreSQL（Dockerコンテナ）
-- .envで環境変数管理
 
 Dockerを用いてアプリケーションとデータベースを分離し、ローカル環境差異を防いでいます。
 
@@ -66,8 +59,14 @@ Dockerを用いてアプリケーションとデータベースを分離し、�
 - バックエンド：Render（Web Service）
 - データベース：Render PostgreSQL
 - 認証：JWT（Devise）
-- SSL接続：有効
 - 環境変数管理：Render / Vercel
+
+# 機能説明
+
+## ユーザー認証まわり
+- ユーザー登録、ログイン
+<img width="724" height="496" alt="スクリーンショット 2026-03-01 22 48 20" src="https://github.com/user-attachments/assets/b94d4fb0-64c3-4bb9-ae20-5625522a8549" />
+<img width="724" height="496" alt="スクリーンショット 2026-03-01 22 48 20" src="https://github.com/user-attachments/assets/4f9fc41b-e69a-4440-9dce-5ef1e16d4974" />
 
 
 # 工夫した点
