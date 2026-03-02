@@ -44,7 +44,7 @@
 
 ### その他
 
-- rack-cors（フロント分離構成対応）
+- rack-cors
 - SendGrid / Resend（メール送信）
 
 # システム構成
