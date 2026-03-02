@@ -51,11 +51,16 @@
 
 ## 開発環境
 
+### バックエンド
+
 - Docker Compose
 - Rails（APIモード）
 - PostgreSQL（Dockerコンテナ）
 
-Dockerを用いてアプリケーションとデータベースを分離し、ローカル環境差異を防いでいます。
+### フロントエンド
+
+- React（Vite）
+- npm run dev によるローカル起動
 
 ## 本番環境
 
