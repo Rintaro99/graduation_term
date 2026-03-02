@@ -70,7 +70,8 @@
 
 # ER図
 
-<img width="871" height="535" alt="スクリーンショット 2026-03-02 6 28 57" src="https://github.com/user-attachments/assets/ade04606-2210-4f54-acf9-188095208630" />
+<img width="998" height="615" alt="スクリーンショット 2026-03-02 10 33 54" src="https://github.com/user-attachments/assets/171b6d89-9d6f-4cf8-ab46-78923fc1bf61" />
+
 
 
 # 機能説明
@@ -149,7 +150,8 @@
 
 
 
-https://github.com/user-attachments/assets/c1c3d929-9fdd-4b03-b21c-a4fd5df11a18
+<img width="858" height="789" alt="スクリーンショット 2026-03-02 11 03 32" src="https://github.com/user-attachments/assets/dfa78841-8b77-4d77-8b91-bc2652cdb527" />
+
 
 
 
