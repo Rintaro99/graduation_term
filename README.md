@@ -67,8 +67,6 @@
 - フロントエンド：Vercel
 - バックエンド：Render（Web Service）
 - データベース：Render PostgreSQL
-- 認証：JWT（Devise）
-- 環境変数管理：Render / Vercel
 
 # ER図
 
